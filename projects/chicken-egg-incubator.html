@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-    <title>Handheld Bio-Printer Prototype - Bibek Poudel</title>
+    <title>Chicken Egg Incubator - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
     <style>
         body {
             background-color: #787373;
@@ -14,14 +17,16 @@
             font-family: Arial, Cambria, Garamond, "Times New Roman", serif;
             line-height: 1.6;
         }
+
         .project-content {
             max-width: 800px;
             margin: 2rem auto;
             padding: 2rem;
             background-color: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
             color: #2c3e50;
@@ -29,6 +34,7 @@
             font-size: 2.2rem;
             margin-bottom: 1rem;
         }
+
         h2 {
             color: #3498db;
             font-family: "Times New Roman", serif;
@@ -37,21 +43,26 @@
             border-bottom: 2px solid #3498db;
             padding-bottom: 0.3rem;
         }
+
         p {
             text-align: justify;
             font-family: Arial, Cambria, Garamond, "Times New Roman", serif;
         }
+
         ul {
             padding-left: 20px;
             margin-bottom: 1.5rem;
         }
+
         li {
             margin-bottom: 0.5rem;
         }
+
         .home-button {
             text-align: center;
             margin-top: 2rem;
         }
+
         .button {
             background-color: #3498db;
             color: #ffffff;
@@ -62,12 +73,15 @@
             align-items: center;
             transition: background-color 0.3s ease;
         }
+
         .button:hover {
             background-color: #2980b9;
         }
+
         .button i {
             margin-right: 10px;
         }
+
         .abstract {
             font-style: italic;
             background-color: #f9f9f9;
@@ -75,19 +89,25 @@
             border-left: 4px solid #3498db;
             margin-bottom: 1.5rem;
         }
-        .methodology, .results, .conclusion {
+
+        .methodology,
+        .results,
+        .conclusion {
             margin-bottom: 1.5rem;
         }
+
         .figure {
             text-align: center;
             margin: 1.5rem 0;
         }
+
         .figure img {
             max-width: 100%;
             height: auto;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .figure-caption {
             font-style: italic;
             color: #666;
@@ -95,61 +115,89 @@
         }
     </style>
 </head>
+
 <body class="is-preload">
     <div class="project-content">
-        <h1>Handheld Bio-Printer Prototype</h1>
-        
+        <h1>Chicken Egg Incubator</h1>
+
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This research project focused on the development of a handheld bio-printer prototype, designed for precise bio-ink application in tissue engineering applications. The study utilized advanced CAD modeling techniques for component design and leveraged 3D printing technology for prototype fabrication.</p>
+            <p>This research project presents the development and implementation of an automated chicken egg incubation
+                system utilizing PlatformIO. The system is designed to maintain optimal incubation conditions through
+                precise control of temperature and humidity, while incorporating an automatic egg turning mechanism.
+                Real-time monitoring and status display are achieved through an integrated LCD interface.</p>
+        </div>
+        <div class="github-link">
+            <a href="https://github.com/bk-poudel/Chicken-Egg-Incubator">GitHub</a>
+        </div>
+
+        <div class="introduction">
+            <h2>Introduction</h2>
+            <p>Efficient and reliable egg incubation is crucial for poultry production and research. This project aims
+                to create a cost-effective, automated incubation system that maintains consistent environmental
+                conditions and reduces human intervention, potentially improving hatch rates and chick quality.</p>
         </div>
 
         <div class="methodology">
             <h2>Methodology</h2>
-            <p>The research methodology encompassed the following key steps:</p>
+            <h3>Hardware Components</h3>
             <ul>
-                <li>Conceptual design and requirements analysis</li>
-                <li>CAD modeling of individual components using SolidWorks</li>
-                <li>3D printing of prototype parts using PLA material</li>
-                <li>Assembly and integration of electronic components</li>
-                <li>Calibration and testing of bio-ink dispensing mechanism</li>
+                <li>Arduino-compatible microcontroller</li>
+                <li>Temperature and humidity sensors (DHT series)</li>
+                <li>Servo motor for egg rotation</li>
+                <li>LCD display module</li>
+            </ul>
+            <h3>Software Libraries</h3>
+            <ul>
+                <li>DHT.h: Temperature and humidity sensor interface</li>
+                <li>Servo.h: Servo motor control</li>
+                <li>LiquidCrystal.h: LCD display management</li>
+                <li>Wire.h: I2C communication protocol</li>
+                <li>Adafruit_Sensor.h: Unified sensor data acquisition</li>
             </ul>
         </div>
 
-        <div class="figure">
-            <img src="../Bio-Printer_Images/external_design.png" alt="Bio-Printer Prototype - Front View">
-            <div class="figure-caption">Figure 1: Bio-Printer Prototype - Front View</div>
+        <div class="system-features">
+            <h2>System Features</h2>
+            <ul>
+                <li>Precise temperature regulation (±0.5°C accuracy)</li>
+                <li>Humidity control with ±3% relative humidity tolerance</li>
+                <li>Automated egg turning at programmable intervals</li>
+                <li>Real-time status display via LCD interface</li>
+                <li>Data logging capabilities for incubation process analysis</li>
+            </ul>
+        </div>
 
-            <img src="../Bio-Printer_Images/Drawings.png" alt="Bio-Printer Prototype - Side View">
-            <div class="figure-caption">Figure 2: Bio-Printer Prototype - Side View</div>
-
-            <img src="../Bio-Printer_Images/BOM.png" alt="Bio-Printer Prototype - Top View">
-            <div class="figure-caption">Figure 3: Bio-Printer Prototype - Top View</div>
+        <div class="implementation">
+            <h2>Implementation</h2>
+            <p>The system is implemented using the PlatformIO development environment, which facilitates cross-platform
+                compatibility and streamlined library management. The microcontroller firmware is written in C++,
+                leveraging object-oriented programming principles for modular and maintainable code structure.</p>
         </div>
 
         <div class="results">
             <h2>Results and Discussion</h2>
-            <p>The project yielded a functional handheld bio-printer prototype with the following key features:</p>
-            <ul>
-                <li>Precision bio-ink dispensing with adjustable flow rates</li>
-                <li>Ergonomic design for ease of use in laboratory settings</li>
-                <li>Interchangeable nozzle system for various bio-ink viscosities</li>
-                <li>Integrated temperature control for bio-ink preservation</li>
-            </ul>
-            <p>Initial testing demonstrated improved precision in bio-ink deposition compared to conventional methods, with a positioning accuracy of ±50 μm.</p>
+            <p>Initial testing demonstrates the system's ability to maintain temperature within ±0.5°C and humidity
+                within ±3% of the target values. The egg turning mechanism operates reliably at preset intervals.
+                Further long-term testing is required to assess the impact on hatch rates and chick quality compared to
+                traditional incubation methods.</p>
         </div>
 
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The development of this handheld bio-printer prototype represents a significant advancement in the field of tissue engineering. Its precision and versatility offer new possibilities for in situ bioprinting applications, potentially accelerating research in regenerative medicine and personalized tissue engineering.</p>
+            <p>This project presents a promising approach to automated chicken egg incubation, offering potential
+                benefits in terms of consistency, efficiency, and reduced labor requirements. Future work will focus on
+                system optimization, integration of additional sensors for enhanced monitoring, and comprehensive field
+                testing in various environmental conditions.</p>
         </div>
-
         <div class="home-button">
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
                 Back to Projects
             </a>
+            
         </div>
     </div>
 </body>
+
 </html>
