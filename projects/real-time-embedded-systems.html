@@ -97,51 +97,59 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <h1>Handheld Bio-Printer Prototype</h1>
+        <h1>Embedded Sentry System</h1>
         
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This research project focused on the development of a handheld bio-printer prototype, designed for precise bio-ink application in tissue engineering applications. The study utilized advanced CAD modeling techniques for component design and leveraged 3D printing technology for prototype fabrication.</p>
+            <p>This project implements an "Embedded Sentry" system using gesture recognition for secure access control. The system utilizes a single accelerometer/gyroscope to record and authenticate hand movement sequences, providing a novel approach to protecting assets and data.</p>
         </div>
 
         <div class="methodology">
             <h2>Methodology</h2>
-            <p>The research methodology encompassed the following key steps:</p>
+            <p>The project methodology included the following key steps:</p>
             <ul>
-                <li>Conceptual design and requirements analysis</li>
-                <li>CAD modeling of individual components using SolidWorks</li>
-                <li>3D printing of prototype parts using PLA material</li>
-                <li>Assembly and integration of electronic components</li>
-                <li>Calibration and testing of bio-ink dispensing mechanism</li>
+                <li>Design and implementation of gesture recording functionality</li>
+                <li>Development of gesture mapping and comparison algorithms</li>
+                <li>Integration of visual feedback system using LEDs</li>
+                <li>Implementation of "Record Key" feature for sequence storage</li>
+                <li>Calibration and testing of the gesture recognition system</li>
             </ul>
         </div>
 
-        <div class="figure">
-            <img src="../Bio-Printer_Images/external_design.png" alt="Bio-Printer Prototype - Front View">
-            <div class="figure-caption">Figure 1: Bio-Printer Prototype - Front View</div>
-
-            <img src="../Bio-Printer_Images/Drawings.png" alt="Bio-Printer Prototype - Side View">
-            <div class="figure-caption">Figure 2: Bio-Printer Prototype - Side View</div>
-
-            <img src="../Bio-Printer_Images/BOM.png" alt="Bio-Printer Prototype - Top View">
-            <div class="figure-caption">Figure 3: Bio-Printer Prototype - Top View</div>
+        <div class="implementation">
+            <h2>Implementation Details</h2>
+            <p>The Embedded Sentry system was developed using the following components and techniques:</p>
+            <ul>
+                <li>Microcontroller: STM32F49I Discovery Board with integrated accelerometer/gyroscope</li>
+                <li>Development Environment: PlatformIO IDE</li>
+                <li>Programming Language: C++</li>
+                <li>Key Functions:
+                    <ul>
+                        <li>record_gesture_data(): Captures motion data during gesture input</li>
+                        <li>map_gesture_data(): Converts raw sensor data to directional values</li>
+                        <li>compare_gesture(): Matches input gestures against stored sequences</li>
+                        <li>calibrate_sensor(): Ensures accuracy of the motion sensor</li>
+                    </ul>
+                </li>
+                <li>User Interface: Push button for initiating gesture recording and LED indicators for system feedback</li>
+            </ul>
         </div>
 
         <div class="results">
             <h2>Results and Discussion</h2>
-            <p>The project yielded a functional handheld bio-printer prototype with the following key features:</p>
+            <p>The Embedded Sentry project achieved the following outcomes:</p>
             <ul>
-                <li>Precision bio-ink dispensing with adjustable flow rates</li>
-                <li>Ergonomic design for ease of use in laboratory settings</li>
-                <li>Interchangeable nozzle system for various bio-ink viscosities</li>
-                <li>Integrated temperature control for bio-ink preservation</li>
+                <li>Successful implementation of gesture-based unlock mechanism</li>
+                <li>Secure storage of gesture sequences on the microcontroller</li>
+                <li>Visual feedback system for user interaction and status indication</li>
+                <li>Robust gesture recognition with tolerance for minor variations</li>
             </ul>
-            <p>Initial testing demonstrated improved precision in bio-ink deposition compared to conventional methods, with a positioning accuracy of ±50 μm.</p>
+            <p>The system demonstrated high accuracy in gesture recognition, providing a secure and innovative approach to access control.</p>
         </div>
 
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The development of this handheld bio-printer prototype represents a significant advancement in the field of tissue engineering. Its precision and versatility offer new possibilities for in situ bioprinting applications, potentially accelerating research in regenerative medicine and personalized tissue engineering.</p>
+            <p>The Embedded Sentry project showcases the potential of gesture-based security in embedded systems. By leveraging motion sensors and advanced algorithms, it offers a unique solution for protecting assets and data, opening new possibilities in the field of embedded security systems.</p>
         </div>
 
         <div class="home-button">

@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Handheld Bio-Printer Prototype - Bibek Poudel</title>
+    <title>Roller Coaster Simulation - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
     <style>
         body {
             background-color: #787373;
@@ -20,7 +22,7 @@
             padding: 2rem;
             background-color: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
@@ -75,7 +77,9 @@
             border-left: 4px solid #3498db;
             margin-bottom: 1.5rem;
         }
-        .methodology, .results, .conclusion {
+        .methodology,
+        .results,
+        .conclusion {
             margin-bottom: 1.5rem;
         }
         .figure {
@@ -97,53 +101,59 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <h1>Handheld Bio-Printer Prototype</h1>
-        
+        <h1>Roller Coaster Simulation</h1>
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This research project focused on the development of a handheld bio-printer prototype, designed for precise bio-ink application in tissue engineering applications. The study utilized advanced CAD modeling techniques for component design and leveraged 3D printing technology for prototype fabrication.</p>
+            <p>This project aims to simulate the motion of a rollercoaster-cart over a track. The cart is subject to
+                gravity, friction, and air resistance. The cart is subjected to an initial thrust by a PMLSM motor which
+                provides thrust for 4 seconds over a horizontal track. The goal is to analyze the forces acting on the
+                cart and to simulate the motion of the cart over the track. The track is composed of different sections
+                with varying slopes (horizontal and inclined). The simulation results will be used to analyze the forces
+                acting on the cart and determine whether the thrust provided by the motor is sufficient to move the cart
+                over the track.</p>
         </div>
-
+        <div class="figure">
+            <img src="../Roller_Coaster_Simulation/system_integration.png" alt="System Integration">
+            <div class="figure-caption">Figure 1: System Integration</div>
+            <img src="../Roller_Coaster_Simulation/motor_model.png" alt="Motor Model">
+            <div class="figure-caption">Figure 2: Motor Model</div>
+            <img src="../Roller_Coaster_Simulation/track_system.png" alt="Track Profile">
+            <div class="figure-caption">Figure 3: Track Profile</div>
+        </div>
         <div class="methodology">
             <h2>Methodology</h2>
-            <p>The research methodology encompassed the following key steps:</p>
+            <p>The project methodology included the following steps:</p>
             <ul>
-                <li>Conceptual design and requirements analysis</li>
-                <li>CAD modeling of individual components using SolidWorks</li>
-                <li>3D printing of prototype parts using PLA material</li>
-                <li>Assembly and integration of electronic components</li>
-                <li>Calibration and testing of bio-ink dispensing mechanism</li>
+                <li>Mathematical modeling of roller coaster dynamics</li>
+                <li>Development of simulation software using Matlab/Simulink</li>
+                <li>Implementation of two interconnected subsystems: PMLSM motor and roller coaster cart</li>
+                <li>Incorporation of environmental factors such as gravity, friction, and air resistance</li>
+                <li>Validation of simulation results using conservation of energy principle</li>
             </ul>
         </div>
-
-        <div class="figure">
-            <img src="../Bio-Printer_Images/external_design.png" alt="Bio-Printer Prototype - Front View">
-            <div class="figure-caption">Figure 1: Bio-Printer Prototype - Front View</div>
-
-            <img src="../Bio-Printer_Images/Drawings.png" alt="Bio-Printer Prototype - Side View">
-            <div class="figure-caption">Figure 2: Bio-Printer Prototype - Side View</div>
-
-            <img src="../Bio-Printer_Images/BOM.png" alt="Bio-Printer Prototype - Top View">
-            <div class="figure-caption">Figure 3: Bio-Printer Prototype - Top View</div>
-        </div>
-
         <div class="results">
             <h2>Results and Discussion</h2>
-            <p>The project yielded a functional handheld bio-printer prototype with the following key features:</p>
+            <p>The simulation provided valuable insights into the following aspects:</p>
             <ul>
-                <li>Precision bio-ink dispensing with adjustable flow rates</li>
-                <li>Ergonomic design for ease of use in laboratory settings</li>
-                <li>Interchangeable nozzle system for various bio-ink viscosities</li>
-                <li>Integrated temperature control for bio-ink preservation</li>
+                <li>Thrust provided by the PMLSM motor over time</li>
+                <li>Velocity and position of the cart over the track</li>
+                <li>Forces acting on the cart (gravitational force, frictional force, air resistance)</li>
+                <li>Analysis of whether the thrust provided by the motor is sufficient to move the cart over the track
+                </li>
             </ul>
-            <p>Initial testing demonstrated improved precision in bio-ink deposition compared to conventional methods, with a positioning accuracy of ±50 μm.</p>
+            <p>The results demonstrated the importance of precise calculations and simulations in the design of roller
+                coasters, allowing for the optimization of various parameters such as track profile, motor thrust, and
+                environmental factors.</p>
         </div>
-
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The development of this handheld bio-printer prototype represents a significant advancement in the field of tissue engineering. Its precision and versatility offer new possibilities for in situ bioprinting applications, potentially accelerating research in regenerative medicine and personalized tissue engineering.</p>
+            <p>The simulation of the rollercoaster-cart over a track has been successfully implemented using
+                Matlab/Simulink. The simulation results have been used to analyze the forces acting on the cart and to
+                determine whether the thrust provided by the motor is sufficient to move the cart over the track. The
+                results obtained from the simulation can be used as a reference for the development of roller coaster
+                systems in the real world. With the development of computing power, we can simulate more complex systems
+                and analyze the performance of the system before actual implementation.</p>
         </div>
-
         <div class="home-button">
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
