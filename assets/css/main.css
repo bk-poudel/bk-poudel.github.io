@@ -1104,6 +1104,13 @@ input, select, textarea {
 		line-height: calc(2.75rem - 2px);
 	}
 
+	.button.small {
+		font-size: 0.6rem;
+		height: 2.0625rem;
+		line-height: 2.0625rem;
+		margin-bottom: 1rem; /* Add vertical spacing after the button */
+	}
+
 /* BG */
 
 	#bg {
