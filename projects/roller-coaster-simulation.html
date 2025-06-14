@@ -5,165 +5,412 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
-    </noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <style>
-        body {
-            background-color: #787373;
-            color: #333;
-            font-family: Arial, Cambria, Garamond, "Times New Roman", serif;
-            line-height: 1.6;
+        /* Consistent color scheme with dark background and light content */
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
         }
+        
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
         .project-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 2rem auto;
             padding: 2rem;
-            background-color: #ffffff;
+            background: var(--content-bg);
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
         }
+        
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
         h1 {
             text-align: center;
-            color: #2c3e50;
-            font-family: Garamond, "Times New Roman", serif;
+            color: var(--primary);
             font-size: 2.2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
         }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
         h2 {
-            color: #3498db;
-            font-family: "Times New Roman", serif;
+            color: var(--primary);
             font-size: 1.6rem;
-            margin-top: 1.5rem;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 0.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
         }
+        
         p {
             text-align: justify;
-            font-family: Arial, Cambria, Garamond, "Times New Roman", serif;
+            margin-bottom: 1.5rem;
+            color: var(--text);
         }
+        
         ul {
-            padding-left: 20px;
+            padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
+        
         li {
             margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
         }
-        .home-button {
-            text-align: center;
-            margin-top: 2rem;
+        
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
         }
+        
         .button {
-            background-color: #3498db;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 5px;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
         }
+        
         .button:hover {
-            background-color: #2980b9;
+            background: var(--accent);
+            transform: translateY(-2px);
         }
+        
         .button i {
-            margin-right: 10px;
+            margin-right: 0.5rem;
         }
+        
         .abstract {
-            font-style: italic;
-            background-color: #f9f9f9;
-            padding: 1rem;
-            border-left: 4px solid #3498db;
-            margin-bottom: 1.5rem;
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
         }
-        .methodology,
-        .results,
-        .conclusion {
-            margin-bottom: 1.5rem;
+        
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
+        
         .figure {
+            flex: 1;
+            min-width: 250px;
             text-align: center;
-            margin: 1.5rem 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
+        
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        
         .figure img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
             border-radius: 4px;
+            margin-bottom: 0.8rem;
         }
+        
         .figure-caption {
             font-style: italic;
-            color: #666;
-            margin-top: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .product-item {
+            margin-bottom: 2.5rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .product-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+        
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .figure-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body class="is-preload">
     <div class="project-content">
         <h1>Roller Coaster Simulation</h1>
+        
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This project aims to simulate the motion of a rollercoaster-cart over a track. The cart is subject to
-                gravity, friction, and air resistance. The cart is subjected to an initial thrust by a PMLSM motor which
-                provides thrust for 4 seconds over a horizontal track. The goal is to analyze the forces acting on the
-                cart and to simulate the motion of the cart over the track. The track is composed of different sections
-                with varying slopes (horizontal and inclined). The simulation results will be used to analyze the forces
-                acting on the cart and determine whether the thrust provided by the motor is sufficient to move the cart
-                over the track.</p>
+            <p>This project simulates the motion of a rollercoaster cart propelled by a Permanent Magnet Linear Synchronous Motor (PMLSM) across a complex track profile. The simulation incorporates realistic physics including gravitational forces, friction, and air resistance to analyze whether the motor's 4-second thrust is sufficient to complete the course. Developed in MATLAB/Simulink, this model serves as a valuable tool for roller coaster design and safety analysis.</p>
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://github.com/bk-poudel/roller-coaster-simulation" class="github-button">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
         </div>
-        <div class="github-link">
-            <a href="https://github.com/bk-poudel/roller-coaster-simulation">GitHub</a>
+
+        <div class="technologies-used">
+            <h2>Technical Implementation</h2>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-calculator"></i> Mathematical Modeling</h3>
+                <ul>
+                    <li>Dynamic equations of motion accounting for variable track inclines</li>
+                    <li>PMLSM motor thrust characteristics and power delivery</li>
+                    <li>Friction models including rolling resistance and air drag</li>
+                    <li>Energy conservation validation framework</li>
+                </ul>
+            </div>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-laptop-code"></i> Simulation Framework</h3>
+                <ul>
+                    <li>MATLAB/Simulink implementation with modular subsystems</li>
+                    <li>Interconnected motor and cart dynamics models</li>
+                    <li>Custom track profile configuration</li>
+                    <li>Real-time data visualization capabilities</li>
+                </ul>
+            </div>
         </div>
-        <div class="figure">
-            <img src="../Roller_Coaster_Simulation/system_integration.png" alt="System Integration">
-            <div class="figure-caption">Figure 1: System Integration</div>
-            <img src="../Roller_Coaster_Simulation/motor_model.png" alt="Motor Model">
-            <div class="figure-caption">Figure 2: Motor Model</div>
-            <img src="../Roller_Coaster_Simulation/track_system.png" alt="Track Profile">
-            <div class="figure-caption">Figure 3: Track Profile</div>
+
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../Roller_Coaster_Simulation/system_integration.png" alt="System Architecture">
+                <div class="figure-caption">Figure 1: System Integration Diagram</div>
+                <p>Complete simulation framework showing the interaction between motor, cart, and track subsystems</p>
+            </div>
+            <div class="figure">
+                <img src="../Roller_Coaster_Simulation/motor_model.png" alt="Motor Characteristics">
+                <div class="figure-caption">Figure 2: PMLSM Motor Model</div>
+                <p>Thrust profile and electrical characteristics of the linear synchronous motor</p>
+            </div>
+            <div class="figure">
+                <img src="../Roller_Coaster_Simulation/track_system.png" alt="Track Profile">
+                <div class="figure-caption">Figure 3: Track Profile Analysis</div>
+                <p>Variable incline track with marked sections for force analysis</p>
+            </div>
         </div>
-        <div class="methodology">
-            <h2>Methodology</h2>
-            <p>The project methodology included the following steps:</p>
+
+        <div class="products-created">
+            <h2>Key Simulation Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-bolt"></i> Motor Thrust Analysis</h3>
+                    <p>Detailed modeling of the PMLSM's 4-second acceleration phase and its impact on initial velocity</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3><i class="fas fa-mountain"></i> Incline Performance</h3>
+                    <p>Simulation of cart behavior on various track slopes and transitions</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h3><i class="fas fa-tachometer-alt"></i> Force Monitoring</h3>
+                    <p>Real-time tracking of gravitational, frictional, and air resistance forces</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact">
+            <h2>Results and Impact</h2>
+            <p>The simulation provided critical insights into roller coaster dynamics and design considerations:</p>
+            
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Performance Metrics</h3>
+                    <p>Precise velocity and position tracking throughout the course</p>
+                </div>
+                
+                <div class="impact-point">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety Analysis</h3>
+                    <p>Identification of critical force thresholds and potential failure points</p>
+                </div>
+                
+                <div class="impact-point">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Design Validation</h3>
+                    <p>Confirmation of motor specifications for given track profiles</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
             <ul>
-                <li>Mathematical modeling of roller coaster dynamics</li>
-                <li>Development of simulation software using Matlab/Simulink</li>
-                <li>Implementation of two interconnected subsystems: PMLSM motor and roller coaster cart</li>
-                <li>Incorporation of environmental factors such as gravity, friction, and air resistance</li>
-                <li>Validation of simulation results using conservation of energy principle</li>
+                <li>Integration of 3D visualization for track design</li>
+                <li>Advanced passenger comfort analysis metrics</li>
+                <li>Multi-cart interaction simulations</li>
+                <li>Weather condition impact modeling</li>
             </ul>
         </div>
-        <div class="results">
-            <h2>Results and Discussion</h2>
-            <p>The simulation provided valuable insights into the following aspects:</p>
-            <ul>
-                <li>Thrust provided by the PMLSM motor over time</li>
-                <li>Velocity and position of the cart over the track</li>
-                <li>Forces acting on the cart (gravitational force, frictional force, air resistance)</li>
-                <li>Analysis of whether the thrust provided by the motor is sufficient to move the cart over the track
-                </li>
-            </ul>
-            <p>The results demonstrated the importance of precise calculations and simulations in the design of roller
-                coasters, allowing for the optimization of various parameters such as track profile, motor thrust, and
-                environmental factors.</p>
-        </div>
+
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The simulation of the rollercoaster-cart over a track has been successfully implemented using
-                Matlab/Simulink. The simulation results have been used to analyze the forces acting on the cart and to
-                determine whether the thrust provided by the motor is sufficient to move the cart over the track. The
-                results obtained from the simulation can be used as a reference for the development of roller coaster
-                systems in the real world. With the development of computing power, we can simulate more complex systems
-                and analyze the performance of the system before actual implementation.</p>
+            <p>This roller coaster simulation project successfully demonstrates the power of computational modeling in amusement ride design. By accurately simulating the complex interplay between motor thrust, track geometry, and environmental forces, the project provides a robust framework for evaluating roller coaster performance and safety. The results validate the PMLSM motor's capability to propel the cart through the specified course while offering valuable insights for optimizing future designs. This approach significantly reduces the need for physical prototyping, enabling more efficient and cost-effective roller coaster development.</p>
         </div>
-        <div class="home-button">
+
+        <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
                 Back to Projects
             </a>
-            
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

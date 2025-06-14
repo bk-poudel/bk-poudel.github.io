@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Handheld Bio-Printer Prototype - Bibek Poudel</title>
+    <title>Project Title - Your Name</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -82,13 +82,19 @@
             padding-left: 1rem;
         }
         
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        
         p {
             text-align: justify;
             margin-bottom: 1.5rem;
             color: var(--text);
         }
         
-        ul {
+        ul, ol {
             padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -234,6 +240,23 @@
             border-left: 4px solid var(--accent);
         }
         
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        
         .feature-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -246,6 +269,23 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--primary);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            margin: 2rem 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
         }
         
         @media (max-width: 768px) {
@@ -266,111 +306,145 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <h1>Handheld Bio-Printer Prototype</h1>
+        <h1>Project Title</h1>
         
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This research project developed a handheld bio-printer prototype capable of printing live cells using various bio-inks. The device can extrude up to four different bio-inks in both helical and standard structures, representing a significant advancement in tissue engineering and regenerative medicine by enabling precise in-situ bioprinting applications.</p>
+            <p>Provide a concise overview of your project, including its purpose, main features, and significance. Highlight what makes your project unique and valuable. Keep this to 3-5 sentences that capture the essence of your work.</p>
+            <!-- Include if project has GitHub repository -->
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="YOUR_GITHUB_LINK" class="github-button">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
         </div>
 
+        <!-- For technical projects -->
         <div class="technologies-used">
-            <h2>Methodology</h2>
-            <p>The development process incorporated advanced engineering and biological techniques:</p>
+            <h2>Technical Implementation</h2>
             
             <div class="methodology-item">
-                <h3><i class="fas fa-cube"></i> Design & Prototyping</h3>
+                <h3><i class="fas fa-microchip"></i> Hardware Components</h3>
                 <ul>
-                    <li>Conceptual design and requirements analysis for medical applications</li>
-                    <li>CAD modeling of components using SolidWorks</li>
-                    <li>3D printing of prototype parts using biocompatible materials</li>
+                    <li>List key hardware components</li>
+                    <li>Include specific models if relevant</li>
+                    <li>Note any custom fabrication</li>
                 </ul>
             </div>
             
             <div class="methodology-item">
-                <h3><i class="fas fa-microscope"></i> Bio-Integration</h3>
+                <h3><i class="fas fa-code"></i> Software Architecture</h3>
                 <ul>
-                    <li>Development of multi-nozzle extrusion system</li>
-                    <li>Integration of precision dispensing mechanisms</li>
-                    <li>Testing with various bio-ink formulations</li>
+                    <li>Programming languages used</li>
+                    <li>Key libraries/frameworks</li>
+                    <li>Development environment</li>
+                    <li>Notable algorithms</li>
                 </ul>
             </div>
         </div>
 
+        <!-- For research projects -->
+        <div class="methodology">
+            <h2>Research Methodology</h2>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-flask"></i> Experimental Design</h3>
+                <ul>
+                    <li>Research questions/hypotheses</li>
+                    <li>Experimental setup</li>
+                    <li>Control variables</li>
+                </ul>
+            </div>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-chart-bar"></i> Data Analysis</h3>
+                <ul>
+                    <li>Statistical methods</li>
+                    <li>Software tools</li>
+                    <li>Validation techniques</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Image/Diagram Gallery -->
         <div class="figure-container">
             <div class="figure">
-                <img src="../Bio-Printer_Images/external_design.png" alt="Bio-Printer Design">
-                <div class="figure-caption">Figure 1: Ergonomic handheld design</div>
-                <p>The compact, user-friendly form factor enables precise in-situ bioprinting applications</p>
+                <img src="PATH_TO_IMAGE_1" alt="Description of image 1">
+                <div class="figure-caption">Figure 1: Caption for image 1</div>
+                <p>Brief explanation of what this image shows and its significance</p>
             </div>
             <div class="figure">
-                <img src="../Bio-Printer_Images/Drawings.png" alt="Extrusion Mechanism">
-                <div class="figure-caption">Figure 2: Multi-nozzle extrusion system</div>
-                <p>Advanced mechanism allowing simultaneous printing with up to four different bio-inks</p>
+                <img src="PATH_TO_IMAGE_2" alt="Description of image 2">
+                <div class="figure-caption">Figure 2: Caption for image 2</div>
+                <p>Brief explanation of what this image shows and its significance</p>
             </div>
-            <div class="figure">
-                <img src="../Bio-Printer_Images/BOM.png" alt="System Integration">
-                <div class="figure-caption">Figure 3: Integrated sub-assemblies</div>
-                <p>Precision-engineered components working in harmony for reliable cell deposition</p>
-            </div>
+            <!-- Add more figures as needed -->
         </div>
 
+        <!-- For video demonstration -->
+        <div class="video-container">
+            <iframe src="YOUTUBE_OR_VIMEO_EMBED_URL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Key Features/Innovations -->
         <div class="products-created">
-            <h2>Key Innovations</h2>
+            <h2>Key Features</h2>
             
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-syringe"></i> Multi-Bio-Ink Capability</h3>
-                    <p>Simultaneous printing with up to four different bio-inks enables complex tissue structure creation</p>
+                    <h3><i class="fas fa-star"></i> Feature 1</h3>
+                    <p>Description of this innovative feature and its benefits</p>
                 </div>
                 
                 <div class="feature-item">
-                    <h3><i class="fas fa-helmet-battle"></i> Helical Structures</h3>
-                    <p>Unique capability to print helical patterns, mimicking natural tissue architectures</p>
+                    <h3><i class="fas fa-cogs"></i> Feature 2</h3>
+                    <p>Description of this technical aspect and why it matters</p>
                 </div>
                 
                 <div class="feature-item">
-                    <h3><i class="fas fa-hand-holding-medical"></i> Ergonomic Design</h3>
-                    <p>Handheld form factor allows for direct in-situ printing during surgical procedures</p>
+                    <h3><i class="fas fa-lightbulb"></i> Feature 3</h3>
+                    <p>Description of this creative solution</p>
                 </div>
             </div>
         </div>
 
+        <!-- Results/Impact Section -->
         <div class="impact">
-            <h2>Impact and Future Directions</h2>
-            <p>This prototype represents a significant advancement in bioprinting technology with wide-ranging applications:</p>
+            <h2>Results and Impact</h2>
+            <p>Overview of what you achieved and why it matters. Discuss both quantitative and qualitative outcomes.</p>
             
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-hospital"></i>
-                    <h3>Surgical Applications</h3>
-                    <p>Potential for direct tissue repair during operations</p>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Performance</h3>
+                    <p>Specific metrics or improvements achieved</p>
                 </div>
                 
                 <div class="impact-point">
-                    <i class="fas fa-dna"></i>
-                    <h3>Research Advancements</h3>
-                    <p>Enables new tissue engineering research methodologies</p>
+                    <i class="fas fa-users"></i>
+                    <h3>User Benefit</h3>
+                    <p>How this project helps its intended audience</p>
                 </div>
                 
                 <div class="impact-point">
-                    <i class="fas fa-pills"></i>
-                    <h3>Drug Testing</h3>
-                    <p>Facilitates creation of complex tissue models for pharmaceutical testing</p>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Innovation</h3>
+                    <p>What makes this project stand out</p>
                 </div>
             </div>
             
-            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
+            <h3 style="margin-top: 2rem;">Future Work</h3>
             <ul>
-                <li>Temperature-controlled bio-ink reservoirs for sensitive cell types</li>
-                <li>Integrated UV crosslinking system for instant hydrogel solidification</li>
-                <li>AI-assisted printing path optimization</li>
-                <li>Wireless control and monitoring interface</li>
+                <li>Planned improvements or extensions</li>
+                <li>Potential applications</li>
+                <li>Next steps in development/research</li>
             </ul>
         </div>
 
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The handheld bio-printer prototype represents a transformative approach to bioprinting, combining precision engineering with biological innovation. Its ability to create complex, multi-material tissue structures in situ opens new possibilities for regenerative medicine, surgical applications, and pharmaceutical research. Future development will focus on enhancing its capabilities while maintaining the portable, user-friendly design that makes it uniquely valuable in both clinical and research settings.</p>
+            <p>Summarize the key takeaways from your project. Restate its significance and potential impact. You can also reflect on what you learned through the process. Keep this concise but impactful (3-5 sentences).</p>
         </div>
 
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
