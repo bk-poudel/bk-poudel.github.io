@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Autonomous Maze Solving Robot Simulation - Bibek Poudel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        /* Consistent color scheme with dark background and light content */
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        .video-button-container {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-button {
+            background: var(--primary) !important;
+            color: white !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(75, 108, 193, 0.3);
+        }
+        .video-button:hover {
+            background: var(--accent) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(75, 108, 193, 0.4);
+            color: white !important;
+        }
+        .video-button:active {
+            transform: translateY(0);
+        }
+        .abstract {
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .dynamic-figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: clamp(1.5rem, 4vw, 3rem) 0;
+            padding: 0 1rem;
+        }
+        .figure {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .dynamic-figure .figure {
+            flex: 0 1 auto;
+            max-width: min(90vw, 600px);
+            min-width: min(280px, 90vw);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: clamp(1rem, 2.5vw, 2rem);
+        }
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        .figure:hover .video-button {
+            transform: translateY(0);
+        }
+        .figure:hover .video-button:hover {
+            transform: translateY(-2px);
+        }
+        .figure img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .dynamic-figure .figure img {
+            width: 100%;
+            height: auto;
+            max-height: min(400px, 50vh);
+            object-fit: contain;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        .dynamic-figure .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .figure-description {
+            margin-top: 0.5rem;
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+            line-height: 1.5;
+            color: var(--text);
+            text-align: center;
+            max-width: 100%;
+        }
+        .product-item {
+            margin-bottom: 2.5rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .product-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+        .product-content {
+            padding: 1.5rem;
+        }
+        .product-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            margin: 2rem 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+            .dynamic-figure {
+                gap: 1rem;
+                margin: 1.5rem 0;
+                padding: 0 0.5rem;
+            }
+            .dynamic-figure .figure {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            .dynamic-figure .figure img {
+                max-height: 300px;
+            }
+        }
+        @media (max-width: 480px) {
+            .dynamic-figure {
+                margin: 1rem 0;
+            }
+            .dynamic-figure .figure {
+                padding: 0.8rem;
+            }
+            .dynamic-figure .figure img {
+                max-height: 250px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .dynamic-figure .figure {
+                max-width: 700px;
+            }
+            .dynamic-figure .figure img {
+                max-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <h1>Autonomous Maze Solving Robot Simulation</h1>
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>This project implements an autonomous maze-solving robot simulation as the final project for Robot Vision class. The objective was to locate a specific target image within a maze whose walls consisted of various image patterns from a predefined pool. The challenge involved finding the shortest path to the target while navigating through a complex visual environment. Our approach utilized VLAD (Vector of Locally Aggregated Descriptors) and SIFT (Scale-Invariant Feature Transform) features combined with Ball Tree algorithms for efficient navigation and real-time map updating for precise localization.</p>
+        </div>
+        <div class="technologies-used">
+            <h2>Methodology</h2>
+            <p>The development process incorporated advanced computer vision and robotics techniques for autonomous navigation:</p>
+            <div class="methodology-item">
+                <h3><i class="fas fa-map"></i> Maze Mapping and Exploration</h3>
+                <ul>
+                    <li>Sequential frame numbering during exploration phase</li>
+                    <li>Keystroke-based maze mapping construction</li>
+                    <li>Complete maze layout reconstruction from exploration data</li>
+                    <li>Target location identification within exploration frames</li>
+                </ul>
+            </div>
+            <div class="methodology-item">
+                <h3><i class="fas fa-eye"></i> Computer Vision Implementation</h3>
+                <ul>
+                    <li>VLAD (Vector of Locally Aggregated Descriptors) for image representation</li>
+                    <li>SIFT (Scale-Invariant Feature Transform) for feature detection</li>
+                    <li>Ball Tree algorithm for efficient nearest neighbor search</li>
+                    <li>Image pattern recognition on maze walls</li>
+                </ul>
+            </div>
+            <div class="methodology-item">
+                <h3><i class="fas fa-route"></i> Navigation and Localization</h3>
+                <ul>
+                    <li>Real-time map updating during navigation</li>
+                    <li>Shortest path calculation algorithms</li>
+                    <li>Live localization system integration</li>
+                    <li>Visual pattern matching for position estimation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="figure-container dynamic-figure">
+            <div class="figure">
+                <img src="../Robot_Navigation/Screenshot 2025-06-12 102028.png" alt="Autonomous Maze Navigation Simulation">
+                <div class="figure-caption">Figure 1: Autonomous maze solving robot simulation environment</div>
+                <p class="figure-description">The simulation demonstrates the robot navigating through a maze with image-pattern walls to locate the target pattern using computer vision techniques</p>
+                <div class="video-button-container">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="button video-button">
+                        <i class="fas fa-play"></i> Watch Navigation Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="products-created">
+            <h2>Key Innovations</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-brain"></i> VLAD + SIFT Integration</h3>
+                    <p>Advanced feature extraction using VLAD descriptors combined with SIFT features for robust image pattern recognition</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-tree"></i> Ball Tree Navigation</h3>
+                    <p>Efficient nearest neighbor search using Ball Tree algorithm for real-time pattern matching and localization</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-map-marked-alt"></i> Live Map Update</h3>
+                    <p>Real-time map construction and updating based on exploration data and visual feedback</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-route"></i> Shortest Path Optimization</h3>
+                    <p>Intelligent path planning algorithms to find the most efficient route to the target location</p>
+                </div>
+            </div>
+        </div>
+        <div class="impact">
+            <h2>Technical Approach and Implementation</h2>
+            <p>Our solution to the autonomous maze navigation challenge involved a multi-phase approach combining computer vision and intelligent path planning:</p>
+            <h3>Phase 1: Exploration and Mapping</h3>
+            <ul>
+                <li>Recorded keystroke sequences during manual exploration phase</li>
+                <li>Sequential numbering of exploration frames for reference</li>
+                <li>Construction of complete maze map from exploration data</li>
+                <li>Identification of target pattern location within numbered frames</li>
+            </ul>
+            <h3>Phase 2: Visual Feature Extraction</h3>
+            <ul>
+                <li>Implementation of SIFT algorithm for keypoint detection and description</li>
+                <li>VLAD encoding for compact image representation</li>
+                <li>Creation of visual vocabulary from wall pattern images</li>
+                <li>Feature database construction for pattern matching</li>
+            </ul>
+            <h3>Phase 3: Navigation and Localization</h3>
+            <ul>
+                <li>Ball Tree implementation for efficient similarity search</li>
+                <li>Real-time localization using visual pattern matching</li>
+                <li>Dynamic map updating during navigation</li>
+                <li>Shortest path calculation to target location</li>
+            </ul>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Academic Achievement</h3>
+                    <p>Successfully completed as final project for Robot Vision class, demonstrating mastery of computer vision concepts</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-eye"></i>
+                    <h3>Computer Vision Innovation</h3>
+                    <p>Novel application of VLAD and SIFT features for maze navigation and pattern recognition</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-robot"></i>
+                    <h3>Autonomous Systems</h3>
+                    <p>Foundation for autonomous navigation systems in complex visual environments</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
+            <ul>
+                <li>Integration with real-world robotic platforms for physical maze navigation</li>
+                <li>Implementation of deep learning approaches for improved pattern recognition</li>
+                <li>Extension to dynamic environments with moving obstacles</li>
+                <li>Multi-robot coordination for collaborative maze exploration</li>
+                <li>Real-time SLAM (Simultaneous Localization and Mapping) integration</li>
+            </ul>
+        </div>
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>The Autonomous Maze Solving Robot Simulation successfully demonstrates the integration of computer vision techniques with intelligent navigation algorithms. By combining VLAD and SIFT features with Ball Tree search algorithms, the system achieves robust pattern recognition and efficient pathfinding in complex visual environments. The project showcases the practical application of advanced computer vision concepts in autonomous robotics, providing a solid foundation for real-world navigation systems. The live map updating and localization capabilities demonstrate the system's adaptability and precision in dynamic exploration scenarios.</p>
+        </div>
+        <div class="home-button" style="text-align: center; margin-top: 3rem;">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

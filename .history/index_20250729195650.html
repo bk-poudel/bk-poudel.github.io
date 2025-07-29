@@ -14,6 +14,7 @@
             margin: 0;
             background-color: #f0f0f0;
         }
+
         .floating-icons-container {
             position: fixed;
             top: 0;
@@ -24,6 +25,7 @@
             z-index: -1;
             overflow: hidden;
         }
+
         .floating-icon {
             position: absolute;
             width: 80px; /* Increased size */
@@ -33,27 +35,32 @@
             animation: float 15s infinite linear;
             will-change: transform; /* Optimization for animation */
         }
+
         /* Different animations for each icon */
         .arduino {
             animation: float 20s infinite linear;
             width: 60px;
             height: 60px;
         }
+
         .pytorch {
             animation: float 18s infinite linear reverse;
             width: 60px;
             height: 60px;
         }
+
         .robotics {
             animation: float 22s infinite linear;
             width: 55px;
             height: 55px;
         }
+
         .raspberrypi {
             animation: float 25s infinite linear reverse;
             width: 40px;
             height: 40px;
         }
+
         @keyframes float {
             0% {
                 transform: translate(0, 0) rotate(0deg);
@@ -71,6 +78,7 @@
                 transform: translate(0, 0) rotate(360deg);
             }
         }
+
         /* Add more variations for different paths */
         @keyframes float2 {
             0% {
@@ -86,6 +94,7 @@
                 transform: translate(10vw, 10vh) rotate(360deg);
             }
         }
+
         @keyframes float3 {
             0% {
                 transform: translate(80vw, 20vh) rotate(0deg);
@@ -97,12 +106,14 @@
                 transform: translate(80vw, 20vh) rotate(360deg);
             }
         }
+
         /* Make sure they don't appear on mobile */
         @media (max-width: 768px) {
             .floating-icons-container {
                 display: none;
             }
         }
+
         /* Project Grid Styles */
         .project-grid {
             display: grid;
@@ -110,16 +121,19 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+
         .project-item {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 1.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .project-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+
         .project-image {
             width: 100%;
             height: 180px;
@@ -127,33 +141,39 @@
             border-radius: 4px;
             margin-bottom: 1rem;
         }
+
         /* Resume Styles */
         .education-item, .experience-item {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .date {
             color: #b8c1ec;
             font-style: italic;
             margin-bottom: 0.5rem;
         }
+
         .highlight {
             background: rgba(184, 193, 236, 0.1);
             padding: 1rem;
             border-radius: 4px;
             margin-top: 1rem;
         }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
         }
+
         .skill-category {
             background: rgba(255, 255, 255, 0.05);
             padding: 1rem;
             border-radius: 4px;
         }
+
         /* Intro Styles */
         .intro-profile-image {
             width: 150px;
@@ -166,12 +186,15 @@
     </style>
 </head>
 <body class="is-preload">
+
     <!-- Wrapper -->
     <div id="wrapper">
+
         <!-- Floating Icons Background -->
         <div class="floating-icons-container">
             <!-- Icons will be dynamically added by JavaScript -->
         </div>
+
         <!-- Header -->
         <header id="header">
             <div class="logo">
@@ -192,8 +215,10 @@
                 </ul>
             </nav>
         </header>
+
         <!-- Main -->
         <div id="main">
+
             <!-- Intro -->
             <article id="intro">
                 <h2 class="major">Introduction</h2>
@@ -202,10 +227,12 @@
                     <p>I am Bibek Poudel, a passionate Computer Engineering student at NYU Abu Dhabi, pursuing a Bachelor of Science degree with a Minor in Robotics from NYU Tandon School of Engineering. My academic journey is driven by a deep interest in the intersection of technology and innovation, supported by hands-on experience in research, fabrication, and development.</p>
                 </div>
             </article>
+
             <!-- Resume -->
             <article id="resume">
                 <h2 class="major">Resume</h2>
                 <p><a href="Resume/Bibek_Poudel_Resume_Academic.pdf" download="Bibek_Poudel_Resume_Academic.pdf" type="application/pdf" class="button icon solid fa-download">Download Resume (PDF)</a></p>
+                
                 <section>
                     <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                     <div class="education-item">
@@ -223,6 +250,7 @@
                         July 2018 - March 2021</p>
                     </div>
                 </section>
+            
                 <section>
                     <h3><i class="fas fa-briefcase"></i> Experience</h3>
                     <div class="experience-item">
@@ -261,6 +289,7 @@
                         </ul>
                     </div>
                 </section>
+            
                 <section>
                     <h3><i class="fas fa-cogs"></i> Skills</h3>
                     <div class="skills-grid">
@@ -291,6 +320,7 @@
                     </div>
                 </section>
             </article>
+
             <!-- Projects -->
             <article id="projects">
                 <h2 class="major" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-size: 2.4rem; letter-spacing: 2.5px; margin-bottom: 1em; color: #fff; text-align: center; font-weight: 800; text-shadow: 0 4px 16px rgba(184,193,236,0.10), 0 1.5px 0 #eebbc3;">
@@ -308,16 +338,16 @@
                         </a>
                         <p><em>Franka Emika Panda Pick and Place Robotic Arm Simulation using Mujoco</em></p>
                         <a href="projects/pick_and_place.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Mujoco_Pick_and_Place" class="button small icon brands fa-github">GitHub</a>
+                        <a href="https://github.com/bk-poudel/pick-and-place-robot" class="button small icon brands fa-github">GitHub</a>
                     </div>
                     <div class="project-item">
                         <h3>Autonomous Maze Solving Robot Simulation</h3>
-                        <a href="projects/autonomous_maze_navigation.html" class="project-image-link">
-                            <img src="Robot_Navigation/Screenshot 2025-06-12 102028.png" alt="Autonomous Maze Solving Robot" class="project-image">
+                        <a href="projects/gesture-controlled-robot.html" class="project-image-link">
+                            <img src="Robot_Navigation/Screenshot 2025-06-12 102028.png" alt="Autonomus Maze Solving Robot" class="project-image">
                         </a>
-                        <p><em>Computer vision-based autonomous robot navigation using VLAD, SIFT, and Ball Tree algorithms</em></p>
-                        <a href="projects/autonomous_maze_navigation.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/autonomous-maze-navigation" class="button small icon brands fa-github">GitHub</a>
+                        <p><em>Autonomous Robot Navigation Simulation</em></p>
+                        <a href="projects/gesture-controlled-robot.html" class="button small">Learn More</a>
+                        <a href="https://github.com/bk-poudel/gesture-controlled-robot" class="button small icon brands fa-github">GitHub</a>
                     </div>
                     <div class="project-item">
                         <h3>Haptic Enabled Smart Goggles</h3>
@@ -390,6 +420,7 @@
                     </div>
                 </div>
             </article>
+
             <!-- Contact -->
             <article id="contact">
                 <h2 class="major">Contact</h2>
@@ -405,20 +436,26 @@
                     <li><a href="https://www.linkedin.com/in/bibek-poudel-731920200/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
                 </ul>
             </article>
+
         </div>
+
         <!-- Footer -->
         <footer id="footer">
             <p class="copyright">&copy; Bibek Poudel</p>
         </footer>
+
     </div>
+
     <!-- BG -->
     <div id="bg"></div>
+
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
     <!-- Floating Icons JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -447,37 +484,45 @@
                 'machine-learning-model-svgrepo-com.svg',
                 'tensorflow-svgrepo-com.svg'
             ];
+
             // Use each icon exactly once
             icons.forEach((iconName, i) => {
                 const icon = document.createElement('img');
                 icon.src = `icons/${iconName}`;
                 icon.className = 'floating-icon';
                 icon.alt = iconName.replace('-svgrepo-com.svg', '').replace(/-/g, ' ');
+
                 // Random size between 50px and 80px
                 const size = 65 + Math.random() * 30;
                 icon.style.width = `${size}px`;
                 icon.style.height = `${size}px`;
+
                 // Random starting position
                 icon.style.top = `${Math.random() * 100}%`;
                 icon.style.left = `${Math.random() * 100}%`;
+
                 // Random animation properties
                 const animations = ['float', 'float2', 'float3'];
                 const animation = animations[Math.floor(Math.random() * animations.length)];
                 icon.style.animationName = animation;
                 icon.style.animationDuration = `${15 + Math.random() * 15}s`;
                 icon.style.animationDelay = `${Math.random() * 5}s`;
+
                 // Random direction (50% chance to reverse)
                 if (Math.random() > 0.5) {
                     icon.style.animationDirection = 'reverse';
                 }
+
                 // Add special classes for certain icons
                 if (iconName.includes('arduino')) icon.classList.add('arduino');
                 if (iconName.includes('pytorch')) icon.classList.add('pytorch');
                 if (iconName.includes('robot')) icon.classList.add('robotics');
                 if (iconName.includes('raspberry')) icon.classList.add('raspberrypi');
+
                 container.appendChild(icon);
             });
         });
     </script>
+
 </body>
 </html>
