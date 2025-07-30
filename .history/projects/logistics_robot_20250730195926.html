@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Haptic Enabled Smart Goggles - Bibek Poudel</title>
+    <title>Autonomous Logistics Robot - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -410,118 +410,130 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <h1>Haptic Enabled Smart Goggles for Visually Impaired</h1>
+        <h1>Autonomous Logistics Robot - IEEE Competition</h1>
         <div class="abstract">
-            <h2>🎯 Objective</h2>
-            <p>To design and build a wearable smart goggle system that enables visually impaired individuals to navigate complex urban environments independently and safely using real-time feedback through computer vision and sensor fusion. PRODIGY is a lightweight wearable device offering visual place recognition, traffic light detection, obstacle avoidance, and audio & haptic feedback.</p>
+            <h2>🎯 Competition Objective</h2>
+            <p>Develop an autonomous mobile manipulator system for an IEEE robotics competition. The challenge involves navigating a 5x5 unknown grid maze containing 4 randomly placed colored cubes (2 blue, 2 red) and corresponding colored drop-off bins. The robot must autonomously scan the maze, identify objects, calculate optimal paths, and successfully transport each cube to its matching colored destination.</p>
         </div>
         <div class="problem-statement">
-            <h2>💡 Problem Statement</h2>
-            <p>Navigating busy cities is a major challenge for the blind. Traditional aids like canes and guide dogs are limited:</p>
+            <h2>🤖 Challenge Overview</h2>
+            <p>The IEEE logistics robotics competition presented a complex autonomous manipulation challenge:</p>
             <ul>
-                <li>Lack of feedback in noisy environments</li>
-                <li>Insufficient awareness of surroundings</li>
-                <li>Inconvenient or unintuitive smart devices</li>
+                <li>5x5 grid maze with unknown layout and random object placement</li>
+                <li>4 colored cubes (2 blue, 2 red) positioned randomly throughout the maze</li>
+                <li>Corresponding colored drop-off bins requiring precise color matching</li>
+                <li>Fully autonomous operation - no human intervention allowed</li>
+                <li>Time-critical performance evaluation</li>
             </ul>
         </div>
         <div class="technologies-used">
             <h2>🧱 System Architecture</h2>
-            <p>The development incorporates cutting-edge AI and embedded systems technologies:</p>
+            <p>Our solution integrated advanced robotics hardware with intelligent algorithms for autonomous logistics operations:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-camera"></i> Vision System</h3>
+                <h3><i class="fas fa-robot"></i> Mobile Manipulator Platform</h3>
                 <ul>
-                    <li>Sony IMX500 camera with on-sensor AI accelerator for object detection</li>
-                    <li>YOLOv8 model trained on self-collected Manhattan dataset</li>
-                    <li>Real-time traffic light and obstacle detection</li>
-                    <li>Visual place recognition for navigation</li>
+                    <li>Hiwonder Mobile Manipulator as the primary robotic platform</li>
+                    <li>Integrated mobility base with precision manipulator arm</li>
+                    <li>End-effector designed for reliable cube grasping and placement</li>
+                    <li>Sensor fusion for simultaneous navigation and manipulation</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-microchip"></i> Embedded Computing</h3>
+                <h3><i class="fas fa-eye"></i> Computer Vision System</h3>
                 <ul>
-                    <li>Raspberry Pi as core compute platform</li>
-                    <li>Hailo-8 AI accelerator (planned for crosswalk detection)</li>
-                    <li>Custom software stack optimized for real-time inference</li>
-                    <li>Power management for 8-10 hours battery life</li>
+                    <li>Real-time object detection for colored cube identification</li>
+                    <li>Color classification algorithms for blue and red cube discrimination</li>
+                    <li>Drop-off bin detection and color matching verification</li>
+                    <li>Visual SLAM for maze mapping and localization</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-hand-paper"></i> Feedback Systems</h3>
+                <h3><i class="fas fa-route"></i> Path Planning & Navigation</h3>
                 <ul>
-                    <li>Haptic motors integrated into goggle frame</li>
-                    <li>Audio feedback through standard earphones</li>
-                    <li>GPS navigation with directional guidance</li>
-                    <li>Customizable vibration and audio responses</li>
+                    <li>Dijkstra's algorithm for optimal path calculation</li>
+                    <li>Dynamic maze exploration and mapping</li>
+                    <li>Obstacle avoidance and collision detection</li>
+                    <li>Multi-objective optimization for efficient task sequencing</li>
                 </ul>
-            </div>
-        </div>
-        <div class="figure-container">
-            <div class="figure">
-                <img src="../Smart_googles/detection.jpeg" alt="Object Detection System" style="max-width: 100%; max-height: 220px; object-fit: contain;">
-                <div class="figure-caption">Figure 1: Real-time Object Detection</div>
-                <p class="figure-description">YOLOv8 model detecting traffic lights, pedestrians, and urban obstacles in real-time</p>
-            </div>
-            <div class="figure">
-                <img src="../Smart_googles/hardware_integration.jpeg" alt="Hardware Integration" style="max-width: 100%; max-height: 220px; object-fit: contain;">
-                <div class="figure-caption">Figure 2: Hardware Integration</div>
-                <p class="figure-description">Raspberry Pi, camera system, and haptic feedback components integrated into the goggle frame</p>
             </div>
         </div>
         <div class="figure-container dynamic-figure">
             <div class="figure">
-                <img src="../Smart_googles/smart_goggles.gif" alt="Haptic Enabled Smart Goggles Prototype">
-                <div class="figure-caption">Figure 3: PRODIGY - Smart Goggles in Action</div>
-                <p class="figure-description">Demonstration of the complete system with real-time object detection, haptic feedback, and audio guidance for visually impaired navigation</p>
+                <img src="../miscellenous-images/logistic-robot.png" alt="Hiwonder Mobile Manipulator Robot">
+                <div class="figure-caption">Figure 1: Autonomous Logistics Robot in Action</div>
+                <p class="figure-description">Hiwonder Mobile Manipulator autonomously navigating the 5x5 maze, identifying colored cubes, and executing optimal pickup and delivery tasks</p>
                 <div class="video-button-container">
-                    <a href="https://drive.google.com/file/d/1R32dpKc32nLEfz-Ms0ZY9nvMFwvdqKE_/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button video-button">
-                        <i class="fas fa-play"></i> Watch Demo Video
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="button video-button">
+                        <i class="fas fa-play"></i> Watch Competition Demo
                     </a>
                 </div>
             </div>
         </div>
         <div class="products-created">
-            <h2>🧠 Key Features</h2>
+            <h2>🧠 Key Capabilities</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-eye"></i> Object Detection</h3>
-                    <p>Real-time detection of people, crosswalks, vehicles, poles, bikes, and other urban obstacles using advanced computer vision</p>
+                    <h3><i class="fas fa-search"></i> Autonomous Maze Exploration</h3>
+                    <p>Dynamic scanning and mapping of the unknown 5x5 grid environment with real-time obstacle detection</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-traffic-light"></i> Red Light Recognition</h3>
-                    <p>YOLOv8 model trained on self-collected Manhattan dataset for accurate traffic light detection</p>
+                    <h3><i class="fas fa-palette"></i> Color-Based Object Detection</h3>
+                    <p>Computer vision system for accurate identification and classification of blue and red cubes</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-shield-alt"></i> Obstacle Avoidance</h3>
-                    <p>Proximity sensing and alerting based on surroundings with directional haptic feedback</p>
+                    <h3><i class="fas fa-route"></i> Optimal Path Planning</h3>
+                    <p>Dijkstra's algorithm implementation for shortest path calculation to minimize task completion time</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-volume-up"></i> Audio + Haptics</h3>
-                    <p>Dual feedback system via earphones and vibration motors integrated in the frame</p>
+                    <h3><i class="fas fa-hand-rock"></i> Precision Manipulation</h3>
+                    <p>Accurate grasping, lifting, and placement of cubes using the integrated manipulator arm</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-map-marker-alt"></i> GPS Navigation</h3>
-                    <p>Directional guidance for urban mobility with step-by-step auditory instructions</p>
+                    <h3><i class="fas fa-bullseye"></i> Color Matching Logic</h3>
+                    <p>Intelligent algorithm ensuring each colored cube reaches its corresponding drop-off bin</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-battery-three-quarters"></i> Long Battery Life</h3>
-                    <p>8–10 hours of continuous use with power-saving mode optimization</p>
+                    <h3><i class="fas fa-clock"></i> Real-Time Execution</h3>
+                    <p>Time-optimized autonomous operation meeting competition performance requirements</p>
                 </div>
             </div>
         </div>
-        <div class="challenges-section">
-            <h2>🔧 Challenges & Solutions</h2>
+                <div class="challenges-section">
+            <h2>🔧 Technical Challenges & Solutions</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-microchip"></i> CPU Limitations</h3>
-                    <p>Raspberry Pi bottlenecks for heavy real-time inference - addressed through model optimization and AI accelerators</p>
+                    <h3><i class="fas fa-map"></i> Unknown Environment Mapping</h3>
+                    <p>Implemented SLAM techniques for real-time maze exploration and dynamic map building without prior knowledge</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-compress-arrows-alt"></i> Model Quantization</h3>
-                    <p>Hardware resource constraints on Hailo - ongoing optimization of neural network architectures</p>
+                    <h3><i class="fas fa-clock"></i> Time Optimization</h3>
+                    <p>Developed efficient task sequencing algorithms to minimize total completion time in competitive environment</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-database"></i> Training Data</h3>
-                    <p>Collection and labeling across multiple urban environments - custom Manhattan dataset creation</p>
+                    <h3><i class="fas fa-crosshairs"></i> Precision Manipulation</h3>
+                    <p>Calibrated visual-servo control for accurate cube pickup and placement in confined maze spaces</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact">
+            <h2>🏆 Competition Results & Impact</h2>
+            <p>This IEEE robotics competition project showcased advanced autonomous systems integration:</p>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Competition Performance</h3>
+                    <p>Successfully demonstrated fully autonomous logistics operation in challenging unknown environment</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Technical Innovation</h3>
+                    <p>Integrated computer vision, path planning, and manipulation in a cohesive autonomous system</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-industry"></i>
+                    <h3>Real-World Applications</h3>
+                    <p>Demonstrated technologies applicable to warehouse automation and logistics robotics</p>
                 </div>
             </div>
         </div>
@@ -546,34 +558,38 @@
                 </div>
             </div>
         </div>
-        <div class="regulatory-section">
-            <h2>🛡️ Regulatory Compliance</h2>
+        <div class="algorithmic-approach">
+            <h2>🧮 Algorithmic Approach</h2>
             <div class="methodology-item">
-                <h3><i class="fas fa-certificate"></i> Medical Device Standards</h3>
+                <h3><i class="fas fa-project-diagram"></i> System Workflow</h3>
                 <ul>
-                    <li>ISO 13485: Medical device quality management system</li>
-                    <li>IEC 62304: Medical device software lifecycle processes</li>
-                    <li>IEC 60601-1: Electrical safety for medical equipment</li>
-                    <li>ISO/IEC 27001 & HIPAA: Information and health data security</li>
+                    <li><strong>Phase 1:</strong> Autonomous maze exploration and environmental mapping</li>
+                    <li><strong>Phase 2:</strong> Object detection and color classification of cubes and bins</li>
+                    <li><strong>Phase 3:</strong> Dijkstra's algorithm for optimal path calculation</li>
+                    <li><strong>Phase 4:</strong> Sequential task execution with pickup and delivery operations</li>
+                    <li><strong>Phase 5:</strong> Verification and completion confirmation</li>
                 </ul>
             </div>
         </div>
-        <div class="future-roadmap">
-            <h2>🔮 Future Roadmap</h2>
+
+        <div class="future-applications">
+            <h2>🔮 Future Applications</h2>
             <ul>
-                <li>✅ Crosswalk Detection via Hailo AI accelerator (pending hardware compatibility)</li>
-                <li>🌍 Vision Language Model (VLM) Integration for full-scene understanding</li>
-                <li>📞 SOS Call Feature & Location Sharing for emergency situations</li>
-                <li>🧠 Integration with Neural Implants (exploratory research)</li>
-                <li>🔋 Partnership with battery & AI chip manufacturers for enhanced performance</li>
-                <li>🌐 Expansion into global assistive technology markets</li>
+                <li>🏭 Automated warehouse management and inventory systems</li>
+                <li>🚛 Autonomous logistics and supply chain robotics</li>
+                <li>🏥 Hospital material transport and pharmaceutical logistics</li>
+                <li>🏪 Retail automation and smart inventory management</li>
+                <li>� Laboratory sample handling and automated testing systems</li>
+                <li>� Advanced multi-robot coordination for large-scale logistics</li>
             </ul>
         </div>
         <div class="conclusion">
-            <h2>🪞 Reflection and Conclusion</h2>
-            <p>This project provided deep insight into how AI and robotics can directly improve lives, especially for vulnerable populations. From dataset collection in Manhattan to training YOLOv8 models, and integrating real-time haptic and auditory feedback, I was involved in both hardware prototyping and AI system design.</p>
-            <p>The experience exposed me to regulatory frameworks, real-world deployment constraints, and the critical importance of user-centered design in accessibility technology. PRODIGY represents a significant step forward in assistive technology, combining cutting-edge AI with intuitive human-computer interaction to address real-world challenges faced by visually impaired individuals.</p>
-            <p>The project demonstrates the potential for AI-powered wearable devices to serve as meaningful assistive tools, replacing complexity with intuitive feedback that enhances independence and safety in urban navigation.</p>
+            <h2>🎯 Project Reflection</h2>
+            <p>The IEEE logistics robotics competition provided an excellent platform to integrate multiple robotics disciplines into a cohesive autonomous system. The project required seamless coordination between computer vision, path planning algorithms, and precision manipulation control.</p>
+            
+            <p>Working with the Hiwonder Mobile Manipulator taught me the complexities of real-time autonomous decision-making in unknown environments. The implementation of Dijkstra's algorithm for optimal path planning, combined with dynamic object detection and color classification, demonstrated the power of intelligent systems in solving logistics challenges.</p>
+            
+            <p>This competition experience highlighted the importance of robust system integration, efficient algorithm design, and the critical role of computer vision in modern robotics applications. The project serves as a foundation for understanding autonomous logistics systems that are increasingly vital in industrial automation and smart manufacturing environments.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">
