@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Haptic Enabled Smart Goggles - Bibek Poudel</title>
+    <title>Pick and Place Robot Simulation - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -351,32 +351,6 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--primary);
         }
-        .challenges-section {
-            margin: 2rem 0;
-        }
-        .regulatory-section {
-            margin: 2rem 0;
-        }
-        .future-roadmap {
-            margin: 2rem 0;
-        }
-        .future-roadmap ul {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--accent);
-        }
-        .problem-statement {
-            background-color: rgba(230, 74, 74, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #e64a4a;
-        }
-        .problem-statement h2 {
-            color: #e64a4a;
-        }
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
@@ -440,173 +414,93 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-                <a href="../index.html#projects" class="close-button" title="Back to Projects">
-            <i class="fas fa-times"></i>
-        </a>
-        <h1>Haptic Enabled Smart Goggles for Visually Impaired</h1>
+        <h1>Pick and Place Robot Simulation</h1>
         <div class="abstract">
-            <h2>🎯 Objective</h2>
-            <p>To design and build a wearable smart goggle system that enables visually impaired individuals to navigate complex urban environments independently and safely using real-time feedback through computer vision and sensor fusion. PRODIGY is a lightweight wearable device offering visual place recognition, traffic light detection, obstacle avoidance, and audio & haptic feedback.</p>
-        </div>
-        <div class="problem-statement">
-            <h2>💡 Problem Statement</h2>
-            <p>Navigating busy cities is a major challenge for the blind. Traditional aids like canes and guide dogs are limited:</p>
-            <ul>
-                <li>Lack of feedback in noisy environments</li>
-                <li>Insufficient awareness of surroundings</li>
-                <li>Inconvenient or unintuitive smart devices</li>
-            </ul>
+            <h2>Abstract</h2>
+            <p>This project implements a pick and place robotic system using the Franka Emika Panda robot arm in a MuJoCo simulation environment. The system demonstrates precise manipulation of cubes through two distinct tasks: putting one cube into a bowl and stacking another cube on top of a tower. The implementation combines cartesian space control for precise positioning and joint space control for dynamic movements, showcasing different control strategies for varied manipulation requirements.</p>
         </div>
         <div class="technologies-used">
-            <h2>🧱 System Architecture</h2>
-            <p>The development incorporates cutting-edge AI and embedded systems technologies:</p>
+            <h2>Methodology</h2>
+            <p>The development process incorporated advanced robotics control techniques and simulation technologies:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-camera"></i> Vision System</h3>
+                <h3><i class="fas fa-robot"></i> Robot Control Implementation</h3>
                 <ul>
-                    <li>Sony IMX500 camera with on-sensor AI accelerator for object detection</li>
-                    <li>YOLOv8 model trained on self-collected Manhattan dataset</li>
-                    <li>Real-time traffic light and obstacle detection</li>
-                    <li>Visual place recognition for navigation</li>
+                    <li>Joint space control for precise cube stacking operations</li>
+                    <li>Cartesian space control for putting a cube into a bowl</li>
+                    <li>Forward and inverse kinematics calculations</li>
+                    <li>Trajectory planning and execution algorithms</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-microchip"></i> Embedded Computing</h3>
+                <h3><i class="fas fa-cogs"></i> Simulation Environment</h3>
                 <ul>
-                    <li>Raspberry Pi as core compute platform</li>
-                    <li>Hailo-8 AI accelerator (planned for crosswalk detection)</li>
-                    <li>Custom software stack optimized for real-time inference</li>
-                    <li>Power management for 8-10 hours battery life</li>
+                    <li>MuJoCo physics engine for realistic dynamics</li>
+                    <li>Franka Emika Panda robot model integration</li>
+                    <li>Cube and environmental object modeling</li>
+                    <li>Python-based control development</li>
                 </ul>
-            </div>
-            <div class="methodology-item">
-                <h3><i class="fas fa-hand-paper"></i> Feedback Systems</h3>
-                <ul>
-                    <li>Haptic motors integrated into goggle frame</li>
-                    <li>Audio feedback through standard earphones</li>
-                    <li>GPS navigation with directional guidance</li>
-                    <li>Customizable vibration and audio responses</li>
-                </ul>
-            </div>
-        </div>
-        <div class="figure-container">
-            <div class="figure">
-                <img src="../Smart_googles/detection.jpeg" alt="Object Detection System" style="max-width: 100%; max-height: 220px; object-fit: contain;">
-                <div class="figure-caption">Figure 1: Real-time Object Detection</div>
-                <p class="figure-description">YOLOv8 model detecting traffic lights, pedestrians, and urban obstacles in real-time</p>
-            </div>
-            <div class="figure">
-                <img src="../Smart_googles/hardware_integration.jpeg" alt="Hardware Integration" style="max-width: 100%; max-height: 220px; object-fit: contain;">
-                <div class="figure-caption">Figure 2: Hardware Integration</div>
-                <p class="figure-description">Raspberry Pi, camera system, and haptic feedback components integrated into the goggle frame</p>
             </div>
         </div>
         <div class="figure-container dynamic-figure">
             <div class="figure">
-                <img src="../Smart_googles/smart_goggles.gif" alt="Haptic Enabled Smart Goggles Prototype">
-                <div class="figure-caption">Figure 3: PRODIGY - Smart Goggles in Action</div>
-                <p class="figure-description">Demonstration of the complete system with real-time object detection, haptic feedback, and audio guidance for visually impaired navigation</p>
+                <img src="../Pick_and_Place/manipulation_scene.jpg" alt="Franka Panda Robot Manipulation Scene">
+                <div class="figure-caption">Figure 1: Franka Emika Panda robot performing cube manipulation tasks</div>
+                <p class="figure-description">The simulation environment demonstrates both putting the cube in a bowl and stacking operations with precise control</p>
                 <div class="video-button-container">
-                    <a href="https://drive.google.com/file/d/1R32dpKc32nLEfz-Ms0ZY9nvMFwvdqKE_/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button video-button">
-                        <i class="fas fa-play"></i> Watch Demo Video
+                    <a href="https://drive.google.com/file/d/1O_mLL_HQ_2pUs4ZsAf4a46lp7a12zp5Y/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="button video-button">
+                        <i class="fas fa-play"></i> Watch Simulation Video
                     </a>
                 </div>
             </div>
         </div>
         <div class="products-created">
-            <h2>🧠 Key Features</h2>
+            <h2>Key Innovations</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-eye"></i> Object Detection</h3>
-                    <p>Real-time detection of people, crosswalks, vehicles, poles, bikes, and other urban obstacles using advanced computer vision</p>
+                    <h3><i class="fas fa-hand-rock"></i> Dual Control Modes</h3>
+                    <p>Implementation of both cartesian space control for precise positioning and joint space control for dynamic movements</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-traffic-light"></i> Red Light Recognition</h3>
-                    <p>YOLOv8 model trained on self-collected Manhattan dataset for accurate traffic light detection</p>
+                    <h3><i class="fas fa-bullseye"></i> Task-Specific Operations</h3>
+                    <p>Two distinct manipulation tasks demonstrating versatility in robotic control strategies</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-shield-alt"></i> Obstacle Avoidance</h3>
-                    <p>Proximity sensing and alerting based on surroundings with directional haptic feedback</p>
-                </div>
-                <div class="feature-item">
-                    <h3><i class="fas fa-volume-up"></i> Audio + Haptics</h3>
-                    <p>Dual feedback system via earphones and vibration motors integrated in the frame</p>
-                </div>
-                <div class="feature-item">
-                    <h3><i class="fas fa-map-marker-alt"></i> GPS Navigation</h3>
-                    <p>Directional guidance for urban mobility with step-by-step auditory instructions</p>
-                </div>
-                <div class="feature-item">
-                    <h3><i class="fas fa-battery-three-quarters"></i> Long Battery Life</h3>
-                    <p>8–10 hours of continuous use with power-saving mode optimization</p>
-                </div>
-            </div>
-        </div>
-        <div class="challenges-section">
-            <h2>🔧 Challenges & Solutions</h2>
-            <div class="feature-list">
-                <div class="feature-item">
-                    <h3><i class="fas fa-microchip"></i> CPU Limitations</h3>
-                    <p>Raspberry Pi bottlenecks for heavy real-time inference - addressed through model optimization and AI accelerators</p>
-                </div>
-                <div class="feature-item">
-                    <h3><i class="fas fa-compress-arrows-alt"></i> Model Quantization</h3>
-                    <p>Hardware resource constraints on Hailo - ongoing optimization of neural network architectures</p>
-                </div>
-                <div class="feature-item">
-                    <h3><i class="fas fa-database"></i> Training Data</h3>
-                    <p>Collection and labeling across multiple urban environments - custom Manhattan dataset creation</p>
+                    <h3><i class="fas fa-calculator"></i> Physics-Based Simulation</h3>
+                    <p>Realistic MuJoCo simulation environment with accurate dynamics and collision detection</p>
                 </div>
             </div>
         </div>
         <div class="impact">
-            <h2>📈 Impact and Applications</h2>
-            <p>This assistive technology project addresses critical mobility challenges for visually impaired individuals in urban environments:</p>
+            <h2>Impact and Future Directions</h2>
+            <p>This project demonstrates the versatility of the Franka Emika Panda robot in handling diverse manipulation tasks through strategic control implementation:</p>
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-universal-access"></i>
-                    <h3>Accessibility Innovation</h3>
-                    <p>Intuitive feedback system replacing complexity with meaningful, actionable guidance</p>
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Educational Value</h3>
+                    <p>Demonstrates fundamental robotics concepts including kinematics and control theory</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Safety Enhancement</h3>
-                    <p>Real-time obstacle detection and traffic light recognition for safer navigation</p>
+                    <i class="fas fa-cogs"></i>
+                    <h3>Technical Innovation</h3>
+                    <p>Showcases effective integration of multiple control paradigms in a single system</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-users"></i>
-                    <h3>User-Centered Design</h3>
-                    <p>Lightweight, comfortable, and intuitive design based on user feedback and testing</p>
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial Applications</h3>
+                    <p>Foundation for automated manufacturing and assembly line operations</p>
                 </div>
             </div>
-        </div>
-        <div class="regulatory-section">
-            <h2>🛡️ Regulatory Compliance</h2>
-            <div class="methodology-item">
-                <h3><i class="fas fa-certificate"></i> Medical Device Standards</h3>
-                <ul>
-                    <li>ISO 13485: Medical device quality management system</li>
-                    <li>IEC 62304: Medical device software lifecycle processes</li>
-                    <li>IEC 60601-1: Electrical safety for medical equipment</li>
-                    <li>ISO/IEC 27001 & HIPAA: Information and health data security</li>
-                </ul>
-            </div>
-        </div>
-        <div class="future-roadmap">
-            <h2>🔮 Future Roadmap</h2>
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
             <ul>
-                <li>✅ Crosswalk Detection via Hailo AI accelerator (pending hardware compatibility)</li>
-                <li>🌍 Vision Language Model (VLM) Integration for full-scene understanding</li>
-                <li>📞 SOS Call Feature & Location Sharing for emergency situations</li>
-                <li>🧠 Integration with Neural Implants (exploratory research)</li>
-                <li>🔋 Partnership with battery & AI chip manufacturers for enhanced performance</li>
-                <li>🌐 Expansion into global assistive technology markets</li>
+                <li>Integration with real Franka Emika Panda robot hardware</li>
+                <li>Addition of visual feedback for object localization</li>
+                <li>Implementation of force feedback for improved grasping</li>
+                <li>Extension to more complex manipulation tasks</li>
             </ul>
         </div>
         <div class="conclusion">
-            <h2>🪞 Reflection and Conclusion</h2>
-            <p>This project provided deep insight into how AI and robotics can directly improve lives, especially for vulnerable populations. From dataset collection in Manhattan to training YOLOv8 models, and integrating real-time haptic and auditory feedback, I was involved in both hardware prototyping and AI system design.</p>
-            <p>The experience exposed me to regulatory frameworks, real-world deployment constraints, and the critical importance of user-centered design in accessibility technology. PRODIGY represents a significant step forward in assistive technology, combining cutting-edge AI with intuitive human-computer interaction to address real-world challenges faced by visually impaired individuals.</p>
-            <p>The project demonstrates the potential for AI-powered wearable devices to serve as meaningful assistive tools, replacing complexity with intuitive feedback that enhances independence and safety in urban navigation.</p>
+            <h2>Conclusion</h2>
+            <p>The Pick and Place Robot Simulation successfully demonstrates the implementation of dual control strategies using the Franka Emika Panda robot. By combining cartesian space control for precise cube stacking and joint space control for dynamic throwing tasks, the project showcases the versatility required in modern robotic manipulation systems. The MuJoCo simulation environment provides an excellent platform for testing and validating these control approaches before real-world implementation.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">

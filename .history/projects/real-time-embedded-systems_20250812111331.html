@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Campus Plastic Waste Transformation - Bibek Poudel</title>
+    <title>Embedded Sentry System - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <style>
-        /* Updated color scheme with dark background and light content */
+        /* Consistent color scheme with dark background and light content */
         :root {
             --primary: #4b6cc1;
             --secondary: #666666;
@@ -20,12 +20,14 @@
             --bg-color: #222222;
             --content-bg: #f5f5f5;
         }
+        
         body {
             background-color: var(--bg-color);
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             padding: 20px;
         }
+        
         .project-content {
             max-width: 1000px;
             margin: 2rem auto;
@@ -37,6 +39,7 @@
             position: relative;
             color: var(--text);
         }
+        
         .project-content::before {
             content: "";
             position: absolute;
@@ -79,6 +82,7 @@
         .close-button:active {
             transform: scale(0.95);
         }
+        
         h1 {
             text-align: center;
             color: var(--primary);
@@ -87,6 +91,7 @@
             position: relative;
             padding-bottom: 1rem;
         }
+        
         h1::after {
             content: "";
             position: absolute;
@@ -97,6 +102,7 @@
             height: 3px;
             background: var(--accent);
         }
+        
         h2 {
             color: var(--primary);
             font-size: 1.6rem;
@@ -105,20 +111,24 @@
             border-left: 4px solid var(--accent);
             padding-left: 1rem;
         }
+        
         p {
             text-align: justify;
             margin-bottom: 1.5rem;
             color: var(--text);
         }
+        
         ul {
             padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
+        
         li {
             margin-bottom: 0.5rem;
             position: relative;
             color: var(--text);
         }
+        
         li::before {
             content: "•";
             color: var(--accent);
@@ -126,6 +136,7 @@
             position: absolute;
             left: -1rem;
         }
+        
         .button {
             background: var(--primary);
             color: white;
@@ -138,13 +149,16 @@
             font-weight: 500;
             border: none;
         }
+        
         .button:hover {
             background: var(--accent);
             transform: translateY(-2px);
         }
+        
         .button i {
             margin-right: 0.5rem;
         }
+        
         .abstract {
             background-color: rgba(75, 108, 193, 0.1);
             padding: 1.5rem;
@@ -152,6 +166,7 @@
             margin-bottom: 2rem;
             border-left: 4px solid var(--primary);
         }
+        
         .figure-container {
             display: flex;
             justify-content: space-around;
@@ -159,6 +174,7 @@
             gap: 1.5rem;
             margin: 2rem 0;
         }
+        
         .figure {
             flex: 1;
             min-width: 250px;
@@ -170,9 +186,11 @@
             transition: transform 0.3s ease;
             border: 1px solid #e0e0e0;
         }
+        
         .figure:hover {
             transform: translateY(-5px);
         }
+        
         .figure img {
             width: 100%;
             height: 180px;
@@ -180,11 +198,13 @@
             border-radius: 4px;
             margin-bottom: 0.8rem;
         }
+        
         .figure-caption {
             font-style: italic;
             color: var(--secondary);
             font-size: 0.9rem;
         }
+        
         .product-item {
             margin-bottom: 2.5rem;
             background: white;
@@ -193,15 +213,18 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             border: 1px solid #e0e0e0;
         }
+        
         .product-header {
             background: var(--primary);
             color: white;
             padding: 1rem;
             font-weight: 600;
         }
+        
         .product-content {
             padding: 1.5rem;
         }
+        
         .product-image {
             width: 100%;
             max-height: 400px;
@@ -209,12 +232,14 @@
             border-radius: 4px;
             margin-bottom: 1rem;
         }
+        
         .impact-points {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
+        
         .impact-point {
             background: white;
             padding: 1.5rem;
@@ -223,19 +248,64 @@
             text-align: center;
             border: 1px solid #e0e0e0;
         }
+        
         .impact-point i {
             font-size: 2rem;
             color: var(--primary);
             margin-bottom: 1rem;
         }
+        
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+        
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
         @media (max-width: 768px) {
             .project-content {
                 padding: 1.5rem;
                 margin: 1rem;
             }
+            
             h1 {
                 font-size: 1.8rem;
             }
+            
             .figure-container {
                 flex-direction: column;
             }
@@ -247,85 +317,120 @@
                 <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
-        <h1>Campus Plastic Waste Transformation</h1>
+        
+        <h1>Embedded Sentry System</h1>
+        
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This project exemplifies the core mission of our Plastic Research Recycling Laboratory, which is dedicated to converting campus-generated plastic waste into valuable products through the application of various plastic recycling methodologies. Our initiative combines environmental sustainability with practical innovation to create a circular economy within our campus community.</p>
+            <p>This project implements an innovative "Embedded Sentry" system using gesture recognition for secure access control. The system utilizes a single accelerometer/gyroscope to record and authenticate unique hand movement sequences, providing a novel biometric approach to protecting assets and sensitive data.</p>
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://github.com/bk-poudel/Real_Time_Embedded_Systems_Project" class="github-button">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
         </div>
+
         <div class="technologies-used">
-            <h2>Technologies Used</h2>
-            <p>In our state-of-the-art recycling lab, we employ cutting-edge technologies to transform plastic waste into meaningful products:</p>
-            <div class="figure-container">
-                <div class="figure">
-                    <img src="../Plastic_Waste_Images/shredder.jpg" alt="Plastic Shredder">
-                    <div class="figure-caption">Figure 1: Plastic Shredder</div>
-                    <p>Breaks down plastic waste into smaller, manageable pieces for processing</p>
-                </div>
-                <div class="figure">
-                    <img src="../Plastic_Waste_Images/extruder.jpg" alt="Plastic Extruder">
-                    <div class="figure-caption">Figure 2: Plastic Extruder</div>
-                    <p>Melts and reforms plastic into continuous shapes for new products</p>
-                </div>
-                <div class="figure">
-                    <img src="../Plastic_Waste_Images/injection.jpg" alt="Injection Machine">
-                    <div class="figure-caption">Figure 3: Injection Machine</div>
-                    <p>Creates precision plastic components by injecting molten plastic into molds</p>
-                </div>
+            <h2>Technical Implementation</h2>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-microchip"></i> Hardware Components</h3>
+                <ul>
+                    <li>STM32F49I Discovery Board with integrated motion sensors</li>
+                    <li>Custom PCB for signal processing and power management</li>
+                    <li>LED indicators for system feedback</li>
+                    <li>Tactile push buttons for user interaction</li>
+                </ul>
+            </div>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-code"></i> Software Architecture</h3>
+                <ul>
+                    <li>PlatformIO development environment</li>
+                    <li>C++ firmware with real-time processing capabilities</li>
+                    <li>Custom gesture recognition algorithms</li>
+                    <li>Secure storage of gesture templates</li>
+                </ul>
             </div>
         </div>
+
         <div class="products-created">
-            <h2>Products Created</h2>
-            <p>Through innovative recycling processes, we've successfully transformed waste into these functional and beautiful products:</p>
-            <div class="product-item">
-                <div class="product-header">
-                    <i class="fas fa-park"></i> Eco-friendly Benches
+            <h2>Key Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-fingerprint"></i> Gesture Authentication</h3>
+                    <p>Unique motion-based authentication system that records and verifies complex hand gestures with high accuracy</p>
                 </div>
-                <div class="product-content">
-                    <img src="../Plastic_Waste_Images/bench.jpg" alt="Eco-friendly Benches" class="product-image">
-                    <p>Our durable benches made from recycled plastic provide comfortable seating across campus while demonstrating the potential of recycled materials. Each bench represents approximately 200kg of diverted plastic waste.</p>
+                
+                <div class="feature-item">
+                    <h3><i class="fas fa-lock"></i> Secure Storage</h3>
+                    <p>Encrypted storage of gesture templates to prevent unauthorized access or duplication</p>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <i class="fas fa-clock"></i> Wall Clock
-                </div>
-                <div class="product-content">
-                    <img src="../Plastic_Waste_Images/clock.gif" alt="Wall Clock" class="product-image">
-                    <p>This stylish timepiece combines functionality with sustainability, featuring a casing made entirely from recycled plastics. The clock mechanism is designed for longevity, with replaceable components.</p>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <i class="fas fa-palette"></i> Decorative Items and Accessories
-                </div>
-                <div class="product-content">
-                    <img src="../Plastic_Waste_Images/decorative.jpeg" alt="Decorative Items and Accessories" class="product-image">
-                    <p>From colorful wall art to practical accessories, we've created a range of items that showcase the versatility of recycled plastics. These products help raise awareness about recycling possibilities.</p>
+                
+                <div class="feature-item">
+                    <h3><i class="fas fa-lightbulb"></i> Visual Feedback</h3>
+                    <p>Comprehensive LED status indicators for system state and authentication results</p>
                 </div>
             </div>
         </div>
+
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../Embedded-Sentry_Images/hardware_setup.jpg" alt="Hardware Setup">
+                <div class="figure-caption">Figure 1: System Hardware Configuration</div>
+                <p>Compact embedded system with integrated motion sensing and user interface components</p>
+            </div>
+            <div class="figure">
+                <img src="../Embedded-Sentry_Images/gesture_diagram.png" alt="Gesture Recognition Process">
+                <div class="figure-caption">Figure 2: Gesture Recognition Workflow</div>
+                <p>From motion capture to authentication decision - the complete processing pipeline</p>
+            </div>
+            <div class="figure">
+                <img src="../Embedded-Sentry_Images/state_diagram.png" alt="System State Diagram">
+                <div class="figure-caption">Figure 3: System State Management</div>
+                <p>Comprehensive state machine handling all operational modes and transitions</p>
+            </div>
+        </div>
+
         <div class="impact">
-            <h2>Impact and Future Work</h2>
-            <p>Our initiative has made significant strides in sustainable waste management and community engagement:</p>
+            <h2>Performance and Impact</h2>
+            
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-recycle"></i>
-                    <h3>Waste Reduction</h3>
-                    <p>Diverted over 2 tons of plastic from landfills through our recycling programs</p>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security</h3>
+                    <p>Biometric gesture recognition provides strong authentication resistant to common attacks</p>
                 </div>
+                
                 <div class="impact-point">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Innovation</h3>
-                    <p>Developed 12+ product designs from recycled materials</p>
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Performance</h3>
+                    <p>Real-time processing with response times under 500ms for typical gestures</p>
                 </div>
+                
                 <div class="impact-point">
-                    <i class="fas fa-users"></i>
-                    <h3>Community Engagement</h3>
-                    <p>Involved 200+ students in recycling workshops and initiatives</p>
+                    <i class="fas fa-cogs"></i>
+                    <h3>Flexibility</h3>
+                    <p>Adaptable to various security scenarios through customizable gesture complexity</p>
                 </div>
             </div>
-            <p>Looking ahead, we aim to expand our capabilities with advanced sorting technologies, develop partnerships with local businesses, and create an educational program to teach sustainable manufacturing practices.</p>
+            
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
+            <ul>
+                <li>Integration with wireless communication modules for remote access control</li>
+                <li>Machine learning-based gesture recognition for improved accuracy</li>
+                <li>Multi-factor authentication combining gestures with other biometrics</li>
+                <li>Low-power modes for battery-operated deployments</li>
+            </ul>
         </div>
+
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>The Embedded Sentry System demonstrates the viability of motion-based authentication in embedded environments. By combining robust hardware with sophisticated gesture recognition algorithms, this project provides a foundation for innovative security solutions that are both secure and intuitive to use. The system's performance and flexibility make it suitable for applications ranging from personal device security to industrial access control, with significant potential for future expansion and refinement.</p>
+        </div>
+
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
@@ -333,6 +438,7 @@
             </a>
         </div>
     </div>
+
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
