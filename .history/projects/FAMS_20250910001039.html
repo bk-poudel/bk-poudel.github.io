@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>3 DOF Robotic Arm with Soft Manipulator - FAMS Lab, NYU Tandon</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .close-button:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        .figure-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .figure {
+            flex: 1;
+            min-width: 250px;
+            max-width: 500px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .figure img {
+            width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            background: #f5f5f5;
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 480px) {
+            .figure {
+                padding: 0.8rem;
+            }
+            .figure img {
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+            <i class="fas fa-times"></i>
+        </a>
+        <h1>3 DOF Robotic Arm with Soft Robotics Manipulator</h1>
+        <div class="abstract">
+            <h2>Project Overview</h2>
+            <p>
+                This project was developed at the Flexible AI Enabled Mechatronics Systems (FAMS) Lab, NYU Tandon School of Engineering, as part of a multidisciplinary team. We designed and built a 3 Degree-of-Freedom robotic arm equipped with a soft robotics manipulator featuring three flexible fingers. The system demonstrates integration of mechanical design, electronics, and software for advanced manipulation tasks.
+            </p>
+        </div>
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../path_to_your_arm_photo.jpg" alt="3 DOF Robotic Arm with Soft Manipulator">
+                <div class="figure-caption">Figure: 3 DOF Robotic Arm with Soft 3-Finger Manipulator (FAMS Lab, NYU Tandon)</div>
+            </div>
+        </div>
+        <div class="team-contribution">
+            <h2>Team & My Role</h2>
+            <ul>
+                <li>Collaborated with a team of talented engineers and researchers</li>
+                <li>Responsible for mechanical structure design of the robotic arm</li>
+                <li>Developed motor and sensor control code for precise actuation</li>
+                <li>Integrated hardware and software for seamless operation</li>
+            </ul>
+        </div>
+        <div class="features">
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-cogs"></i> Mechanical Design</h3>
+                    <p>Custom-designed 3 DOF arm structure for workspace flexibility and stability</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-hand-paper"></i> Soft Manipulator</h3>
+                    <p>Three soft fingers enable adaptive grasping and safe interaction with delicate objects</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-microchip"></i> Motor & Sensor Integration</h3>
+                    <p>Motor drivers and sensor feedback for closed-loop control and precise positioning</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-code"></i> Embedded Programming</h3>
+                    <p>Developed firmware for coordinated movement and sensor data acquisition</p>
+                </div>
+            </div>
+        </div>
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+                The project highlights the synergy of mechanical engineering, electronics, and software in robotics. The developed arm serves as a platform for research in soft manipulation and AI-enabled mechatronics, with potential applications in adaptive grasping and safe human-robot interaction.
+            </p>
+        </div>
+        <div class="home-button">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
