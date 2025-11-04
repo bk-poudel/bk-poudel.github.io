@@ -118,44 +118,9 @@
                     <h1>Bibek Poudel</h1>
                     <p>Aspiring Computer and Robotics Engineer</p>
                     <div style="width:50vw; max-width:100%; box-sizing:border-box;">
-                        <p id="typing" aria-live="polite" style="margin:0; font-family: inherit; font-size: 1rem; line-height:1.5; color:inherit;">
-                            <span id="typed"></span><span id="cursor" aria-hidden="true" style="display:inline-block; width:1ch; animation: blink 1s steps(1) infinite;">|</span>
+                        <p>
+                            👋 Hi, I'm Bibek Poudel — a robotics enthusiast and researcher passionate about bridging the gap between humans and intelligent machines. From real-world robot control to smart assistive systems, I build solutions that empower, navigate, and inspire.
                         </p>
-                        <style>
-                            @keyframes blink { 50% { opacity: 0; } }
-                            /* reduce motion for users who prefer reduced motion */
-                            @media (prefers-reduced-motion: reduce) {
-                                #cursor { animation: none; opacity: 1; }
-                            }
-                        </style>
-                        <script>
-                            (function(){
-                                const text = "👋 Hi, I'm Bibek Poudel — a robotics enthusiast and researcher passionate about bridging the gap between humans and intelligent machines. From real-world robot control to smart assistive systems, I build solutions that empower, navigate, and inspire.";
-                                const typedEl = document.getElementById('typed');
-                                const cursorEl = document.getElementById('cursor');
-                                const speed = 30; // ms per character
-                                let i = 0;
-                                // Respect reduced motion preference
-                                const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                                if (prefersReduced) {
-                                    typedEl.textContent = text;
-                                    cursorEl.style.display = 'none';
-                                    return;
-                                }
-                                function type() {
-                                    if (i <= text.length) {
-                                        typedEl.textContent = text.slice(0, i);
-                                        i++;
-                                        setTimeout(type, speed);
-                                    } else {
-                                        // optional: keep cursor blinking or fade it out
-                                        // cursorEl.style.opacity = 0.6;
-                                    }
-                                }
-                                // start when DOM ready (this script runs inside DOM, so safe)
-                                type();
-                            })();
-                        </script>
                     </div>
                 </div>
             </div>
