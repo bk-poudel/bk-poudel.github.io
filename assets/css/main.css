@@ -99,6 +99,16 @@ input, select, textarea {
 		background: #1b1f22;
 	}
 
+		/* Disable scrolling on main homepage (when no article is visible) */
+		body:not(.is-article-visible) {
+			overflow: hidden;
+		}
+
+		/* Enable scrolling when article (Projects/Contact) is visible */
+		body.is-article-visible {
+			overflow: auto;
+		}
+
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
