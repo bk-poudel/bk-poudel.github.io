@@ -957,18 +957,13 @@ input, select, textarea {
     display: flex;
     justify-content: center; /* Center align buttons */
     gap: 0.5rem; /* Space between buttons */
-    flex-wrap: wrap; /* Allow wrapping for 3+ buttons */
+    flex-wrap: nowrap; /* Prevent wrapping to ensure two buttons stay in one line */
     margin-top: auto; /* Push buttons to the bottom */
     margin-bottom: 1rem; /* Add spacing from the bottom */
 }
 .button-container .button {
     flex: 0 1 auto; /* Ensure buttons take only necessary space */
     width: auto; /* Prevent buttons from stretching */
-    max-width: 48%; /* Limit button width */
-}
-/* When there are 3 buttons, center the third one */
-.button-container .button:nth-child(3) {
-    margin-top: 0.5rem; /* Add spacing above third button */
 }
 /* BG */
 	#bg {

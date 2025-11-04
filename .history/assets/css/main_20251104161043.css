@@ -917,58 +917,39 @@ input, select, textarea {
 		font-size: 0.6rem;
 		height: 2.0625rem;
 		line-height: 2.0625rem;
-		margin-bottom: 0.5rem !important;
-		margin-right: 0.25rem !important;
-		margin-left: 0.25rem !important;
-		width: auto !important;
-		display: inline-block !important;
-		max-width: 45%;
-		vertical-align: top;
+		margin-bottom: 0 !important; /* Remove bottom margin */
+		width: auto !important; /* Prevent buttons from taking full width */
+		display: inline-block !important; /* Keep buttons inline */
+		max-width: 48%; /* Ensure two buttons can fit side by side */
+		margin-right: 0.5rem; /* Add horizontal spacing between buttons */
 	}
-/* Use CSS Grid for project items to control button layout */
+
+	/* Remove margin from last button */
+	.project-item .button.small:last-of-type {
+		margin-right: 0;
+	}
+
+/* Ensure project items use flexbox layout */
 .project-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    justify-items: center;
-    align-content: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-    text-align: center;
+    text-align: center; /* Center align content including inline buttons */
 }
-/* Make buttons span as inline elements in their grid area */
-.project-item > a.button.small {
-    grid-column: 1;
-    display: inline-block !important;
-    width: auto !important;
-    max-width: 48%;
-    justify-self: center;
-}
-/* Place both buttons in the same grid row */
-.project-item > a.button.small:first-of-type {
-    margin-right: 0.25rem;
-}
-.project-item > a.button.small:last-of-type {
-    grid-column: 1;
-    grid-row: -1; /* Same row as previous button */
-    margin-left: 0.25rem;
-}
+
 /* Container for buttons at the bottom */
 .button-container {
     display: flex;
     justify-content: center; /* Center align buttons */
     gap: 0.5rem; /* Space between buttons */
-    flex-wrap: wrap; /* Allow wrapping for 3+ buttons */
+    flex-wrap: nowrap; /* Prevent wrapping to ensure two buttons stay in one line */
     margin-top: auto; /* Push buttons to the bottom */
     margin-bottom: 1rem; /* Add spacing from the bottom */
 }
 .button-container .button {
     flex: 0 1 auto; /* Ensure buttons take only necessary space */
     width: auto; /* Prevent buttons from stretching */
-    max-width: 48%; /* Limit button width */
-}
-/* When there are 3 buttons, center the third one */
-.button-container .button:nth-child(3) {
-    margin-top: 0.5rem; /* Add spacing above third button */
 }
 /* BG */
 	#bg {

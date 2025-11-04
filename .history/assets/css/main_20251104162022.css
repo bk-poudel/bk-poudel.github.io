@@ -966,6 +966,7 @@ input, select, textarea {
     width: auto; /* Prevent buttons from stretching */
     max-width: 48%; /* Limit button width */
 }
+
 /* When there are 3 buttons, center the third one */
 .button-container .button:nth-child(3) {
     margin-top: 0.5rem; /* Add spacing above third button */
