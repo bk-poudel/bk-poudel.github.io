@@ -969,9 +969,7 @@ input, select, textarea {
     flex: 0 0 auto; /* Don't grow or shrink, natural size */
     width: auto; /* Auto width based on content */
     max-width: 48%; /* Allow more room for button text */
-    white-space: normal !important; /* Allow text wrapping */
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+    white-space: normal; /* Allow text wrapping */
 }
 /* When there are 3 buttons, center the third one */
 .button-container .button:nth-child(3) {
