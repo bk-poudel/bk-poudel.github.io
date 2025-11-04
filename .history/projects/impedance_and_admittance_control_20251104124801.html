@@ -500,7 +500,7 @@
         </div>
         <div class="figure-container">
             <div class="figure">
-                <img src="../classic_controllers/impedance_control.gif" alt="Impedance Control Visualization">
+                <img src="../classic_controllers/impedance_control_compressed.gif" alt="Impedance Control Visualization">
                 <div class="figure-caption">Figure 1: Impedance Control</div>
                 <p class="figure-description">Robot behaves like a mass-spring-damper system, generating forces in response to position deviations</p>
             </div>
@@ -509,6 +509,11 @@
                 <div class="figure-caption">Figure 2: Admittance Control</div>
                 <p class="figure-description">Robot modifies its position trajectory in response to measured external forces</p>
             </div>
+        </div>
+        <div class="video-button-container">
+            <a class="video-button" href="https://drive.google.com/file/d/1TaIxDL0szzLmpWS72Z7rF1LJH9gfZy7n/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-video"></i> Watch Real Robot Impedance Control (Franka Research 3)
+            </a>
         </div>
         <div class="learning-progression">
             <h2>Control Scheme Comparison</h2>
@@ -558,68 +563,88 @@
             </div>
         </div>
         <div class="learning-progress">
-            <h2>Learning Algorithm Details</h2>
-            <p>The PI² implementation follows these key algorithmic steps:</p>
+            <h2>Implementation Details</h2>
+            <p>The implementation of impedance and admittance control follows these key algorithmic steps:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-play-circle"></i> Episode Generation</h3>
-                <p>1. Sample noisy trajectories around current policy: τ_i = θ + ε_i</p>
-                <p>2. Execute trajectories and measure costs S(τ_i)</p>
-                <p>3. Collect trajectory data for policy update</p>
+                <h3><i class="fas fa-code"></i> Impedance Control Algorithm</h3>
+                <p>1. Read current joint positions q and velocities q̇</p>
+                <p>2. Compute forward kinematics and Jacobian: x = FK(q), J = J(q)</p>
+                <p>3. Measure external force F<sub>ext</sub> (using F/T sensor or observer)</p>
+                <p>4. Compute the impedance model forces:</p>
+                <p style="text-align: center; font-family: 'Courier New', monospace; background: #f0f0f0; padding: 0.5rem; border-radius: 4px; margin: 0.5rem 0;">
+                    F<sub>imp</sub> = M(ẍ<sub>d</sub> - ẍ) + B(ẋ<sub>d</sub> - ẋ) + K(x<sub>d</sub> - x)
+                </p>
+                <p>5. Transform to joint torques and command actuators:</p>
+                <p style="text-align: center; font-family: 'Courier New', monospace; background: #f0f0f0; padding: 0.5rem; border-radius: 4px; margin: 0.5rem 0;">
+                    τ<sub>cmd</sub> = J<sup>T</sup>(F<sub>imp</sub> + F<sub>ext</sub>)
+                </p>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-weight-hanging"></i> Weight Computation</h3>
-                <p>4. Compute trajectory weights based on exponential cost transformation</p>
-                <p>5. Normalize weights to form probability distribution</p>
-                <p>6. Higher-performing trajectories receive greater influence</p>
+                <h3><i class="fas fa-cog"></i> Admittance Control Algorithm</h3>
+                <p>1. Measure external force F<sub>ext</sub> using force/torque sensor</p>
+                <p>2. Compute reference trajectory modification using admittance model:</p>
+                <p style="text-align: center; font-family: 'Courier New', monospace; background: #f0f0f0; padding: 0.5rem; border-radius: 4px; margin: 0.5rem 0;">
+                    M(ẍ<sub>r</sub> - ẍ<sub>d</sub>) + B(ẋ<sub>r</sub> - ẋ<sub>d</sub>) + K(x<sub>r</sub> - x<sub>d</sub>) = F<sub>ext</sub>
+                </p>
+                <p>3. Numerically integrate to get modified reference trajectory x<sub>r</sub></p>
+                <p>4. Compute inverse kinematics to get joint positions:</p>
+                <p style="text-align: center; font-family: 'Courier New', monospace; background: #f0f0f0; padding: 0.5rem; border-radius: 4px; margin: 0.5rem 0;">
+                    q<sub>r</sub> = IK(x<sub>r</sub>)
+                </p>
+                <p>5. Send q<sub>r</sub> to the robot's position controller</p>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-sync-alt"></i> Policy Update</h3>
-                <p>7. Update policy parameters using weighted trajectory average</p>
-                <p>8. Reduce exploration noise variance for next iteration</p>
-                <p>9. Repeat until convergence or maximum iterations</p>
+                <h3><i class="fas fa-laptop-code"></i> Implementation Considerations</h3>
+                <ul>
+                    <li>Real-time requirements: Impedance control typically needs 1-5 kHz loop rate</li>
+                    <li>Proper noise filtering of force/torque measurements to avoid instability</li>
+                    <li>Velocity estimation from position measurements (if necessary)</li>
+                    <li>Safety measures including virtual walls and force/velocity limits</li>
+                    <li>Gradual parameter adjustment during contact transitions to avoid jerky motions</li>
+                </ul>
             </div>
         </div>
         <div class="impact">
-            <h2>Results and Performance Analysis</h2>
-            <p>The RL-based ball throwing system demonstrates significant improvements through learning:</p>
+            <h2>Applications and Performance Comparison</h2>
+            <p>Impedance and admittance control have distinct application domains and performance characteristics:</p>
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-chart-bar"></i>
-                    <h3>Learning Convergence</h3>
-                    <p>Algorithm converges within 50-100 iterations, achieving 90% target accuracy for distances up to 2 meters</p>
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial Applications</h3>
+                    <p>Admittance control excels in precise assembly tasks with stiff robots, while impedance control is preferred for delicate handling operations</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-target"></i>
-                    <h3>Targeting Precision</h3>
-                    <p>Mean absolute error of 4.2cm for learned throwing policies across various target locations</p>
+                    <i class="fas fa-hand-holding"></i>
+                    <h3>Human-Robot Interaction</h3>
+                    <p>Both schemes enable safe physical interaction, with adjustable compliance parameters directly affecting perceived robot behavior</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Trajectory Optimization</h3>
-                    <p>Learned trajectories exhibit smooth, energy-efficient motions with optimal release timing</p>
+                    <i class="fas fa-tools"></i>
+                    <h3>Manipulation Tasks</h3>
+                    <p>Surface-following, peg-in-hole insertion, and cooperative tasks all benefit from force-based control with appropriately tuned stiffness</p>
                 </div>
             </div>
-            <h3 style="margin-top: 2rem;">Technical Achievements</h3>
+            <h3 style="margin-top: 2rem;">Technical Considerations</h3>
             <ul>
-                <li>Successfully implemented PI² algorithm for continuous control tasks</li>
-                <li>Developed cost function balancing accuracy, smoothness, and energy efficiency</li>
-                <li>Achieved robust performance across different target configurations</li>
-                <li>Demonstrated transfer learning capabilities to new throwing scenarios</li>
-                <li>Validated simulation results through extensive testing protocols</li>
+                <li>Stability analysis using Lyapunov methods ensures safe operation across various environments</li>
+                <li>Time delay compensation is essential, especially for admittance control</li>
+                <li>Friction and gravity compensation improve performance in both control schemes</li>
+                <li>Singularity handling is required when operating near kinematic limits</li>
+                <li>Variable impedance/admittance parameters can adapt to changing tasks</li>
             </ul>
-            <h3 style="margin-top: 2rem;">Future Directions</h3>
+            <h3 style="margin-top: 2rem;">Advanced Extensions</h3>
             <ul>
-                <li>Hardware implementation on real Franka Emika Panda robot</li>
-                <li>Integration of computer vision for dynamic target tracking</li>
-                <li>Extension to throwing moving objects or targets</li>
-                <li>Multi-objective optimization including obstacle avoidance</li>
-                <li>Comparison with other policy search algorithms (TRPO, PPO)</li>
+                <li>Task-oriented impedance control with coordinate frame selection</li>
+                <li>Learning-based parameter tuning from human demonstrations</li>
+                <li>Hybrid force/position control for constrained manipulation</li>
+                <li>Multi-arm cooperative control with internal force regulation</li>
+                <li>Energy-based passivity control for guaranteed stability</li>
             </ul>
         </div>
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>This project successfully demonstrates the application of Path Improvement via Path Integrals (PI²) for teaching a Franka Emika Panda robot to throw a ball with high accuracy. The implementation showcases how model-free reinforcement learning can enable robots to acquire complex motor skills through iterative exploration and optimization. The mathematical foundation of PI² provides a principled approach to policy search, combining the benefits of stochastic optimization with sample efficiency crucial for robotic learning applications.</p>
-            <p>The achieved results validate the effectiveness of the approach, with the robot learning to accurately throw balls to various target locations within reasonable training time. The smooth, energy-efficient trajectories learned by the algorithm demonstrate the natural emergence of optimal throwing strategies without explicit programming of biomechanical principles. This work contributes to the broader field of robot learning and provides a foundation for more complex manipulation tasks requiring dynamic interactions with the environment.</p>
+            <p>This project examines the mathematical foundations and implementations of impedance and admittance control for robotic manipulators. Both approaches provide elegant solutions to the fundamental challenge of controlling robot-environment interactions by establishing dynamic relationships between forces and positions. The mass-spring-damper model provides an intuitive framework that translates into effective control algorithms with tunable parameters directly influencing robot behavior.</p>
+            <p>The choice between impedance and admittance control largely depends on robot hardware characteristics, with impedance control being ideal for robots with good backdrivability and torque control, while admittance control excels for high-geared, stiff robots with precise position control. Both schemes find extensive applications in industrial robotics, human-robot interaction, and delicate manipulation tasks. The mathematical models presented here provide a strong foundation for understanding and implementing these complementary control strategies, enabling safe and effective robotic interaction with dynamic environments.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">
