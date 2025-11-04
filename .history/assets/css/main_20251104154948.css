@@ -881,9 +881,10 @@ input, select, textarea {
 		input[type="button"].small,
 		button.small,
 		.button.small {
-			font-size: 0.6rem;
-			height: 2.0625rem;
-			line-height: 2.0625rem;
+			font-size: 0.65rem; /* Even smaller font size */
+    padding: 0.3rem 0.8rem; /* Reduce padding */
+    height: auto; /* Ensure height adjusts dynamically */
+    line-height: 1.2; /* Adjust line height for compact appearance */
 		}
 		input[type="submit"].primary,
 		input[type="reset"].primary,
@@ -914,10 +915,10 @@ input, select, textarea {
 		line-height: calc(2.75rem - 2px);
 	}
 	.button.small {
-		font-size: 0.6rem;
-		height: 2.0625rem;
-		line-height: 2.0625rem;
-		margin-bottom: 1rem; /* Add vertical spacing after the button */
+		font-size: 0.75rem; /* Smaller font size */
+    padding: 0.5rem 1rem; /* Adjust padding */
+    height: auto; /* Ensure height adjusts dynamically */
+    line-height: 1.5; /* Adjust line height for better alignment */
 	}
 /* BG */
 	#bg {
@@ -1483,6 +1484,15 @@ a.project-image-link:hover {
 /* Center content within project items, including the image link */
 .project-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content and buttons */
+    height: 100%; /* Ensure consistent height for all project items */
+}
+/* Ensure all buttons in project items are aligned at the same height */
+.project-item .button-container {
+    margin-top: auto; /* Push buttons to the bottom */
+    margin-bottom: 1rem; /* Add spacing from the bottom of the container */
 }
 /* Optional: If you still want italic project titles */
 article#projects .project-item h3 {
@@ -1682,4 +1692,22 @@ article#projects {
     border-radius: 8px; /* Optional: Add rounded corners */
     padding: 2rem; /* Optional: Add some padding */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add a subtle shadow */
+}
+/* Adjust button size and alignment for side-by-side layout */
+.button.small {
+    font-size: 0.65rem; /* Even smaller font size */
+    padding: 0.3rem 0.8rem; /* Reduce padding */
+    height: auto; /* Ensure height adjusts dynamically */
+    line-height: 1.2; /* Adjust line height for compact appearance */
+}
+/* Ensure buttons are side by side */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center align buttons */
+    flex-wrap: wrap; /* Allow wrapping for odd buttons */
+    gap: 0.3rem; /* Reduce space between buttons */
+}
+/* Center align single button in odd cases */
+.button-container .button:nth-child(odd):last-child {
+    margin: 0 auto; /* Center align the last button if odd */
 }

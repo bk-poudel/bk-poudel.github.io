@@ -1483,6 +1483,15 @@ a.project-image-link:hover {
 /* Center content within project items, including the image link */
 .project-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content and buttons */
+    height: 100%; /* Ensure consistent height for all project items */
+}
+/* Ensure all buttons in project items are aligned at the same height */
+.project-item .button-container {
+    margin-top: auto; /* Push buttons to the bottom */
+    margin-bottom: 1rem; /* Add spacing from the bottom of the container */
 }
 /* Optional: If you still want italic project titles */
 article#projects .project-item h3 {

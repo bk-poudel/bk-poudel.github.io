@@ -286,14 +286,129 @@
                 </section>
             </article>
             <!-- Projects -->
-            <article id="projects">
-                <h2 class="major" style="text-align:center; margin:1.25rem 0;"></h2>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@700&family=Merriweather:wght@700&family=Playfair+Display:wght@700&family=Roboto+Slab:wght@700&display=swap" />
-                    <span style="display:inline-block; color:#fff; background:transparent; border-bottom:4px solid #b8c1ec; padding:12px 36px; border-radius:8px; box-shadow:0 2px 12px rgba(184,193,236,0.08); letter-spacing:1.5px; font-family:'Lora','Playfair Display','Merriweather','Roboto Slab','Montserrat', Georgia, serif; font-size:2rem; font-weight:700; text-transform:uppercase;">
-                        <i class="fas fa-robot" style="margin-right:12px; color:#b8c1ec; font-size:1.1em;" aria-hidden="true"></i>
-                        Projects
+            <article id="projects" aria-labelledby="projects-heading">
+                <!-- Load a clean modern font for this section -->
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+                <style>
+                    /* Scoped styles for the projects header to enhance appearance */
+                    #projects-heading { 
+                        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                    .projects-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.8rem;
+                        padding: 12px 28px;
+                        border-radius: 14px;
+                        font-weight: 800;
+                        font-size: 1.5rem;
+                        letter-spacing: 1px;
+                        color: #0f1724;
+                        background: linear-gradient(135deg, #b8c1ec 0%, #f6d6e0 100%);
+                        box-shadow: 0 8px 30px rgba(16,24,40,0.18), inset 0 -2px 8px rgba(255,255,255,0.6);
+                        border: 1px solid rgba(0,0,0,0.06);
+                    }
+                    .projects-icon {
+                        display: inline-grid;
+                        place-items: center;
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 10px;
+                        background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+                        color: #3b2f91;
+                        font-size: 1.15rem;
+                        box-shadow: 0 6px 18px rgba(59,47,145,0.12);
+                    }
+                    /* A subtle label accent underneath */
+                    .projects-accent {
+                        display: block;
+                        text-align: center;
+                        margin-top: 0.6rem;
+                        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+                        color: rgba(255,255,255,0.85);
+                        font-size: 0.98rem;
+                        max-width: 880px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                    @media (max-width:640px) {
+                        .projects-badge { font-size: 1.05rem; padding: 10px 18px; }
+                        .projects-icon { width:38px; height:38px; font-size:1rem; border-radius:8px; }
+                    }
+                </style>
+                <h2 id="projects-heading" class="major projects-heading" style="margin-bottom: .6rem;">
+                    <span class="projects-badge" role="img" aria-hidden="false" aria-label="Projects">
+                        <span class="projects-icon" aria-hidden="true">
+                            <i class="fas fa-layer-group" style="transform: translateY(1px);"></i>
+                        </span>
+                        PROJECTS
                     </span>
                 </h2>
+                <p class="projects-subtitle" style="text-align:center; color:rgba(255,255,255,0.85); max-width:880px; margin:0 auto 1.6rem;">
+                    Curated robotics, embedded and AI projects — demos, writeups and source code. Click any card to learn more.
+                </p>
+                <style>
+                    /* Projects header styling */
+                    .projects-heading { text-align: center; }
+                    .projects-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        padding: 12px 28px;
+                        border-radius: 12px;
+                        font-weight: 800;
+                        font-size: 1.6rem;
+                        letter-spacing: 1.5px;
+                        color: #fff;
+                        background: linear-gradient(135deg, rgba(40,50,80,0.9), rgba(20,28,42,0.95));
+                        box-shadow: 0 10px 30px rgba(8,10,20,0.6), inset 0 -2px 8px rgba(0,0,0,0.25);
+                        border: 1px solid rgba(184,193,236,0.06);
+                        position: relative;
+                        overflow: visible;
+                    }
+                    .projects-badge i {
+                        color: #b8c1ec;
+                        font-size: 1.2em;
+                        transform: translateY(-1px);
+                        filter: drop-shadow(0 6px 18px rgba(184,193,236,0.06));
+                    }
+                    /* subtle animated underline (accent) */
+                    .projects-badge::after {
+                        content: "";
+                        position: absolute;
+                        left: 8%;
+                        right: 8%;
+                        bottom: -12px;
+                        height: 6px;
+                        border-radius: 6px;
+                        background: linear-gradient(90deg, rgba(184,193,236,0.95), rgba(238,187,195,0.9));
+                        box-shadow: 0 6px 18px rgba(184,193,236,0.08);
+                        transform: translateX(-105%);
+                        animation: projects-underline 3s linear infinite;
+                        opacity: 0.95;
+                    }
+                    @keyframes projects-underline {
+                        0%   { transform: translateX(-105%); }
+                        50%  { transform: translateX(0%); }
+                        100% { transform: translateX(105%); }
+                    }
+                    /* subtitle */
+                    .projects-subtitle { font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.85); }
+                    /* reduced motion for prefers-reduced-motion users */
+                    @media (prefers-reduced-motion: reduce) {
+                        .projects-badge::after { animation: none; transform: translateX(0); }
+                    }
+                    /* responsive tweaks */
+                    @media (max-width: 640px) {
+                        .projects-badge { font-size: 1.1rem; padding: 10px 18px; }
+                        .projects-badge::after { bottom: -10px; height: 4px; left: 12%; right: 12%; }
+                        .projects-subtitle { padding: 0 1rem; font-size: 0.95rem; }
+                    }
+                </style>
                 <div class="project-grid">
                     <!-- Project Items -->
                     <div class="project-item">

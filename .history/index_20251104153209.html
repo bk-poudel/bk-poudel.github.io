@@ -287,11 +287,19 @@
             </article>
             <!-- Projects -->
             <article id="projects">
-                <h2 class="major" style="text-align:center; margin:1.25rem 0;"></h2>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@700&family=Merriweather:wght@700&family=Playfair+Display:wght@700&family=Roboto+Slab:wght@700&display=swap" />
-                    <span style="display:inline-block; color:#fff; background:transparent; border-bottom:4px solid #b8c1ec; padding:12px 36px; border-radius:8px; box-shadow:0 2px 12px rgba(184,193,236,0.08); letter-spacing:1.5px; font-family:'Lora','Playfair Display','Merriweather','Roboto Slab','Montserrat', Georgia, serif; font-size:2rem; font-weight:700; text-transform:uppercase;">
-                        <i class="fas fa-robot" style="margin-right:12px; color:#b8c1ec; font-size:1.1em;" aria-hidden="true"></i>
-                        Projects
+                <h2 class="major" style="text-align:center; margin-bottom:1.5rem;">
+                    <span style="display:inline-flex; align-items:center; gap:12px; 
+                                 background: linear-gradient(135deg, rgba(184,193,236,0.12), rgba(0,0,0,0.04));
+                                 color: #fff; padding: 12px 28px; border-radius: 999px; 
+                                 box-shadow: 0 8px 24px rgba(11,13,20,0.45); font-weight: 800; 
+                                 font-size: 1.6rem; letter-spacing: 1.5px;">
+                        <span aria-hidden="true" style="display:inline-flex; align-items:center; justify-content:center;
+                                                       width:48px; height:48px; border-radius:12px;
+                                                       background: rgba(184,193,236,0.18); color: #b8c1ec;
+                                                       font-size: 1.15rem; box-shadow: 0 4px 12px rgba(184,193,236,0.06);">
+                            <i class="fas fa-rocket" style="transform: translateY(-1px);"></i>
+                        </span>
+                        <span style="display:inline-block; padding-left:4px;">PROJECTS</span>
                     </span>
                 </h2>
                 <div class="project-grid">
@@ -302,8 +310,10 @@
                             <img src="throwing_a_ball/trained_compressed.gif" alt="RL-Based Ball Throwing Robot" class="project-image">
                         </a>
                         <p><em>Reinforcement learning-based ball throwing using Path Improvement via Path Integrals (PI²)</em></p>
-                        <a href="projects/throwing_a_ball.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/PI-2-Ball-Throwing.git" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/throwing_a_ball.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/PI-2-Ball-Throwing.git" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Pick and Place Robot Simulation</h3>
@@ -311,8 +321,10 @@
                             <img src="Pick_and_Place/pick_and_place_compressed.gif" alt="Pick and Place Robot Simulation" class="project-image">
                         </a>
                         <p><em>Franka Emika Panda Pick and Place Robotic Arm Simulation using Mujoco</em></p>
-                        <a href="projects/pick_and_place.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Mujoco_Pick_and_Place" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/pick_and_place.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/Mujoco_Pick_and_Place" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Z1 arm Pouring water in a glass</h3>
@@ -320,8 +332,10 @@
                             <img src="./z1_arm/real_robot_compressed.gif" alt="Z1 arm Pouring water in a glass" class="project-image">
                         </a>
                         <p><em>Z1 arm Pouring water in a glass</em></p>
-                        <a href="projects/Z1_arm_wine_in_a_bottle.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Unitree_Z1" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/Z1_arm_wine_in_a_bottle.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/Unitree_Z1" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Flexible AI-enabled Mechatronic Systems (FAMS) Project</h3>
@@ -329,8 +343,10 @@
                             <img src="FAMS/FAMS.jpeg" alt="FAMS Project" class="project-image">
                         </a>
                         <p><em>3-DOF robotic arm with soft robotic fingers, embedded sensing, and ROS-based control</em></p>
-                        <a href="projects/FAMS.html" class="button small">Learn More</a>
-                        <a href="https://github.com/famsrobotics/fams-jetson" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/FAMS.html" class="button small">Learn More</a>
+                            <a href="https://github.com/famsrobotics/fams-jetson" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Impedance and Admittance Control</h3>
@@ -338,9 +354,11 @@
                             <img src="./classic_controllers/impedance_control_compressed.gif" alt="Impedance and Admittance Control" class="project-image">
                         </a>
                         <p><em>Franka Emika Panda Impedance and Admittance Control</em></p>
-                        <a href="projects/impedance_and_admittance_control.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Impedance_Control_FR3" class="button small icon brands fa-github">Impedance</a>
-                        <a href="https://github.com/bk-poudel/Admittance_Control_FR3" class="button small icon brands fa-github">Admittance</a>
+                        <div class="button-container">
+                            <a href="projects/impedance_and_admittance_control.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/Impedance_Control_FR3" class="button small icon brands fa-github">Impedance</a>
+                            <a href="https://github.com/bk-poudel/Admittance_Control_FR3" class="button small icon brands fa-github">Admittance</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Autonomous Maze Solving Robot Simulation</h3>
@@ -348,8 +366,10 @@
                             <img src="Robot_Navigation/Screenshot 2025-06-12 102028.png" alt="Autonomous Maze Solving Robot" class="project-image">
                         </a>
                         <p><em>Computer vision-based autonomous robot navigation using VLAD, SIFT, and Ball Tree algorithms</em></p>
-                        <a href="projects/autonomous_maze_navigation.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/vis_nav_player" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/autonomous_maze_navigation.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/vis_nav_player" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Haptic Enabled Smart Goggles</h3>
@@ -357,8 +377,10 @@
                             <img src="Smart_googles/smart_goggles_compressed.gif" alt="Haptic Enabled Smart Goggles" class="project-image">
                         </a>
                         <p><em>Computer Vision and Haptic Based Smart Goggles for visually impaired person</em></p>
-                        <a href="projects/haptic_enabled_smart_goggles.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/bk-poudel.github.io" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/haptic_enabled_smart_goggles.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/bk-poudel.github.io" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Autonomous Logistic Robot</h3>
@@ -366,8 +388,10 @@
                             <img src="miscellenous-images\logistic-robot.png" alt="Autonomous Logistic Robot" class="project-image">
                         </a>
                         <p><em>Mobile manipulator based autonomous robot</em></p>
-                        <a href="projects/logistics_robot.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/IEEE_UAE_PickAndPlace" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/logistics_robot.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/IEEE_UAE_PickAndPlace" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Handheld Bio-Printer Prototype</h3>
@@ -375,7 +399,9 @@
                             <img src="Bio-Printer_Images/external_design.png" alt="Handheld Bio-Printer Prototype" class="project-image">
                         </a>
                         <p><em>Designed for precise bio-ink application</em></p>
-                        <a href="projects/project-bioprinter.html" class="button small">Learn More</a>
+                        <div class="button-container">
+                            <a href="projects/project-bioprinter.html" class="button small">Learn More</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Campus Plastic Waste Transformation</h3>
@@ -383,7 +409,9 @@
                             <img src="Plastic_Waste_Images/decorative.jpeg" alt="Campus Plastic Waste Transformation" class="project-image">
                         </a>
                         <p><em>Repurposing plastic into functional items</em></p>
-                        <a href="projects/campus-plastic-waste-transformation.html" class="button small">Learn More</a>
+                        <div class="button-container">
+                            <a href="projects/campus-plastic-waste-transformation.html" class="button small">Learn More</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Adaptable Phantom Prototype</h3>
@@ -391,7 +419,9 @@
                             <img src="miscellenous-images\phantom.jpeg" alt="Adaptable Phantom Prototype" class="project-image">
                         </a>
                         <p><em>Compatible with any 3D printing system</em></p>
-                        <a href="projects/adaptable-phantom-prototype.html" class="button small">Learn More</a>
+                        <div class="button-container">
+                            <a href="projects/adaptable-phantom-prototype.html" class="button small">Learn More</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Chicken-Egg-Incubator</h3>
@@ -399,8 +429,10 @@
                             <img src="miscellenous-images\Chicken Egg incubator.jpg" alt="Chicken-Egg-Incubator" class="project-image">
                         </a>
                         <p><em>Automated system for incubating chicken eggs</em></p>
-                        <a href="projects/chicken-egg-incubator.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Chicken-Egg-Incubator" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/chicken-egg-incubator.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/Chicken-Egg-Incubator" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Embedded Sentry Project</h3>
@@ -408,8 +440,10 @@
                             <img src="miscellenous-images\embedded.png" alt="Embedded Sentry Project" class="project-image">
                         </a>
                         <p><em>Developed real-time embedded systems applications</em></p>
-                        <a href="projects/real-time-embedded-systems.html" class="button small">Learn More</a>
-                        <a href="https://github.com/bk-poudel/Real_Time_Embedded_Systems_Project" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/real-time-embedded-systems.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/Real_Time_Embedded_Systems_Project" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-item">
                         <h3>Roller Coaster Simulation</h3>
@@ -417,8 +451,10 @@
                             <img src="Roller_Coaster_Simulation/track_system.png" alt="Roller Coaster Simulation" class="project-image">
                         </a>
                         <p><em>Simulation of roller coaster dynamics</em></p>
-                        <a href="projects/roller-coaster-simulation.html" class="button small">Learn More</a> 
-                        <a href="https://github.com/bk-poudel/roller-coaster-simulation" class="button small icon brands fa-github">GitHub</a>
+                        <div class="button-container">
+                            <a href="projects/roller-coaster-simulation.html" class="button small">Learn More</a> 
+                            <a href="https://github.com/bk-poudel/roller-coaster-simulation" class="button small icon brands fa-github">GitHub</a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -523,34 +559,6 @@
                     data.x += data.vx;
                     data.y += data.vy;
                     // Bounce off left/right walls
-                    if (data.x <= 0) {
-                        data.x = 0;
-                        data.vx = Math.abs(data.vx); // Bounce right
-                    } else if (data.x + data.size >= width) {
-                        data.x = width - data.size;
-                        data.vx = -Math.abs(data.vx); // Bounce left
-                    }
-                    // Bounce off top/bottom walls
-                    if (data.y <= 0) {
-                        data.y = 0;
-                        data.vy = Math.abs(data.vy); // Bounce down
-                    } else if (data.y + data.size >= height) {
-                        data.y = height - data.size;
-                        data.vy = -Math.abs(data.vy); // Bounce up
-                    }
-                    // Update rotation
-                    data.rotation += data.rotationSpeed;
-                    // Apply transform
-                    data.element.style.transform = `translate(${data.x}px, ${data.y}px) rotate(${data.rotation}deg)`;
-                });
-                requestAnimationFrame(animate);
-            }
-            // Start animation
-            animate();
-            // Handle window resize
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(function() {
                     // Adjust positions if icons are now out of bounds
                     const width = window.innerWidth;
