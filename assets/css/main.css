@@ -104,7 +104,7 @@ input, select, textarea {
 			overflow: hidden;
 		}
 
-		/* Enable scrolling when article (Projects/Contact) is visible */
+		/* Enable scrolling when article (Projects/Contact/Resume) is visible */
 		body.is-article-visible {
 			overflow: auto;
 		}
