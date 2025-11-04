@@ -967,8 +967,7 @@ input, select, textarea {
 .button-container .button {
     flex: 0 0 auto; /* Don't grow or shrink, natural size */
     width: auto; /* Auto width based on content */
-    max-width: 48%; /* Allow more room for button text */
-    white-space: normal; /* Allow text wrapping */
+    max-width: 40%; /* Smaller max-width to ensure wrapping works */
 }
 /* When there are 3 buttons, center the third one */
 .button-container .button:nth-child(3) {
