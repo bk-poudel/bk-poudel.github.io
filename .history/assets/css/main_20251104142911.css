@@ -1677,7 +1677,7 @@ article.project-detail blockquote {
 }
 /* Add translucency to the projects article */
 article#projects {
-    background-color: rgba(29, 36, 43, 0.7); /* Slightly translucent background */
+    background-color: rgba(27, 31, 34, 0.7); /* Slightly translucent background */
     color: #ffffff; /* Ensure text is readable */
     border-radius: 8px; /* Optional: Add rounded corners */
     padding: 2rem; /* Optional: Add some padding */
