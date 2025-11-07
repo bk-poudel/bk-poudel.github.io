@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Agilex Mobile Aloha — Bimanual Teleoperation Demo</title>
+    <style>
+        :root{
+            --bg:#f6f8fb; --card:#ffffff; --muted:#5a6572; --accent:#0b78d1;
+        }
+        html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#222;background:var(--bg)}
+        .wrap{max-width:980px;margin:28px auto;padding:20px}
+        header{display:flex;align-items:center;gap:16px}
+        h1{margin:0;font-size:20px}
+        p.lead{margin:6px 0 18px;color:var(--muted);font-size:14px}
+        .board{display:flex;gap:12px}
+        .panel{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 1px 2px rgba(20,30,40,0.06);flex:1}
+        .play-area{background:#eef4fb;border:1px dashed #cfe6ff;height:320px;border-radius:6px;position:relative;overflow:hidden}
+        .robot-arm{position:absolute;width:36px;height:36px;border-radius:6px;background:linear-gradient(180deg,#0b78d1,#0662a8);color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .object{position:absolute;padding:6px 8px;border-radius:6px;background:#fff;border:1px solid #ddd;box-shadow:0 2px 6px rgba(0,0,0,0.06);display:flex;gap:8px;align-items:center;font-size:14px}
+        .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+        button{background:var(--accent);color:#fff;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
+        button.secondary{background:#eee;color:#222}
+        .status{font-size:13px;color:var(--muted);margin-top:10px}
+        .small{font-size:12px;color:var(--muted)}
+        .kbd{display:inline-block;padding:4px 6px;border-radius:4px;background:#fff;border:1px solid #ddd;margin-left:6px}
+        footer{margin-top:16px;font-size:13px;color:var(--muted)}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><rect width='44' height='44' rx='8' fill='%230b78d1'/><text x='50%' y='55%' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif'>AM</text></svg>" alt="" width="44" height="44">
+            <div>
+                <h1>Agilex Mobile Aloha — Bimanual Teleoperation Demo</h1>
+                <p class="lead">Simple demo showing two arms teleoperating to manipulate two random objects. Controls for left arm (W/A/S/D + Q pick), right arm (Arrows + M pick).</p>
+            </div>
+        </header>
+
+        <div class="board" style="margin-top:16px">
+            <div class="panel" style="flex:2">
+                <div class="play-area" id="play">
+                    <!-- arms and objects injected by JS -->
+                </div>
+
+                <div class="controls" style="margin-top:12px;">
+                    <div>
+                        <strong>Left arm</strong>
+                        <div class="small">Move: W A S D | Pick/Release: Q</div>
+                    </div>
+                    <div style="margin-left:12px">
+                        <strong>Right arm</strong>
+                        <div class="small">Move: ↑ ← ↓ → | Pick/Release: M</div>
+                    </div>
+                    <div style="margin-left:auto">
+                        <button id="reset">Reset positions</button>
+                        <button id="randomize" class="secondary" title="Choose new random objects">Randomize objects</button>
+                    </div>
+                </div>
+
+                <div class="status" id="status" aria-live="polite">Status: ready</div>
+            </div>
+
+            <div class="panel" style="max-width:320px">
+                <h3 style="margin-top:0">Teleop Overview</h3>
+                <p class="small">This minimal demo simulates a mobile base with two manipulators. You can drive each manipulator independently with keyboard controls and attempt to pick up objects drawn in the play area. It's not physical — just a visual teleoperation mockup for demonstration.</p>
+
+                <h4 style="margin-top:12px;margin-bottom:6px">Objects</h4>
+                <ul id="objList" style="padding-left:18px;margin-top:6px;margin-bottom:12px"></ul>
+
+                <h4 style="margin-top:6px;margin-bottom:6px">Log</h4>
+                <div id="log" style="height:160px;overflow:auto;padding:8px;border-radius:6px;background:#fafafa;border:1px solid #eee;font-size:13px"></div>
+
+                <footer>
+                    Tip: Focus the page and use the keys. This is intentionally simple — nothing fancy.
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple bimanual teleoperation mockup
+        const play = document.getElementById('play');
+        const status = document.getElementById('status');
+        const logEl = document.getElementById('log');
+        const objListEl = document.getElementById('objList');
+        const WIDTH = 760, HEIGHT = 320;
+
+        play.style.width = WIDTH + 'px';
+        play.style.height = HEIGHT + 'px';
+
+        const objectTypes = [
+            {name:'Box', icon:'📦'},
+            {name:'Cylinder', icon:'🧱'},
+            {name:'Tool', icon:'🔧'},
+            {name:'Ball', icon:'⚽'},
+            {name:'Can', icon:'🥫'}
+        ];
+
+        function randBetween(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+
+        // Entities: leftArm, rightArm, two objects
+        const arms = {
+            left: {id:'left', x:120, y:HEIGHT/2 - 18, color:'#0b78d1', keyPick:'q'},
+            right:{id:'right', x:WIDTH-160, y:HEIGHT/2 - 18, color:'#0a9a5a', keyPick:'m'}
+        };
+
+        let objects = [];
+
+        function createObject(id, type, x, y){
+            const el = document.createElement('div');
+            el.className = 'object';
+            el.dataset.id = id;
+            el.innerHTML = `<span style="font-size:18px">${type.icon}</span><span>${type.name}</span>`;
+            play.appendChild(el);
+            return {id,x,y,type,el,heldBy:null};
+        }
+
+        function renderArm(arm){
+            if(!arm.el){
+                const a = document.createElement('div');
+                a.className = 'robot-arm';
+                a.textContent = arm.id === 'left' ? 'L' : 'R';
+                play.appendChild(a);
+                arm.el = a;
+            }
+            arm.el.style.left = (arm.x) + 'px';
+            arm.el.style.top = (arm.y) + 'px';
+        }
+
+        function renderObjects(){
+            objListEl.innerHTML = '';
+            objects.forEach(o=>{
+                o.el.style.left = (o.x) + 'px';
+                o.el.style.top = (o.y) + 'px';
+                const li = document.createElement('li');
+                li.textContent = `${o.type.icon} ${o.type.name} ${o.heldBy ? '(held by '+o.heldBy+')':''}`;
+                objListEl.appendChild(li);
+            });
+        }
+
+        function attach(arm, obj){
+            if(obj.heldBy) return false;
+            obj.heldBy = arm.id;
+            log(`${arm.id} picked ${obj.type.name}`);
+            updateStatus(`${arm.id} holding ${obj.type.name}`);
+            return true;
+        }
+        function release(arm){
+            const held = objects.find(o=>o.heldBy === arm.id);
+            if(held){
+                held.heldBy = null;
+                log(`${arm.id} released ${held.type.name}`);
+                updateStatus(`${arm.id} released ${held.type.name}`);
+            }
+        }
+
+        function updateHeldPositions(){
+            objects.forEach(o=>{
+                if(o.heldBy){
+                    const arm = arms[o.heldBy];
+                    o.x = arm.x + 8;
+                    o.y = arm.y + 8;
+                }
+            });
+        }
+
+        function log(msg){
+            const time = new Date().toLocaleTimeString();
+            logEl.innerHTML = `<div>[${time}] ${msg}</div>` + logEl.innerHTML;
+        }
+        function updateStatus(txt){ status.textContent = 'Status: ' + txt; }
+
+        function randomizeObjects(){
+            // remove existing object elements
+            objects.forEach(o=>{ if(o.el) o.el.remove(); });
+            objects = [];
+            const indices = [];
+            while(indices.length < 2){
+                const i = randBetween(0, objectTypes.length-1);
+                if(!indices.includes(i)) indices.push(i);
+            }
+            for(let k=0;k<2;k++){
+                const type = objectTypes[indices[k]];
+                const x = randBetween(200, WIDTH-220);
+                const y = randBetween(30, HEIGHT-60);
+                objects.push(createObject('obj'+k,type,x,y));
+            }
+            renderObjects();
+            log('Objects randomized');
+            updateStatus('objects randomized');
+        }
+
+        // initialize arms render
+        renderArm(arms.left);
+        renderArm(arms.right);
+
+        randomizeObjects();
+
+        // keyboard handling for teleop
+        const keyState = {};
+        window.addEventListener('keydown', e=>{
+            keyState[e.key.toLowerCase()] = true;
+            // picks
+            if(e.key.toLowerCase() === arms.left.keyPick) {
+                // try pick nearest within threshold
+                const near = objects.find(o=>!o.heldBy && distance(arms.left,o) < 48);
+                if(near) attach(arms.left, near); else release(arms.left);
+                renderObjects();
+            }
+            if(e.key.toLowerCase() === arms.right.keyPick) {
+                const near = objects.find(o=>!o.heldBy && distance(arms.right,o) < 48);
+                if(near) attach(arms.right, near); else release(arms.right);
+                renderObjects();
+            }
+        });
+        window.addEventListener('keyup', e=>{
+            keyState[e.key.toLowerCase()] = false;
+        });
+
+        function distance(a,b){
+            const ax = a.x + 18, ay = a.y + 18;
+            const bx = b.x + 16, by = b.y + 16;
+            return Math.hypot(ax-bx, ay-by);
+        }
+
+        // simple update loop to move arms based on keys
+        function step(){
+            // left arm: w a s d
+            const speed = 2;
+            if(keyState['w']) arms.left.y = Math.max(6, arms.left.y - speed);
+            if(keyState['s']) arms.left.y = Math.min(HEIGHT-42, arms.left.y + speed);
+            if(keyState['a']) arms.left.x = Math.max(6, arms.left.x - speed);
+            if(keyState['d']) arms.left.x = Math.min(WIDTH-42, arms.left.x + speed);
+            // right arm: arrow keys
+            if(keyState['arrowup']) arms.right.y = Math.max(6, arms.right.y - speed);
+            if(keyState['arrowdown']) arms.right.y = Math.min(HEIGHT-42, arms.right.y + speed);
+            if(keyState['arrowleft']) arms.right.x = Math.max(6, arms.right.x - speed);
+            if(keyState['arrowright']) arms.right.x = Math.min(WIDTH-42, arms.right.x + speed);
+
+            // update attachments
+            updateHeldPositions();
+
+            renderArm(arms.left);
+            renderArm(arms.right);
+            renderObjects();
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+
+        // buttons
+        document.getElementById('reset').addEventListener('click', ()=>{
+            arms.left.x = 120; arms.left.y = HEIGHT/2 - 18;
+            arms.right.x = WIDTH-160; arms.right.y = HEIGHT/2 - 18;
+            release(arms.left); release(arms.right);
+            renderArm(arms.left); renderArm(arms.right); renderObjects();
+            log('Reset positions');
+            updateStatus('reset');
+        });
+        document.getElementById('randomize').addEventListener('click', randomizeObjects);
+
+        // small accessibility: click objects to toggle pick/release with nearest arm
+        play.addEventListener('click', e=>{
+            const objEl = e.target.closest('.object');
+            if(!objEl) return;
+            const id = objEl.dataset.id;
+            const obj = objects.find(o=>o.id===id);
+            if(!obj) return;
+            // determine nearer arm
+            const dL = distance(arms.left, obj), dR = distance(arms.right, obj);
+            const chosen = dL <= dR ? arms.left : arms.right;
+            if(obj.heldBy === chosen.id) {
+                release(chosen);
+            } else {
+                attach(chosen, obj);
+            }
+            renderObjects();
+        });
+
+        // initial info
+        log('Demo ready — use keys to teleoperate both arms.');
+    </script>
+</body>
+</html>

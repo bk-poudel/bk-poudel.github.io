@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>AgileX Mobile Cobot - Bimanual Manipulation Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        /* Reuse visual style similar to other project pages */
+        :root { --primary: #2b7a78; --accent: #4fb3a8; --text: #222; --bg: #131313; --content:#fbfbfb; }
+        body { background: var(--bg); font-family: 'Arial', sans-serif; padding: 20px; color: var(--text); }
+        .project-content { max-width: 1000px; margin: 2rem auto; padding: 2rem; background: var(--content); border-radius: 8px; box-shadow: 0 6px 30px rgba(0,0,0,0.45); border: 2px solid #e6e6e6; }
+        .close-button { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; background: var(--primary); border-radius: 50%; color: white; display:flex;align-items:center;justify-content:center;text-decoration:none; }
+        h1 { text-align:center; color:var(--primary); }
+        .abstract { background: rgba(43,122,120,0.06); padding: 1rem; border-left: 4px solid var(--primary); border-radius:6px; }
+        .figure { text-align:center; margin: 2rem 0; background: #fff; padding: 1rem; border-radius:8px; border:1px solid #e6e6e6; }
+        .figure img { width:100%; max-width:800px; height:auto; border-radius:6px; }
+        .figure-caption { color: #666; font-style:italic; margin-top:0.6rem; }
+        .section { margin-top:1.5rem; }
+        .button { background:var(--primary); color:white; padding:0.7rem 1.2rem; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; }
+        .button:hover { background:var(--accent); }
+        @media (max-width:768px) { .project-content{margin:1rem;padding:1rem;} }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects"><i class="fas fa-times"></i></a>
+        <h1>AgileX Mobile Cobot — Bimanual Mimicry</h1>
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>This project demonstrates an AgileX mobile cobot platform configured for bimanual manipulation. In the demo one operator directly controls two arms while two additional objects (or proxy arms) mimic those movements, enabling coordinated tele-operation and synced manipulation tasks. The demo focuses on intuitive control, low-latency mirroring, and robust grasping of two arbitrary objects.</p>
+        </div>
+        <div class="section">
+            <h2>Demonstration GIF</h2>
+            <div class="figure">
+                <!-- Using an existing GIF as a placeholder; replace with an actual bimanual GIF if available -->
+                <img src="../aloha/aloha.gif" alt="Bimanual manipulation demonstration GIF">
+                <div class="figure-caption">Demonstration: bimanual manipulation of two objects (placeholder GIF). Replace with project GIF for final site.</div>
+            </div>
+            <p style="text-align:center;"><a class="button" href="../assets/images/" target="_blank">Open GIF folder</a></p>
+        </div>
+        <div class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Tele-operated bimanual control (one operator controls two arms)</li>
+                <li>Mirroring/mimic mode: two additional objects mimic the arm motions</li>
+                <li>Low-latency state synchronization for coordinated manipulation</li>
+                <li>Support for arbitrary graspable objects and basic force safety checks</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Methodology</h2>
+            <p>Operator inputs are captured from a master controller and mapped to dual-arm trajectories. A middleware layer handles inverse kinematics, collision-aware trajectory smoothing, and real-time mirroring to the two proxy objects. Visual feedback is provided through an onboard camera and an optional external monitor for the operator.</p>
+        </div>
+        <div class="section">
+            <h2>Future Work</h2>
+            <ul>
+                <li>Replace placeholder GIF with a recorded bimanual demo GIF (upload to <code>assets/images</code> and update the <code>img src</code>)</li>
+                <li>Add downloadable dataset and rosbag captures for replay</li>
+                <li>Integrate force/torque-based compliant control for delicate manipulation</li>
+                <li>Web UI for remote tele-operation and live video streaming</li>
+            </ul>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="../index.html#projects" class="button"><i class="fas fa-arrow-left" style="margin-right:0.6rem"></i>Back to Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
