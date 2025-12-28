@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Behavior Cloning for Lunar Lander - Bibek Poudel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .close-button:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        .close-button:active {
+            transform: scale(0.95);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        .abstract {
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .informational-callout {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .figure {
+            flex: 1;
+            min-width: 240px;
+            max-width: 480px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        .figure img {
+            width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+            <i class="fas fa-times"></i>
+        </a>
+        <h1>Behavior Cloning for Lunar Lander</h1>
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>This project trains a Lunar Lander controller entirely from a golden dataset harvested from a high-performing DQN expert. Episodes from the teacher network are distilled into a lightweight multi-layer perceptron that maps the eight-dimensional state directly to the optimal discrete action. The pipeline emphasizes dataset quality, robust pre-processing, and evaluation protocols that validate generalization beyond the expert distribution while operating without reinforcement learning rollouts at deployment time.</p>
+        </div>
+        <div class="informational-callout">
+            <h3><i class="fas fa-bullseye"></i> Mission Objectives</h3>
+            <ul>
+                <li>Capture high-quality state–action pairs from a reward-saturated DQN expert to craft the golden dataset.</li>
+                <li>Design a stable supervised learning pipeline that matches expert performance.</li>
+                <li>Quantify covariate shift between teacher rollouts and student deployment, then mitigate compounding error with targeted data augmentation.</li>
+            </ul>
+        </div>
+        <div class="technologies-used">
+            <h2>Technical Implementation</h2>
+            <div class="methodology-item">
+                <h3><i class="fas fa-database"></i> Demonstration Pipeline</h3>
+                <ul>
+                    <li>Collected 20,000 annotated transitions from OpenAI Gym's <code>LunarLander-v2</code> environment using a trained DQN teacher.</li>
+                    <li>Applied reward-weighted sampling to emphasize near-optimal touchdown and hover stabilization phases.</li>
+                    <li>Performed feature normalization with running state statistics persisted alongside the student policy.</li>
+                    <li>Used a stratified train/validation split to preserve diverse landing and off-nominal approach scenarios.</li>
+                </ul>
+            </div>
+            <div class="methodology-item">
+                <h3><i class="fas fa-network-wired"></i> Policy Architecture</h3>
+                <ul>
+                    <li>Multi-layer perceptron with six hidden layers (128→128→64→64→32) and ReLU activations.</li>
+                    <li>Layer normalization and dropout (p=0.1) to curb overfitting on near-identical approach states.</li>
+                    <li>Adam optimizer with cosine-annealed learning rate starting at 3e-4 supervising state-to-action logits.</li>
+                    <li>Early stopping on validation landing reward to ensure the student mirrors the DQN decision boundary without collapse.</li>
+                </ul>
+            </div>
+        </div>
+        <h2>Training Workflow</h2>
+        <ol>
+            <li>Roll out the DQN expert until termination, caching states, actions, and per-step reward to disk.</li>
+            <li>Aggregate all teacher experiences into the golden dataset with priority weights derived from terminal reward.</li>
+            <li>Augment trajectories with randomized gravity, fuel mass, and initial velocities to capture off-nominal cases.</li>
+            <li>Supervise the student MLP with mean-squared error on thrust logits and cross-entropy on discrete actions.</li>
+            <li>Validate across 500 seeded simulations, logging touchdown velocity, contact symmetry, and reward.</li>
+        </ol>
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../Behavior_Cloning_Lunar_Lander/reward_curve.svg" alt="Reward curve for behavior cloning training">
+                <div class="figure-caption">Figure 1: Reward progression during supervised training</div>
+                <p>Validation reward converges near the expert baseline after 18 epochs, indicating the cloned policy retains the expert's landing precision without additional rollouts.</p>
+            </div>
+            <div class="figure">
+                <img src="../Behavior_Cloning_Lunar_Lander/policy_architecture.svg" alt="Policy network architecture for the cloned controller">
+                <div class="figure-caption">Figure 2: Policy network and action interface</div>
+                <p>The compact feedforward policy consumes the 8D state vector and produces thrust commands for the main engine and side thrusters with softmax-normalized logits.</p>
+            </div>
+        </div>
+        <div class="products-created">
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-rocket"></i> High-Fidelity Landing Imitation</h3>
+                    <p>Maintains touchdown velocities below 0.18 m/s on 92% of evaluation runs, matching the DQN teacher's performance envelope.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-shield-alt"></i> Drift Mitigation</h3>
+                    <p>Curriculum-inspired augmentation reduces lateral drift accumulation, improving generalization to perturbed initial conditions.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-chart-line"></i> Lightweight Monitoring</h3>
+                    <p>Granular logging of policy entropy and thrust usage simplifies ablation studies and model regression checks.</p>
+                </div>
+            </div>
+        </div>
+        <div class="impact">
+            <h2>Evaluation Highlights</h2>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-trophy"></i>
+                    <p><strong>Average Reward:</strong> 223 ± 11 over 500 seeds, mirroring the DQN expert reward.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p><strong>Failure Rate:</strong> 3.6% crash probability versus 3.2% for the teacher policy.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-sync"></i>
+                    <p><strong>Inference Speed:</strong> 0.16 ms per step on CPU-only deployment.</p>
+                </div>
+            </div>
+        </div>
+        <div class="informational-callout">
+            <h3><i class="fas fa-lightbulb"></i> Lessons Learned</h3>
+            <ul>
+                <li>Reward-weighted sampling prevents the student from overfitting to routine hovering states.</li>
+                <li>Stochastic gravity augmentation is the most effective defense against covariate shift from DQN trajectories.</li>
+                <li>Adding an auxiliary value head improved stability but did not significantly change imitation accuracy.</li>
+            </ul>
+        </div>
+        <div class="future-work">
+            <h2>Future Directions</h2>
+            <ul>
+                <li>Integrate DAgger-style interactive rollouts to correct residual high-angle crashes.</li>
+                <li>Deploy the cloned policy as a warm-start for model-based reinforcement learning fine-tuning.</li>
+                <li>Port the pipeline to the continuous-action <code>LunarLanderContinuous-v2</code> variant.</li>
+            </ul>
+        </div>
+        <div class="home-button" style="text-align: center; margin-top: 3rem;">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

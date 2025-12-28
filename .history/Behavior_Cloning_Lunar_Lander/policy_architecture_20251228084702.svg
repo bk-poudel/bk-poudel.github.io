@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+    <defs>
+        <style>
+            .box { fill: #ffffff; stroke: #4b6cc1; stroke-width: 3; rx: 12; ry: 12; }
+            .arrow { stroke: #4b6cc1; stroke-width: 2.5; marker-end: url(#arrowhead); }
+            .text { font-family: Arial, sans-serif; fill: #1a1a1a; }
+            .title { font-size: 18px; font-weight: bold; }
+            .subtitle { font-size: 14px; fill: #5e81f4; font-weight: bold; }
+        </style>
+        <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#4b6cc1" />
+        </marker>
+    </defs>
+    <rect width="640" height="360" fill="#f5f7fb" rx="18" ry="18" />
+    <text class="text title" x="90" y="44">Behavior Cloned Lunar Lander Policy Network</text>
+    <g transform="translate(20,60)">
+        <rect class="box" x="30" y="40" width="140" height="220" />
+        <text class="text subtitle" x="58" y="72">State Vector</text>
+        <text class="text" x="54" y="104">Position (x, y)</text>
+        <text class="text" x="54" y="128">Velocity (x', y')</text>
+        <text class="text" x="54" y="152">Angle, Angular Vel.</text>
+        <text class="text" x="54" y="176">Leg Contact States</text>
+        <text class="text" x="54" y="200">Normalisation</text>
+        <rect class="box" x="230" y="0" width="140" height="320" />
+        <text class="text subtitle" x="258" y="32">MLP Policy</text>
+        <text class="text" x="248" y="68">Dense (128) + ReLU</text>
+        <text class="text" x="248" y="100">Dense (128) + ReLU</text>
+        <text class="text" x="248" y="132">LayerNorm + Dropout</text>
+        <text class="text" x="248" y="164">Dense (64) + ReLU</text>
+        <text class="text" x="248" y="196">Dense (64) + ReLU</text>
+        <text class="text" x="248" y="228">Dense (32) + ReLU</text>
+        <text class="text" x="248" y="260">Action logits (4)</text>
+        <rect class="box" x="430" y="40" width="150" height="220" />
+        <text class="text subtitle" x="446" y="72">Thrust Commands</text>
+        <text class="text" x="454" y="108">Main Engine</text>
+        <text class="text" x="454" y="140">Left Thruster</text>
+        <text class="text" x="454" y="172">Right Thruster</text>
+        <text class="text" x="454" y="204">Stabilisation</text>
+        <text class="text" x="454" y="236">Softmax Probs</text>
+        <line class="arrow" x1="170" y1="150" x2="230" y2="150" />
+        <line class="arrow" x1="370" y1="150" x2="430" y2="150" />
+        <rect class="box" x="140" y="280" width="340" height="72" fill="#ffffff" stroke="#5e81f4" />
+        <text class="text subtitle" x="210" y="310">Offline Expert Trajectory Dataset</text>
+        <text class="text" x="164" y="336">20,000 labelled steps collected from PPO expert with reward baseline of 220</text>
+    </g>
+</svg>
