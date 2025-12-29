@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Diffusion Based Optimal Grasp Detection - BK Poudel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        /* Consistent color scheme with dark background and light content */
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        .abstract {
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .figure {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        .figure img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        .product-item {
+            margin-bottom: 2.5rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .product-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+        .product-content {
+            padding: 1.5rem;
+        }
+        .product-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            margin: 2rem 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <h1>Diffusion Based Optimal Grasp Detection</h1>
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>This project implements a diffusion-based optimal grasp detection system. It takes an RGB-D image as input and segments the point cloud of the object. This segmented point cloud is then fed into a diffusion-based grasp algorithm, which scores potential grasps. The system performs collision-free grasp detection and identifies the optimal grasp, which is then executed in a real-world or simulation environment.</p>
+            <!-- Include if project has GitHub repository -->
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="YOUR_GITHUB_LINK" class="github-button">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+        <!-- For technical projects -->
+        <div class="technologies-used">
+            <h2>Technical Implementation</h2>
+            <div class="methodology-item">
+                <h3><i class="fas fa-code"></i> Algorithm Pipeline</h3>
+                <ul>
+                    <li><strong>Input:</strong> RGB-D Image</li>
+                    <li><strong>Preprocessing:</strong> Point cloud segmentation of the object</li>
+                    <li><strong>Core Algorithm:</strong> Diffusion-based grasp generation</li>
+                    <li><strong>Evaluation:</strong> Scoring for collision-free and optimal grasps</li>
+                    <li><strong>Execution:</strong> Real-world or simulation environment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Image/Diagram Gallery -->
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="Optimal Grasp Detection">
+                <div class="figure-caption">Figure 1: Diffusion Based Optimal Grasp Detection</div>
+                <p>Visualization of the optimal grasp detection process, showing the input RGB-D image, point cloud segmentation, and the scored optimal grasp.</p>
+            </div>
+        </div>
+        <!-- Key Features/Innovations -->
+        <div class="products-created">
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-star"></i> Diffusion Model</h3>
+                    <p>Utilizes a diffusion-based approach to generate diverse and high-quality grasp candidates.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-cogs"></i> Collision Avoidance</h3>
+                    <p>Integrated collision detection ensures that generated grasps are feasible and safe for execution.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-lightbulb"></i> Optimal Scoring</h3>
+                    <p>A sophisticated scoring mechanism to select the most stable and robust grasp from the candidates.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Results/Impact Section -->
+        <div class="impact">
+            <h2>Results and Impact</h2>
+            <p>The system successfully identifies and executes optimal grasps in both simulation and real-world environments, demonstrating robustness and accuracy in handling various objects.</p>
+        </div>
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>This project demonstrates the effectiveness of diffusion models in generating optimal grasps for robotic manipulation, bridging the gap between perception and action.</p>
+        </div>
+        <div class="home-button" style="text-align: center; margin-top: 3rem;">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
