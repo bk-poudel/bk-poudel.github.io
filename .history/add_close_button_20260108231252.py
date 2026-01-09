@@ -6,7 +6,7 @@ project_files = [
     "mppi_dynamic_object_tracking.html",
     "optimal_grasp_diffusion.html",
 ]
-projects_dir = "./projects"
+projects_dir = "/home/bibek/Github_repositories/bk-poudel.github.io/projects"
 # CSS for the close button
 close_button_css = """        .close-button {
             position: absolute;

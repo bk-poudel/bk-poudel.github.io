@@ -3,10 +3,10 @@ import os
 import re
 # List of project files to update (excluding template.html and already processed files)
 project_files = [
-    "mppi_dynamic_object_tracking.html",
-    "optimal_grasp_diffusion.html",
+    "./projects/mppi_dynamic_object_tracking.html",
+    "./projects/optimal_grasp_diffusion.html",
 ]
-projects_dir = "./projects"
+projects_dir = "/home/bibek/Github_repositories/bk-poudel.github.io/projects"
 # CSS for the close button
 close_button_css = """        .close-button {
             position: absolute;

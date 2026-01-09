@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Diffusion Based Optimal Grasp Detection - BK Poudel</title>
+    <title>MPPI Dynamic Object Tracking - BK Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <style>
-        /* Consistent color scheme with dark background and light content */
         :root {
             --primary: #4b6cc1;
             --secondary: #666666;
@@ -115,9 +114,9 @@
             margin-bottom: 1.5rem;
             color: var(--text);
         }
-        ul, ol {
+        ul {
             padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         li {
             margin-bottom: 0.5rem;
@@ -147,9 +146,6 @@
             background: var(--accent);
             transform: translateY(-2px);
         }
-        .button i {
-            margin-right: 0.5rem;
-        }
         .abstract {
             background-color: rgba(75, 108, 193, 0.1);
             padding: 1.5rem;
@@ -175,9 +171,7 @@
             transition: transform 0.3s ease;
             border: 1px solid #e0e0e0;
         }
-        .figure:hover {
-            transform: translateY(-5px);
-        }
+        .figure:hover { transform: translateY(-5px); }
         .figure img {
             width: 100%;
             height: auto;
@@ -190,75 +184,9 @@
             color: var(--secondary);
             font-size: 0.9rem;
         }
-        .product-item {
-            margin-bottom: 2.5rem;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
-        }
-        .product-header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            font-weight: 600;
-        }
-        .product-content {
-            padding: 1.5rem;
-        }
-        .product-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-        .impact-points {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .impact-point {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid #e0e0e0;
-        }
-        .impact-point i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        .methodology-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--accent);
-        }
-        .github-button {
-            background: #333;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        .github-button:hover {
-            background: #555;
-            transform: translateY(-2px);
-        }
         .feature-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
         .feature-item {
@@ -268,117 +196,99 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--primary);
         }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            margin: 2rem 0;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-        }
         @media (max-width: 768px) {
-            .project-content {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .figure-container {
-                flex-direction: column;
-            }
+            .project-content { padding: 1.5rem; margin: 1rem; }
+            h1 { font-size: 1.8rem; }
+            .figure-container { flex-direction: column; }
         }
     </style>
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+                <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
-        <h1>Diffusion Based Optimal Grasp Detection</h1>
+        MPPI-Based Dynamic Object Tracking</h1>
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This project implements a diffusion-based optimal grasp detection system. It takes an RGB-D image as input and segments the point cloud of the object. This segmented point cloud is then fed into a diffusion-based grasp algorithm, which scores potential grasps. The system performs collision-free grasp detection and identifies the optimal grasp, which is then executed in a real-world or simulation environment.</p>
+            <p>This project implements Model Predictive Path Integral (MPPI) control for dynamic object tracking. A vision pipeline detects and tracks moving targets, while MPPI samples control rollouts in real time to generate collision-free trajectories for a mobile robot. The system runs at control rates suitable for hardware deployment and remains robust to sensor noise and partial occlusion.</p>
         </div>
-        <!-- For technical projects -->
         <div class="technologies-used">
             <h2>Technical Implementation</h2>
-            <div class="methodology-item">
-                <h3><i class="fas fa-code"></i> Algorithm Pipeline</h3>
+            <div class="feature-item">
+                <h3><i class="fas fa-route"></i> Control Pipeline</h3>
                 <ul>
-                    <li><strong>Input:</strong> RGB-D Image</li>
-                    <li><strong>Preprocessing:</strong> Point cloud segmentation of the object</li>
-                    <li><strong>Core Algorithm:</strong> Diffusion-based grasp generation</li>
-                    <li><strong>Evaluation:</strong> Scoring for collision-free and optimal grasps</li>
-                    <li><strong>Execution:</strong> Real-world or simulation environment</li>
+                    <li><strong>Perception:</strong> Object detection and centroid tracking from RGB stream.</li>
+                    <li><strong>Prediction:</strong> Short-horizon target motion model to estimate future poses.</li>
+                    <li><strong>Sampling:</strong> MPPI rollouts with control noise to evaluate feasible trajectories.</li>
+                    <li><strong>Cost Design:</strong> Target error, smoothness</li>
+                    <li><strong>Execution:</strong> Real-time control updates applied to the robot base.</li>
                 </ul>
             </div>
         </div>
-        <!-- Image/Diagram Gallery -->
-        <!-- Main Figure (WebP) -->
         <div class="figure-container">
             <div class="figure">
-            <img src="../assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="Optimal Grasp Detection">
-            <div class="figure-caption">Figure 1: Diffusion Based Optimal Grasp Detection</div>
-            <p>Visualization of the optimal grasp detection process, showing the input RGB-D image, point cloud segmentation, and the scored optimal grasp.</p>
-            </div>
-        </div>
-        <!-- Secondary Figures (Side by Side) -->
-        <div class="figure-container">
-            <div class="figure">
-            <img src="../assets/project_images/diffusion_optimal_grasp/collision_free_grasps.png" alt="Collision Free Grasp Poses" style="height: 300px; width: 100%; object-fit: cover;">
-            <div class="figure-caption">Figure 2: Collision Free Grasp Poses</div>
-            <p>Visualization of the generated grasp poses that are determined to be collision-free within the simulation environment.</p>
+            <img src="../assets/project_images/MPPI/wemp-1.webp" alt="MPPI tracking visualization 1">
+            <div class="figure-caption">Demonstration 1: Initial state and target detection.</div>
             </div>
             <div class="figure">
-            <!-- Placeholder for the third image -->
-            <img src="../assets/project_images/diffusion_optimal_grasp/RGB-D_image.png" alt="Third Image" style="height: 300px; width: 100%; object-fit: cover;">
-            <div class="figure-caption">Figure 3: Additional Visualization</div>
-            <p>Description for the third image goes here.</p>
+            <img src="../assets/project_images/MPPI/wemp-2.webp" alt="MPPI tracking visualization 2">
+            <div class="figure-caption">Demonstration 2: MPPI rollouts converging on target.</div>
+            </div>
+            <div class="figure">
+            <img src="../assets/project_images/MPPI/wemp-3.webp" alt="MPPI tracking visualization 3">
+            <div class="figure-caption">Demonstration 3: Trajectory optimization in progress.</div>
+            </div>
+            <div class="figure">
+            <img src="../assets/project_images/MPPI/wemp-4.webp" alt="MPPI tracking visualization 4">
+            <div class="figure-caption">Demonstration 4: Obstacle avoidance maneuver.</div>
+            </div>
+            <div class="figure">
+            <img src="../assets/project_images/MPPI/wemp-5.webp" alt="MPPI tracking visualization 5">
+            <div class="figure-caption">Demonstration 5: Successful tracking maintenance.</div>
             </div>
         </div>
-        <!-- Key Features/Innovations -->
+        <div class="feature-item">
+                <h3><i class="fas fa-microchip"></i> Stack</h3>
+                <ul>
+                    <li>Python / C++ bindings for MPPI core</li>
+                    <li>ROS for messaging and transforms</li>
+                    <li>OpenCV for detection and visual tracking</li>
+                    <li>GPU-accelerated sampling (optional) for higher control rates</li>
+                </ul>
+            </div>
         <div class="products-created">
             <h2>Key Features</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-star"></i> Diffusion Model</h3>
-                    <p>Utilizes a diffusion-based approach to generate diverse and high-quality grasp candidates.</p>
+                    <h3><i class="fas fa-bolt"></i> Real-Time MPPI</h3>
+                    <p>Runs at control rates suitable for hardware, with adjustable rollout counts for CPU/GPU targets.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-cogs"></i> Collision Avoidance</h3>
-                    <p>Integrated collision detection ensures that generated grasps are feasible and safe for execution.</p>
+                    <h3><i class="fas fa-shield-alt"></i> Collision-Aware</h3>
+                    <p>Penalizes proximity to static and dynamic obstacles, keeping trajectories safe in cluttered scenes.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-lightbulb"></i> Optimal Scoring</h3>
-                    <p>A sophisticated scoring mechanism to select the most stable and robust grasp from the candidates.</p>
+                    <h3><i class="fas fa-eye"></i> Robust Tracking</h3>
+                    <p>Handles noisy detections and short occlusions using filtered target state and motion priors.</p>
                 </div>
             </div>
         </div>
-        <!-- Results/Impact Section -->
         <div class="impact">
             <h2>Results and Impact</h2>
-            <p>The system successfully identifies and executes optimal grasps in both simulation and real-world environments, demonstrating robustness and accuracy in handling various objects.</p>
+            <p>The controller maintains <em>< 10 cm</em> steady-state tracking error in simulation and remains stable during 1–2 s occlusion events. Sampling budgets scale gracefully, enabling deployment on embedded GPUs for field robots.</p>
         </div>
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>This project demonstrates the effectiveness of diffusion models in generating optimal grasps for robotic manipulation, bridging the gap between perception and action.</p>
+            <p>MPPI provides a flexible, sampling-based alternative to classical MPC for fast-moving targets. The modular perception-to-control stack can be adapted to aerial, ground, or manipulator platforms with minimal retuning.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
-                Back to Projects
+                 Back to Projects
             </a>
         </div>
     </div>
-    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
