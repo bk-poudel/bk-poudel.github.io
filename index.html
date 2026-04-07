@@ -64,9 +64,9 @@
             margin-bottom: 1rem;
         }
         /* Resume Styles */
-        .education-item, .experience-item {
+        .education-item, .experience-item, .publication-item {
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
+            padding: 2rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .date {
@@ -98,6 +98,26 @@
             object-fit: cover;
             margin-right: 2rem;
             border: 3px solid #b8c1ec;
+        }
+        /* Projects + Publications alignment */
+        #publications .major {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        #projects .project-grid,
+        #publications section {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        /* Move header menu container slightly right */
+        #header nav {
+            transform: translateX(1rem);
+        }
+        @media (max-width: 480px) {
+            #header nav {
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -160,11 +180,13 @@
                 </div>
             </div>
             <nav>
-                <ul>
-                    <li><a href="#resume">Resume</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+                 <ul>
+                     <li><a href="#resume">Resume</a></li>
+                     <li><a href="#projects">Projects</a></li>
+                     <li><a href="#publications">Publications</a></li>
+                     <li><a href="#writing">Writing</a></li>
+                     <li><a href="#contact">Contact</a></li>
+                 </ul>
             </nav>
         </header>
         <!-- Main -->
@@ -287,13 +309,7 @@
             </article>
             <!-- Projects -->
             <article id="projects">
-                <h2 class="major" style="text-align:center; margin:1.25rem 0;"></h2>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@700&family=Merriweather:wght@700&family=Playfair+Display:wght@700&family=Roboto+Slab:wght@700&display=swap" />
-                    <span style="display:inline-block; color:#fff; background:transparent; border-bottom:4px solid #b8c1ec; padding:12px 36px; border-radius:8px; box-shadow:0 2px 12px rgba(184,193,236,0.08); letter-spacing:1.5px; font-family:'Lora','Playfair Display','Merriweather','Roboto Slab','Montserrat', Georgia, serif; font-size:2rem; font-weight:700; text-transform:uppercase;">
-                        <i class="fas fa-robot" style="margin-right:12px; color:#b8c1ec; font-size:1.1em;" aria-hidden="true"></i>
-                        Projects
-                    </span>
-                </h2>
+                <h2 class="major" style="text-align:center; margin:1.25rem auto;">Projects</h2>
                 <div class="project-grid">
                     <!-- Project Items -->
                     <div class="project-item">
@@ -502,6 +518,29 @@
                         </div>
                     </div>
                 </div>
+            </article>
+            <!-- Publications -->
+            <article id="publications">
+                <h2 class="major">Publications</h2>
+                <section>
+                    <h3><i class="fas fa-book"></i> Journal Articles & Conference Papers</h3>
+                    <div class="publication-item">
+                        <h4>MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
+                        <p><strong>Authors:</strong> B. Poudel, A. Basit, M. Shafique</p>
+                        <p><em>Status: Under Review</em></p>
+                    </div>
+                </section>
+            </article>
+            <!-- Writing -->
+            <article id="writing">
+                <h2 class="major">Writing</h2>
+                <section>
+                    <h3><i class="fas fa-pen-nib"></i> Articles & Essays</h3>
+                    <div class="publication-item">
+                        <h4>Coming Soon</h4>
+                        <p>I will share technical write-ups, project deep-dives, and research reflections here.</p>
+                    </div>
+                </section>
             </article>
             <!-- Contact -->
             <article id="contact">
