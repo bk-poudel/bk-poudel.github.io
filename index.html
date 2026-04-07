@@ -152,17 +152,45 @@
         #publications .publication-item,
         #writing .publication-item {
             position: relative;
-            padding: 1.25rem 0 1.5rem;
+            padding: 0 0 1.5rem;
             margin-bottom: 1rem;
             border-bottom: 0;
+        }
+        #publications .publication-item .entry-card,
+        #writing .publication-item .entry-card {
+            padding: 1rem 1.1rem;
+            margin: 0 0.45rem;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        #publications .entry-link,
+        #writing .entry-link {
+            display: block;
+            border-bottom: none;
+            text-decoration: none;
+        }
+        #publications .entry-link:hover,
+        #publications .entry-link:focus,
+        #writing .entry-link:hover,
+        #writing .entry-link:focus {
+            border-bottom: none;
+        }
+        #publications .entry-link:hover .entry-card,
+        #publications .entry-link:focus-visible .entry-card,
+        #writing .entry-link:hover .entry-card,
+        #writing .entry-link:focus-visible .entry-card {
+            transform: translateY(1px);
+            background-color: rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
         }
         #publications .publication-item::after,
         #writing .publication-item::after {
             content: '';
             display: block;
-            width: 72%;
+            width: 78%;
             height: 1px;
             margin-top: 1.1rem;
+            margin-left: 0.45rem;
             background: rgba(255, 255, 255, 0.35);
         }
         #publications .publication-item:last-child::after,
@@ -584,11 +612,15 @@
                 <h2 class="major">Publications</h2>
                 <section>
                     <h3><i class="fas fa-book"></i> Journal Articles & Conference Papers</h3>
-                    <div class="publication-item">
-                        <h4>MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
-                        <p><strong>Authors:</strong> B. Poudel, A. Basit, M. Shafique</p>
-                        <p><em>Status: Under Review</em></p>
-                    </div>
+                    <a href="projects/optimal_grasp_diffusion.html" class="entry-link">
+                        <div class="publication-item">
+                            <div class="entry-card">
+                                <h4>MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
+                                <p><strong>Authors:</strong> B. Poudel, A. Basit, M. Shafique</p>
+                                <p><em>Status: Under Review</em></p>
+                            </div>
+                        </div>
+                    </a>
                 </section>
             </article>
             <!-- Writing -->
@@ -596,10 +628,14 @@
                 <h2 class="major">Writing</h2>
                 <section>
                     <h3><i class="fas fa-pen-nib"></i> Articles & Essays</h3>
-                    <div class="publication-item">
-                        <h4>Coming Soon</h4>
-                        <p>I will share technical write-ups, project deep-dives, and research reflections here.</p>
-                    </div>
+                    <a href="https://github.com/bk-poudel" class="entry-link" target="_blank" rel="noopener noreferrer">
+                        <div class="publication-item">
+                            <div class="entry-card">
+                                <h4>Coming Soon</h4>
+                                <p>I will share technical write-ups, project deep-dives, and research reflections here.</p>
+                            </div>
+                        </div>
+                    </a>
                 </section>
             </article>
             <!-- Contact -->
