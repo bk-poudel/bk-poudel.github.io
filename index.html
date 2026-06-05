@@ -197,9 +197,83 @@
         #writing .publication-item:last-child::after {
             margin-bottom: 0;
         }
+        #publications section {
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #publications .publication-list-title {
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+            font-size: 1.05rem;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+        }
+        #publications .publication-item {
+            padding: 0;
+            margin-bottom: 1.35rem;
+        }
+        #publications .publication-item .entry-card {
+            position: relative;
+            padding: 1.15rem 1.25rem 1.15rem 1.55rem;
+            margin: 0;
+            border-left: 3px solid #b8c1ec;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+        #publications .publication-venue {
+            display: inline-block;
+            margin-bottom: 0.65rem;
+            padding: 0.18rem 0.55rem;
+            border: 1px solid rgba(184, 193, 236, 0.55);
+            border-radius: 999px;
+            color: #d9defc;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08rem;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+        #publications .publication-title {
+            margin: 0 0 0.55rem;
+            color: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1.45;
+            letter-spacing: 0.01rem;
+        }
+        #publications .publication-authors {
+            margin: 0 0 0.35rem;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        #publications .publication-meta {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+        #publications .publication-status {
+            color: #d9defc;
+            font-weight: 700;
+        }
+        #publications .publication-item::after {
+            display: none;
+        }
+        #publications .entry-link:hover .entry-card,
+        #publications .entry-link:focus-visible .entry-card {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.055);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+        }
         @media (max-width: 480px) {
             #header nav {
                 transform: none;
+            }
+            #publications .publication-item .entry-card {
+                padding: 1rem;
             }
         }
     </style>
@@ -401,11 +475,11 @@
                 <div class="project-grid">
                     <!-- Project Items -->
                     <div class="project-item">
-                        <h3>Diffusion Based Optimal Grasp Detection</h3>
+                        <h3>MVB-Grasp</h3>
                         <a href="projects/optimal_grasp_diffusion.html" class="project-image-link">
-                            <img src="assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="Diffusion Based Optimal Grasp Detection" class="project-image">
+                            <img src="assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="MVB-Grasp" class="project-image">
                         </a>
-                        <p><em>Diffusion-based optimal grasp detection using RGB-D input and point cloud segmentation.</em></p>
+                        <p><em>IJCNN 2026 accepted work on diffusion-based grasp filtering for frontal manipulation.</em></p>
                         <div class="button-container">
                             <a href="projects/optimal_grasp_diffusion.html" class="button small">Learn More</a>
                         </div>
@@ -611,13 +685,14 @@
             <article id="publications">
                 <h2 class="major">Publications</h2>
                 <section>
-                    <h3><i class="fas fa-book"></i> Journal Articles & Conference Papers</h3>
+                    <h3 class="publication-list-title"><i class="fas fa-book"></i> Journal Articles & Conference Papers</h3>
                     <a href="projects/optimal_grasp_diffusion.html" class="entry-link">
                         <div class="publication-item">
                             <div class="entry-card">
-                                <h4>MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
-                                <p><strong>Authors:</strong> B. Poudel, A. Basit, M. Shafique</p>
-                                <p><em>Status: Under Review</em></p>
+                                <span class="publication-venue">IJCNN 2026</span>
+                                <h4 class="publication-title">MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
+                                <p class="publication-authors"><strong>B. Poudel</strong>, A. Basit, and M. Shafique</p>
+                                <p class="publication-meta"><span class="publication-status">Accepted paper</span>, International Joint Conference on Neural Networks, 2026.</p>
                             </div>
                         </div>
                     </a>
