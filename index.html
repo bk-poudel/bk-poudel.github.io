@@ -372,11 +372,12 @@
                 <section>
                     <h3><i class="fas fa-briefcase"></i> Experience</h3>
                     <div class="experience-item">
-                        <h4>Student Research Assistant - Robot Control and Learning Lab, NYUAD</h4>
-                        <p class="date">April 2025 – Present</p>
+                        <h4>Student Research Assistant - iCAS Lab, NYU Abu Dhabi</h4>
+                        <p class="date">September 2025 – Present | Abu Dhabi, UAE</p>
                         <ul>
-                            <li>Working on simulation of the Franka robotic arm using MuJoCo, focusing on implementing and benchmarking various controllers for precise manipulation tasks.</li>
-                            <li>Developing and testing algorithms for simulation-to-real robot skill transfer, enabling robust deployment of learned skills on the physical Franka arm.</li>
+                            <li>Integrated five state-of-the-art grasp planning algorithms (GGCNN, GR-ConvNet, ContactGraspNet, AnyGrasp, and GraspGen) into an end-to-end perception pipeline for the Unitree Z1 Pro, enabling systematic evaluation of learning-based grasp generation on physical hardware.</li>
+                            <li>Designed MVB-Grasp, a minimum-volume-box filtering framework for diffusion-based grasp selection, and engineered a full manipulation pipeline integrating camera calibration, coordinate-frame transformations, inverse kinematics, and real-world grasp execution.</li>
+                            <li>Deployed and benchmarked autonomous grasping pipelines across five robotic platforms (Unitree Z1 Pro, FR3, KUKA iiwa, Aubo-i5, and AgileX Piper), evaluating cross-platform robustness for real-world manipulation.</li>
                         </ul>
                     </div>
                     <div class="experience-item">
@@ -475,11 +476,11 @@
                 <div class="project-grid">
                     <!-- Project Items -->
                     <div class="project-item">
-                        <h3>MVB-Grasp</h3>
+                        <h3>Implementation of GraspGen</h3>
                         <a href="projects/optimal_grasp_diffusion.html" class="project-image-link">
-                            <img src="assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="MVB-Grasp" class="project-image">
+                            <img src="assets/project_images/diffusion_optimal_grasp/optimal_grasp.webp" alt="Implementation of GraspGen" class="project-image">
                         </a>
-                        <p><em>IJCNN 2026 accepted work on diffusion-based grasp filtering for frontal manipulation.</em></p>
+                        <p><em>Implementation of GraspGen, NVIDIA's diffusion-based grasp generation model.</em></p>
                         <div class="button-container">
                             <a href="projects/optimal_grasp_diffusion.html" class="button small">Learn More</a>
                         </div>
@@ -686,13 +687,21 @@
                 <h2 class="major">Publications</h2>
                 <section>
                     <h3 class="publication-list-title"><i class="fas fa-book"></i> Journal Articles & Conference Papers</h3>
+                    <div class="publication-item">
+                        <div class="entry-card">
+                            <span class="publication-venue">ICARCV 2026</span>
+                            <h4 class="publication-title">GraspBench: Execution-Aware Cross-Robot Evaluation of 6-DoF Grasp Generation in MuJoCo</h4>
+                            <p class="publication-authors"><strong>B. Poudel</strong>, A. Basit, and M. Shafique</p>
+                            <p class="publication-meta"><span class="publication-status">Submitted paper</span>, International Conference on Control, Automation, Robotics and Vision (ICARCV), 2026.</p>
+                        </div>
+                    </div>
                     <a href="projects/optimal_grasp_diffusion.html" class="entry-link">
                         <div class="publication-item">
                             <div class="entry-card">
                                 <span class="publication-venue">IJCNN 2026</span>
                                 <h4 class="publication-title">MVB-Grasp: Minimum-Volume-Box Filtering of Diffusion-based Grasps for Frontal Manipulation</h4>
                                 <p class="publication-authors"><strong>B. Poudel</strong>, A. Basit, and M. Shafique</p>
-                                <p class="publication-meta"><span class="publication-status">Accepted paper</span>, International Joint Conference on Neural Networks, 2026.</p>
+                                <p class="publication-meta"><span class="publication-status">Accepted paper</span>, International Joint Conference on Neural Networks (IJCNN), 2026.</p>
                             </div>
                         </div>
                     </a>
