@@ -42,6 +42,13 @@
             }
         }
         /* Project Grid Styles */
+        #projects {
+            position: relative;
+        }
+        #main article#projects,
+        #main article#projects.active {
+            transform: none !important;
+        }
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -52,11 +59,31 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
         .project-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .project-item.is-hidden {
+            display: none;
+        }
+        .project-item.is-filter-match {
+            border-color: rgba(184, 193, 236, 0.28);
+            background: rgba(255, 255, 255, 0.058);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+            animation: projectFilterIn 0.22s ease both;
+        }
+        @keyframes projectFilterIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .project-image {
             width: 100%;
@@ -64,6 +91,131 @@
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 1rem;
+        }
+        .project-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            position: fixed;
+            top: 8rem;
+            left: calc(50% - 30rem - 12.75rem);
+            width: 11.5rem;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            color: rgba(255, 255, 255, 0.82);
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        .project-filter-title {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-bottom: 0.4rem;
+            color: rgba(217, 222, 252, 0.76);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.64rem;
+            font-weight: 650;
+            letter-spacing: 0.02rem;
+            line-height: 1.4;
+            text-transform: none;
+        }
+        .project-filter-title i {
+            color: #b8c1ec;
+            font-size: 0.68rem;
+        }
+        .project-filter-button {
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.28rem 0.48rem;
+            border: 0;
+            border-radius: 5px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.64);
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            line-height: 1.4;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .project-filter-button:hover,
+        .project-filter-button:focus-visible {
+            background: rgba(255, 255, 255, 0.045);
+            color: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.16);
+            outline: none;
+        }
+        .project-filter-button.is-active {
+            background: rgba(0, 0, 0, 0.22);
+            color: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.36), inset 0 -1px 0 rgba(255, 255, 255, 0.06), 0 8px 16px rgba(0, 0, 0, 0.18);
+        }
+        .project-filter-button.is-animating {
+            animation: filterTabSettle 0.24s ease both;
+        }
+        .project-filter-button.is-active::before {
+            content: '';
+            position: absolute;
+            top: 0.28rem;
+            bottom: 0.28rem;
+            left: 0;
+            width: 2px;
+            border-radius: 999px;
+            background: #5e81f4;
+        }
+        .project-filter-button.is-active::after {
+            content: '';
+            position: absolute;
+            right: 0.48rem;
+            bottom: 0.22rem;
+            left: 0.48rem;
+            height: 1px;
+            background: rgba(94, 129, 244, 0.85);
+        }
+        @keyframes filterTabSettle {
+            from {
+                opacity: 0.72;
+                box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.18), 0 8px 18px rgba(0, 0, 0, 0.18);
+            }
+            to {
+                opacity: 1;
+                box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.36), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+            }
+        }
+        .project-filter-count {
+            margin-top: 0.35rem;
+            padding-top: 0.35rem;
+            border-top: 0;
+            color: rgba(255, 255, 255, 0.42);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.64rem;
+            line-height: 1.4;
+        }
+        @media (max-width: 1320px) {
+            .project-filters {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 1.5rem;
+            }
+            .project-filter-title,
+            .project-filter-count {
+                width: 100%;
+            }
+            .project-filter-button {
+                width: auto;
+            }
         }
         /* Resume Styles */
         .education-item, .experience-item, .publication-item {
@@ -473,8 +625,37 @@
                         Projects
                     </span>
                 </h2>
+                <aside class="project-filters" aria-label="Filter projects">
+                    <div class="project-filter-title"><i class="fas fa-filter" aria-hidden="true"></i> Filter</div>
+                    <button type="button" class="project-filter-button is-active" data-filter="all" aria-pressed="true">All Projects</button>
+                    <button type="button" class="project-filter-button" data-filter="robotics" aria-pressed="false">Robotics</button>
+                    <button type="button" class="project-filter-button" data-filter="embedded" aria-pressed="false">Embedded System</button>
+                    <button type="button" class="project-filter-button" data-filter="mechanical" aria-pressed="false">Design</button>
+                    <span class="project-filter-count" aria-live="polite">21 projects</span>
+                </aside>
                 <div class="project-grid">
                     <!-- Project Items -->
+                    <div class="project-item">
+                        <h3>GraspBench</h3>
+                        <a href="projects/graspbench.html" class="project-image-link">
+                            <img src="assets/project_images/z1_arm/real_robot_compressed.gif" alt="GraspBench" class="project-image">
+                        </a>
+                        <p><em>Analysis paper comparing different grasping algorithms across multiple robotic arms.</em></p>
+                        <div class="button-container">
+                            <a href="projects/graspbench.html" class="button small">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <h3>MVB-Grasp</h3>
+                        <a href="projects/mvb_grasp.html" class="project-image-link">
+                            <img src="assets/project_images/MVB-Grasp/MVB-Grasp.png" alt="MVB-Grasp" class="project-image">
+                        </a>
+                        <p><em>Minimum-volume-box filtering for selecting robust diffusion-based grasps for frontal manipulation.</em></p>
+                        <div class="button-container">
+                            <a href="projects/mvb_grasp.html" class="button small">Learn More</a>
+                            <a href="https://arxiv.org/abs/2605.09672" class="button small" target="_blank" rel="noopener noreferrer">arXiv</a>
+                        </div>
+                    </div>
                     <div class="project-item">
                         <h3>Implementation of GraspGen</h3>
                         <a href="projects/optimal_grasp_diffusion.html" class="project-image-link">
@@ -695,7 +876,7 @@
                             <p class="publication-meta"><span class="publication-status">Submitted paper</span>, International Conference on Control, Automation, Robotics and Vision (ICARCV), 2026.</p>
                         </div>
                     </div>
-                    <a href="projects/optimal_grasp_diffusion.html" class="entry-link">
+                    <a href="https://arxiv.org/abs/2605.09672" class="entry-link" target="_blank" rel="noopener noreferrer">
                         <div class="publication-item">
                             <div class="entry-card">
                                 <span class="publication-venue">IJCNN 2026</span>
@@ -751,6 +932,82 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryMap = {
+                'GraspBench': ['robotics'],
+                'MVB-Grasp': ['robotics'],
+                'Implementation of GraspGen': ['robotics'],
+                'RL-Based Ball Throwing Robot': ['robotics'],
+                'MPPI-Based Dynamic Object Tracking': ['robotics'],
+                'Pick and Place Robot Simulation': ['robotics'],
+                'Z1 arm Pouring water in a glass': ['robotics'],
+                'AgileX Mobile Cobot Demonstration': ['robotics'],
+                'Behavior-Cloned Lunar Lander': ['robotics'],
+                'Value Iteration Frozen-Lake': ['robotics'],
+                'Flexible AI-enabled Mechatronic Systems (FAMS) Project': ['robotics'],
+                'Impedance and Admittance Control': ['robotics'],
+                'Autonomous Maze Solving Robot Simulation': ['robotics'],
+                'Haptic Enabled Smart Goggles': ['embedded'],
+                'Autonomous Logistic Robot': ['robotics'],
+                'Handheld Bio-Printer Prototype': ['mechanical'],
+                'Campus Plastic Waste Transformation': ['mechanical'],
+                'Adaptable Phantom Prototype': ['mechanical'],
+                'Chicken-Egg-Incubator': ['embedded'],
+                'Embedded Sentry Project': ['embedded'],
+                'Roller Coaster Simulation': ['mechanical']
+            };
+            const filterButtons = document.querySelectorAll('.project-filter-button');
+            const filterCount = document.querySelector('.project-filter-count');
+            const projectItems = document.querySelectorAll('#projects .project-item');
+            projectItems.forEach(item => {
+                const title = item.querySelector('h3')?.textContent.trim();
+                item.dataset.categories = (categoryMap[title] || []).join(' ');
+            });
+            function applyProjectFilter(filter) {
+                let visibleCount = 0;
+                projectItems.forEach((item, index) => {
+                    const categories = item.dataset.categories.split(' ');
+                    const shouldShow = filter === 'all' || categories.includes(filter);
+                    item.classList.toggle('is-hidden', !shouldShow);
+                    item.classList.toggle('is-filter-match', shouldShow && filter !== 'all');
+                    if (shouldShow) {
+                        visibleCount++;
+                        item.style.animationDelay = filter === 'all' ? '0ms' : `${Math.min(index * 35, 280)}ms`;
+                    } else {
+                        item.style.animationDelay = '0ms';
+                    }
+                });
+                filterCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'project' : 'projects'}`;
+            }
+            function resetProjectFilter() {
+                filterButtons.forEach(button => {
+                    const isActive = button.dataset.filter === 'all';
+                    button.classList.toggle('is-active', isActive);
+                    button.classList.remove('is-animating');
+                    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+                applyProjectFilter('all');
+            }
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(currentButton => {
+                        const isActive = currentButton === button;
+                        currentButton.classList.toggle('is-active', isActive);
+                        currentButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                        currentButton.classList.remove('is-animating');
+                        if (isActive) {
+                            currentButton.offsetHeight;
+                            currentButton.classList.add('is-animating');
+                        }
+                    });
+                    applyProjectFilter(button.dataset.filter);
+                });
+            });
+            window.addEventListener('hashchange', resetProjectFilter);
+            resetProjectFilter();
+        });
+    </script>
     <!-- Floating Icons JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
