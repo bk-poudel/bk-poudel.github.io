@@ -433,6 +433,116 @@
         #main article {
             background-color: rgba(38, 49, 59, 0.5);
         }
+
+        /* Contact: simple, consistent with the site's panel and accent styles. */
+        #contact .major,
+        #contact .contact-social-label {
+            font-family: 'Playfair Display', serif;
+        }
+        #contact .contact-status,
+        #contact .contact-intro,
+        #contact .contact-list {
+            font-family: 'Merriweather', serif;
+        }
+        #contact .contact-intro {
+            max-width: 32rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.76);
+            line-height: 1.7;
+        }
+        #contact .contact-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.66);
+            font-size: 0.75rem;
+        }
+        #contact .contact-status::before {
+            content: '';
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 50%;
+            background: #8ad5ac;
+            box-shadow: 0 0 0 3px rgba(138, 213, 172, 0.12);
+            animation: contactStatusGlow 2s ease-in-out infinite;
+        }
+        @keyframes contactStatusGlow {
+            0%, 100% {
+                box-shadow: 0 0 0 3px rgba(138, 213, 172, 0.12), 0 0 5px rgba(138, 213, 172, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 0 5px rgba(138, 213, 172, 0.08), 0 0 13px rgba(138, 213, 172, 0.9);
+            }
+        }
+        #contact .contact-list {
+            margin: 0 0 1.5rem;
+            padding: 0;
+            border-left: 3px solid #b8c1ec;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.035);
+            list-style: none;
+        }
+        #contact .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background-color 0.2s ease;
+        }
+        #contact .contact-list li:hover {
+            background: rgba(255, 255, 255, 0.035);
+        }
+        #contact .contact-list li:last-child {
+            border-bottom: 0;
+        }
+        #contact .contact-list i {
+            display: grid;
+            flex: 0 0 2rem;
+            width: 2rem;
+            height: 2rem;
+            place-items: center;
+            border-radius: 50%;
+            color: #b8c1ec;
+            background: rgba(184, 193, 236, 0.1);
+            text-align: center;
+        }
+        #contact .contact-list a {
+            border-bottom-color: rgba(184, 193, 236, 0.45);
+        }
+        #contact .contact-social-label {
+            margin: 0 0 0.75rem;
+            color: rgba(255, 255, 255, 0.52);
+            font-size: 0.72rem;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+        #contact .contact-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        #contact .icons {
+            margin-bottom: 0;
+        }
+        #contact .contact-email-button {
+            margin: 0;
+            border-color: rgba(184, 193, 236, 0.55);
+        }
+        @media (max-width: 480px) {
+            #contact .contact-footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #contact .contact-status::before {
+                animation: none;
+                box-shadow: 0 0 8px rgba(138, 213, 172, 0.7);
+            }
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -911,17 +1021,21 @@
             <!-- Contact -->
             <article id="contact">
                 <h2 class="major">Contact</h2>
-                <p>
-                    Bibek Poudel<br>
-                    Abu Dhabi, UAE<br>
-                    Email: bp2376@nyu.edu<br>
-                    Phone: +971 506052066<br>
-                </p>
-                <ul class="icons">
-                    <li><a href="https://www.facebook.com/profile.php?id=100067310351426" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="https://github.com/bk-poudel/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="https://www.linkedin.com/in/bibek-poudel-731920200/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                <span class="contact-status">Open to conversations and collaborations</span>
+                <p class="contact-intro">Have a question, research idea, or robotics project in mind? I would be happy to hear from you.</p>
+                <ul class="contact-list">
+                    <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:bp2376@nyu.edu">bp2376@nyu.edu</a></li>
+                    <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+971506052066">+971 50 605 2066</a></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Abu Dhabi, UAE</span></li>
                 </ul>
+                <p class="contact-social-label">Find me online</p>
+                <div class="contact-footer">
+                    <ul class="icons" aria-label="Social profiles">
+                        <li><a href="https://github.com/bk-poudel/" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/bibek-poudel-731920200/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+                    </ul>
+                    <a href="mailto:bp2376@nyu.edu" class="button small icon solid fa-paper-plane contact-email-button">Send an email</a>
+                </div>
             </article>
         </div>
         <!-- Footer -->
