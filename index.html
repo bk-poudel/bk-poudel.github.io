@@ -35,6 +35,44 @@
             will-change: transform; /* Optimization for animation */
             transition: none; /* Remove transition for smooth physics */
         }
+        #header nav li.has-new-content a {
+            position: relative;
+        }
+        .nav-unread-badge {
+            position: absolute;
+            top: -0.48rem;
+            right: -0.42rem;
+            display: grid;
+            min-width: 1.3rem;
+            height: 1.3rem;
+            padding: 0 0.28rem;
+            place-items: center;
+            border: 2px solid #222536;
+            border-radius: 999px;
+            background: #f03d4f;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(240, 61, 79, 0.5);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0;
+            animation: navUnreadPulse 2.2s ease-out infinite;
+            box-sizing: border-box;
+        }
+        @keyframes navUnreadPulse {
+            0%, 55%, 100% {
+                box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(240, 61, 79, 0.42);
+            }
+            75% {
+                box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(240, 61, 79, 0);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .nav-unread-badge {
+                animation: none;
+            }
+        }
         /* Make sure they don't appear on mobile */
         @media (max-width: 768px) {
             .floating-icons-container {
@@ -606,8 +644,8 @@
             <nav>
                  <ul>
                      <li><a href="#resume">Resume</a></li>
-                     <li><a href="#projects">Projects</a></li>
-                     <li><a href="#publications">Publications</a></li>
+                     <li class="has-new-content" data-added-on="2026-07-12"><a href="#projects">Projects<span class="nav-unread-badge" aria-label="1 new project">1</span></a></li>
+                     <li class="has-new-content" data-added-on="2026-07-12"><a href="#publications">Publications<span class="nav-unread-badge" aria-label="1 new publication">1</span></a></li>
                      <li><a href="#writing">Writing</a></li>
                      <li><a href="#contact">Contact</a></li>
                  </ul>
@@ -1051,6 +1089,58 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        const unreadNavItems = document.querySelectorAll('#header nav [data-added-on]');
+        const unreadStoragePrefix = 'portfolio-content-visited:';
+        function unreadStorageKey(item) {
+            const destination = item.querySelector('a')?.getAttribute('href') || '';
+            return `${unreadStoragePrefix}${destination}:${item.dataset.addedOn}`;
+        }
+        function hasVisitedContent(item) {
+            try {
+                return localStorage.getItem(unreadStorageKey(item)) === 'true';
+            } catch (_) {
+                return false;
+            }
+        }
+        function removeUnreadBadge(item, rememberVisit = false) {
+            if (rememberVisit) {
+                try {
+                    localStorage.setItem(unreadStorageKey(item), 'true');
+                } catch (_) {
+                    // The badge still disappears for this page view if storage is unavailable.
+                }
+            }
+            item.classList.remove('has-new-content');
+            item.querySelector('.nav-unread-badge')?.remove();
+        }
+        unreadNavItems.forEach(item => {
+            const addedAt = new Date(`${item.dataset.addedOn}T00:00:00`);
+            const expiresAt = new Date(addedAt);
+            expiresAt.setMonth(expiresAt.getMonth() + 1);
+            const expireUnreadBadge = () => {
+                removeUnreadBadge(item);
+            };
+            if (!Number.isFinite(expiresAt.getTime()) || Date.now() >= expiresAt.getTime() || hasVisitedContent(item)) {
+                removeUnreadBadge(item);
+            } else {
+                const remainingTime = expiresAt.getTime() - Date.now();
+                if (remainingTime <= 2147483647) {
+                    window.setTimeout(expireUnreadBadge, remainingTime);
+                }
+            }
+            item.querySelector('a')?.addEventListener('click', () => removeUnreadBadge(item, true));
+        });
+        function markCurrentContentVisited() {
+            unreadNavItems.forEach(item => {
+                if (item.querySelector('a')?.getAttribute('href') === window.location.hash) {
+                    removeUnreadBadge(item, true);
+                }
+            });
+        }
+        window.addEventListener('hashchange', markCurrentContentVisited);
+        markCurrentContentVisited();
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const categoryMap = {
