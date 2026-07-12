@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>3 DOF Robotic Arm with Soft Manipulator - FAMS Lab, NYU Tandon</title>
+    <title>Autonomous Logistics Robot - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
     <style>
-        /* (Keep all your existing CSS unchanged) */
+        /* Consistent color scheme with dark background and light content */
         :root {
             --primary: #4b6cc1;
             --secondary: #666666;
@@ -238,15 +238,10 @@
         }
         .figure img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 0.8rem;
-        }
-        .figure-container .figure img {
-            height: 250px;
-            object-fit: contain;
-            background: #f5f5f5;
         }
         .dynamic-figure .figure img {
             width: 100%;
@@ -357,6 +352,32 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--primary);
         }
+        .challenges-section {
+            margin: 2rem 0;
+        }
+        .regulatory-section {
+            margin: 2rem 0;
+        }
+        .future-roadmap {
+            margin: 2rem 0;
+        }
+        .future-roadmap ul {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .problem-statement {
+            background-color: rgba(230, 74, 74, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #e64a4a;
+        }
+        .problem-statement h2 {
+            color: #e64a4a;
+        }
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
@@ -421,115 +442,185 @@
 </head>
 <body class="is-preload">
     <div class="project-content">
-        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+                <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
-        <h1>3 DOF Robotic Arm with Soft Robotics Manipulator<br>FAMS Lab, NYU Tandon School of Engineering</h1>
+        <h1>Autonomous Logistics Robot - IEEE Competition</h1>
         <div class="abstract">
-            <h2>Project Overview</h2>
-            <p>
-                This project was developed in the Flexible AI Enabled Mechatronics Systems (FAMS) Lab at NYU Tandon School of Engineering. Our multi-talented team collaborated to design and build a 3 Degree-of-Freedom (DOF) robotic arm equipped with a soft robotics manipulator featuring three flexible fingers. The goal was to create a versatile robotic platform capable of safe and adaptive grasping for a variety of objects.
-            </p>
+            <h2>🎯 Competition Objective</h2>
+            <p>Develop an autonomous mobile manipulator system for an IEEE robotics competition. The challenge involves navigating a 5x5 unknown grid maze containing 4 randomly placed colored cubes (2 blue, 2 red) and corresponding colored drop-off bins. The robot must autonomously scan the maze, identify objects, calculate optimal paths, and successfully transport each cube to its matching colored destination.</p>
+        </div>
+        <div class="problem-statement">
+            <h2>🤖 Challenge Overview</h2>
+            <p>The IEEE logistics robotics competition presented a complex autonomous manipulation challenge:</p>
+            <ul>
+                <li>5x5 grid maze with unknown layout and random object placement</li>
+                <li>4 colored cubes (2 blue, 2 red) positioned randomly throughout the maze</li>
+                <li>Corresponding colored drop-off bins requiring precise color matching</li>
+                <li>Fully autonomous operation - no human intervention allowed</li>
+                <li>Time-critical performance evaluation</li>
+            </ul>
         </div>
         <div class="technologies-used">
-            <h2>Team Contributions & My Role</h2>
+            <h2>🧱 System Architecture</h2>
+            <p>Our solution integrated advanced robotics hardware with intelligent algorithms for autonomous logistics operations:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-users"></i> Team Collaboration</h3>
+                <h3><i class="fas fa-robot"></i> Mobile Manipulator Platform</h3>
                 <ul>
-                    <li>Worked with a diverse team of engineers and researchers specializing in robotics, electronics, and AI.</li>
-                    <li>Combined expertise in mechanical design, embedded systems, and soft robotics.</li>
+                    <li>Hiwonder Mobile Manipulator as the primary robotic platform</li>
+                    <li>Integrated mobility base with precision manipulator arm</li>
+                    <li>End-effector designed for reliable cube grasping and placement</li>
+                    <li>Sensor fusion for simultaneous navigation and manipulation</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-user-cog"></i> My Responsibilities</h3>
+                <h3><i class="fas fa-eye"></i> Computer Vision System</h3>
                 <ul>
-                    <li>Designed the mechanical structure of the 3 DOF robotic arm using CAD tools.</li>
-                    <li>Selected and integrated motors and sensors for precise joint control.</li>
-                    <li>Developed embedded code for motor actuation and sensor feedback.</li>
-                    <li>Integrated hardware and software for seamless operation of the arm and soft manipulator.</li>
+                    <li>Real-time object detection for colored cube identification</li>
+                    <li>Color classification algorithms for blue and red cube discrimination</li>
+                    <li>Drop-off bin detection and color matching verification</li>
+                    <li>Visual SLAM for maze mapping and localization</li>
+                </ul>
+            </div>
+            <div class="methodology-item">
+                <h3><i class="fas fa-route"></i> Path Planning & Navigation</h3>
+                <ul>
+                    <li>Dijkstra's algorithm for optimal path calculation</li>
+                    <li>Dynamic maze exploration and mapping</li>
+                    <li>Obstacle avoidance and collision detection</li>
+                    <li>Multi-objective optimization for efficient task sequencing</li>
                 </ul>
             </div>
         </div>
-        <div class="figure-container">
+        <div class="figure-container dynamic-figure">
             <div class="figure">
-                <img src="../assets/images/projects/fams/robotic-arm.jpeg" alt="3 DOF Robotic Arm with Soft Manipulator">
-                <div class="figure-caption">Figure: 3 DOF Robotic Arm with Soft Robotics Manipulator</div>
-                <p class="figure-description">Custom-designed robotic arm featuring three flexible soft fingers for adaptive grasping.</p>
-            </div>
-        </div>
-        <div class="learning-progression">
-            <h2>Design & Implementation Highlights</h2>
-            <div class="methodology-item">
-                <h3><i class="fas fa-drafting-compass"></i> Mechanical Design</h3>
-                <ul>
-                    <li>Lightweight and modular arm structure for easy assembly and maintenance.</li>
-                    <li>Soft manipulator fingers fabricated using silicone and pneumatic actuation for safe interaction.</li>
-                </ul>
-            </div>
-            <div class="methodology-item">
-                <h3><i class="fas fa-microchip"></i> Electronics & Control</h3>
-                <ul>
-                    <li>DC motors and position sensors for accurate joint movement.</li>
-                    <li>Custom PCB for motor driver and sensor integration.</li>
-                    <li>Embedded firmware for coordinated multi-joint control and soft finger actuation.</li>
-                </ul>
-            </div>
-            <div class="methodology-item">
-                <h3><i class="fas fa-hand-holding"></i> Soft Robotics Manipulator</h3>
-                <ul>
-                    <li>Three soft fingers capable of conforming to various object shapes.</li>
-                    <li>Pneumatic control for variable grip strength and gentle handling.</li>
-                </ul>
+                <img src="../assets/images/projects/logistics-robot.png" alt="Hiwonder Mobile Manipulator Robot">
+                <div class="figure-caption">Figure 1: Autonomous Logistics Robot in Action</div>
+                <p class="figure-description">Hiwonder Mobile Manipulator autonomously navigating the 5x5 maze, identifying colored cubes, and executing optimal pickup and delivery tasks</p>
+                <div class="video-button-container">
+                    <a href="https://drive.google.com/file/d/1vER2r9yg-2EPHAB1EsZtD8cwtBoWoOdg/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button video-button">
+                        <i class="fas fa-play"></i> Watch Competition Demo
+                    </a>
+                </div>
             </div>
         </div>
         <div class="products-created">
-            <h2>Key Outcomes</h2>
+            <h2>🧠 Key Capabilities</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-robot"></i> Functional Prototype</h3>
-                    <p>Successfully built and tested a working 3 DOF robotic arm with soft manipulator.</p>
+                    <h3><i class="fas fa-search"></i> Autonomous Maze Exploration</h3>
+                    <p>Dynamic scanning and mapping of the unknown 5x5 grid environment with real-time obstacle detection</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-hand-paper"></i> Adaptive Grasping</h3>
-                    <p>Soft fingers demonstrated safe and adaptive grasping of delicate and irregular objects.</p>
+                    <h3><i class="fas fa-palette"></i> Color-Based Object Detection</h3>
+                    <p>Computer vision system for accurate identification and classification of blue and red cubes</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-cogs"></i> Integrated System</h3>
-                    <p>Seamless integration of mechanical, electronic, and software components for reliable operation.</p>
+                    <h3><i class="fas fa-route"></i> Optimal Path Planning</h3>
+                    <p>Dijkstra's algorithm implementation for shortest path calculation to minimize task completion time</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-hand-rock"></i> Precision Manipulation</h3>
+                    <p>Accurate grasping, lifting, and placement of cubes using the integrated manipulator arm</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-bullseye"></i> Color Matching Logic</h3>
+                    <p>Intelligent algorithm ensuring each colored cube reaches its corresponding drop-off bin</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-clock"></i> Real-Time Execution</h3>
+                    <p>Time-optimized autonomous operation meeting competition performance requirements</p>
+                </div>
+            </div>
+        </div>
+                <div class="challenges-section">
+            <h2>🔧 Technical Challenges & Solutions</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-map"></i> Unknown Environment Mapping</h3>
+                    <p>Implemented SLAM techniques for real-time maze exploration and dynamic map building without prior knowledge</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-clock"></i> Time Optimization</h3>
+                    <p>Developed efficient task sequencing algorithms to minimize total completion time in competitive environment</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-crosshairs"></i> Precision Manipulation</h3>
+                    <p>Calibrated visual-servo control for accurate cube pickup and placement in confined maze spaces</p>
                 </div>
             </div>
         </div>
         <div class="impact">
-            <h2>Impact & Future Work</h2>
+            <h2>🏆 Competition Results & Impact</h2>
+            <p>This IEEE robotics competition project showcased advanced autonomous systems integration:</p>
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Research Platform</h3>
-                    <p>Provides a flexible platform for future research in soft robotics and AI-enabled manipulation.</p>
+                    <i class="fas fa-trophy"></i>
+                    <h3>Competition Performance</h3>
+                    <p>Successfully demonstrated fully autonomous logistics operation in challenging unknown environment</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-grip-horizontal"></i>
-                    <h3>Safe Human-Robot Interaction</h3>
-                    <p>Soft manipulator design enables safe interaction with humans and fragile objects.</p>
+                    <i class="fas fa-cogs"></i>
+                    <h3>Technical Innovation</h3>
+                    <p>Integrated computer vision, path planning, and manipulation in a cohesive autonomous system</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-tools"></i>
-                    <h3>Expandability</h3>
-                    <p>Modular design allows for easy upgrades and experimentation with new control algorithms.</p>
+                    <i class="fas fa-industry"></i>
+                    <h3>Real-World Applications</h3>
+                    <p>Demonstrated technologies applicable to warehouse automation and logistics robotics</p>
                 </div>
             </div>
-            <h3 style="margin-top: 2rem;">Next Steps</h3>
+        </div>
+        <div class="impact">
+            <h2>📈 Impact and Applications</h2>
+            <p>This assistive technology project addresses critical mobility challenges for visually impaired individuals in urban environments:</p>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-universal-access"></i>
+                    <h3>Accessibility Innovation</h3>
+                    <p>Intuitive feedback system replacing complexity with meaningful, actionable guidance</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety Enhancement</h3>
+                    <p>Real-time obstacle detection and traffic light recognition for safer navigation</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-users"></i>
+                    <h3>User-Centered Design</h3>
+                    <p>Lightweight, comfortable, and intuitive design based on user feedback and testing</p>
+                </div>
+            </div>
+        </div>
+        <div class="algorithmic-approach">
+            <h2>🧮 Algorithmic Approach</h2>
+            <div class="methodology-item">
+                <h3><i class="fas fa-project-diagram"></i> System Workflow</h3>
+                <ul>
+                    <li><strong>Phase 1:</strong> Autonomous maze exploration and environmental mapping</li>
+                    <li><strong>Phase 2:</strong> Object detection and color classification of cubes and bins</li>
+                    <li><strong>Phase 3:</strong> Dijkstra's algorithm for optimal path calculation</li>
+                    <li><strong>Phase 4:</strong> Sequential task execution with pickup and delivery operations</li>
+                    <li><strong>Phase 5:</strong> Verification and completion confirmation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="future-applications">
+            <h2>🔮 Future Applications</h2>
             <ul>
-                <li>Implement advanced AI-based control for autonomous grasping and manipulation.</li>
-                <li>Integrate vision sensors for object detection and pose estimation.</li>
-                <li>Test and validate in real-world scenarios and collaborative tasks.</li>
+                <li>🏭 Automated warehouse management and inventory systems</li>
+                <li>🚛 Autonomous logistics and supply chain robotics</li>
+                <li>🏥 Hospital material transport and pharmaceutical logistics</li>
+                <li>🏪 Retail automation and smart inventory management</li>
+                <li>� Laboratory sample handling and automated testing systems</li>
+                <li>� Advanced multi-robot coordination for large-scale logistics</li>
             </ul>
         </div>
         <div class="conclusion">
-            <h2>Conclusion</h2>
-            <p>
-                The 3 DOF robotic arm with soft robotics manipulator developed in the FAMS Lab at NYU Tandon demonstrates the power of interdisciplinary collaboration in robotics. By combining mechanical design, electronics, and embedded programming, our team created a functional and adaptable robotic platform. The project lays the groundwork for future research in safe, flexible, and intelligent robotic manipulation.
-            </p>
+            <h2>🎯 Project Reflection</h2>
+            <p>The IEEE logistics robotics competition provided an excellent platform to integrate multiple robotics disciplines into a cohesive autonomous system. The project required seamless coordination between computer vision, path planning algorithms, and precision manipulation control.</p>
+            <p>Working with the Hiwonder Mobile Manipulator taught me the complexities of real-time autonomous decision-making in unknown environments. The implementation of Dijkstra's algorithm for optimal path planning, combined with dynamic object detection and color classification, demonstrated the power of intelligent systems in solving logistics challenges.</p>
+            <p>This competition experience highlighted the importance of robust system integration, efficient algorithm design, and the critical role of computer vision in modern robotics applications. The project serves as a foundation for understanding autonomous logistics systems that are increasingly vital in industrial automation and smart manufacturing environments.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">

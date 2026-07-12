@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>3 DOF Robotic Arm with Soft Manipulator - FAMS Lab, NYU Tandon</title>
+    <title>Unitree Z1 Robotic Arm Wine Pouring - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
     <style>
-        /* (Keep all your existing CSS unchanged) */
+        /* Consistent color scheme with dark background and light content */
         :root {
             --primary: #4b6cc1;
             --secondary: #666666;
@@ -238,15 +238,10 @@
         }
         .figure img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 0.8rem;
-        }
-        .figure-container .figure img {
-            height: 250px;
-            object-fit: contain;
-            background: #f5f5f5;
         }
         .dynamic-figure .figure img {
             width: 100%;
@@ -424,112 +419,121 @@
         <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
-        <h1>3 DOF Robotic Arm with Soft Robotics Manipulator<br>FAMS Lab, NYU Tandon School of Engineering</h1>
+    <h1>Unitree Z1 Robotic Arm: Wine Pouring Task</h1>
         <div class="abstract">
-            <h2>Project Overview</h2>
-            <p>
-                This project was developed in the Flexible AI Enabled Mechatronics Systems (FAMS) Lab at NYU Tandon School of Engineering. Our multi-talented team collaborated to design and build a 3 Degree-of-Freedom (DOF) robotic arm equipped with a soft robotics manipulator featuring three flexible fingers. The goal was to create a versatile robotic platform capable of safe and adaptive grasping for a variety of objects.
-            </p>
+            <h2>Abstract</h2>
+            <p>This project showcases the Unitree Z1 6 DOF robotic arm performing the task of pouring wine into a glass. The robot utilizes a full pose impedance controller, enabling compliant and precise manipulation of the bottle to achieve smooth pouring. The controller manages both position and orientation, allowing the arm to adapt to contact forces and ensure safe, accurate execution of the task.</p>
         </div>
         <div class="technologies-used">
-            <h2>Team Contributions & My Role</h2>
+            <h2>Methodology</h2>
+            <p>The project leverages advanced robotics control and simulation techniques:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-users"></i> Team Collaboration</h3>
+                <h3><i class="fas fa-robot"></i> Robot Control Implementation</h3>
                 <ul>
-                    <li>Worked with a diverse team of engineers and researchers specializing in robotics, electronics, and AI.</li>
-                    <li>Combined expertise in mechanical design, embedded systems, and soft robotics.</li>
+                    <li>Full pose impedance control for compliant and safe manipulation</li>
+                    <li>6 DOF control of the Unitree Z1 robotic arm</li>
+                    <li>Real-time force and torque feedback for adaptive pouring</li>
+                    <li>Trajectory planning for bottle grasping, lifting, and pouring</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-user-cog"></i> My Responsibilities</h3>
+                <h3><i class="fas fa-cogs"></i> Simulation & Experimentation</h3>
                 <ul>
-                    <li>Designed the mechanical structure of the 3 DOF robotic arm using CAD tools.</li>
-                    <li>Selected and integrated motors and sensors for precise joint control.</li>
-                    <li>Developed embedded code for motor actuation and sensor feedback.</li>
-                    <li>Integrated hardware and software for seamless operation of the arm and soft manipulator.</li>
+                    <li>Physics-based MuJoCo simulation for controller validation</li>
+                    <li>Integration with Unitree Z1 hardware and sdk</li>
                 </ul>
             </div>
         </div>
-        <div class="figure-container">
+        <div class="figure-container dynamic-figure">
             <div class="figure">
-                <img src="../assets/images/projects/fams/robotic-arm.jpeg" alt="3 DOF Robotic Arm with Soft Manipulator">
-                <div class="figure-caption">Figure: 3 DOF Robotic Arm with Soft Robotics Manipulator</div>
-                <p class="figure-description">Custom-designed robotic arm featuring three flexible soft fingers for adaptive grasping.</p>
+                <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/arm.gif" alt="Official Unitree Z1 Arm Wine Pouring GIF">
+                <div class="figure-caption">Figure 2: Official demonstration GIF from Unitree's website</div>
+                <p class="figure-description">This GIF shows the planned replication of the wine pouring task as presented by Unitree on their official website.</p>
             </div>
         </div>
-        <div class="learning-progression">
-            <h2>Design & Implementation Highlights</h2>
-            <div class="methodology-item">
-                <h3><i class="fas fa-drafting-compass"></i> Mechanical Design</h3>
-                <ul>
-                    <li>Lightweight and modular arm structure for easy assembly and maintenance.</li>
-                    <li>Soft manipulator fingers fabricated using silicone and pneumatic actuation for safe interaction.</li>
-                </ul>
+        <div class="figure-container dynamic-figure">
+            <div class="figure">
+            <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/location-a.gif" alt="Grasping bottle at Location A — overhead camera view">
+            <div class="figure-caption">Grasping — Bottle at Location A (Overhead Camera)</div>
+            <p class="figure-description">Demonstrates the robot grasping a bottle placed at Location A. Overhead camera view used for visual servoing and localizing the bottle relative to the gripper during approach and lift.</p>
             </div>
-            <div class="methodology-item">
-                <h3><i class="fas fa-microchip"></i> Electronics & Control</h3>
-                <ul>
-                    <li>DC motors and position sensors for accurate joint movement.</li>
-                    <li>Custom PCB for motor driver and sensor integration.</li>
-                    <li>Embedded firmware for coordinated multi-joint control and soft finger actuation.</li>
-                </ul>
+            <div class="figure">
+            <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/angled-compressed.gif" alt="Grasping bottle at an Angle">
+            <div class="figure-caption">Grasping — Bottle at an Angle (Overhead Camera)</div>
+            <p class="figure-description">Shows the robot grasping a bottle presented at an angled orientation. Highlights the gripper approach and wrist accommodation for secure, adaptive grasping of a tilted object prior to lifting and pouring.</p>
             </div>
-            <div class="methodology-item">
-                <h3><i class="fas fa-hand-holding"></i> Soft Robotics Manipulator</h3>
-                <ul>
-                    <li>Three soft fingers capable of conforming to various object shapes.</li>
-                    <li>Pneumatic control for variable grip strength and gentle handling.</li>
-                </ul>
+            <div class="figure">
+            <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/location-b.gif" alt="Grasping bottle at Location B — hand-eye calibration view">
+            <div class="figure-caption">Grasping — Bottle at Location B (Hand–Eye Calibration)</div>
+            <p class="figure-description">Shows the robot performing a grasp on the bottle positioned at Location B. Calibration and alignment between camera and wrist frame ensure a robust closed-loop grasping behavior.</p>
+            </div>
+            <div class="figure">
+            <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/location-c.webp" alt="Grasping bottle at Location C — grasp pose estimation overlay">
+            <div class="figure-caption">Grasping — Bottle at Location C (Grasp Pose Estimation)</div>
+            <p class="figure-description">Example of the robot selecting and executing a grasp for a bottle at Location C. Predicted grasp proposals are overlaid to illustrate candidate poses and the chosen secure, ergonomic grasp used before pouring.</p>
+            </div>
+        </div>
+        <div class="figure-container dynamic-figure">
+            <div class="figure">
+                <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/final.gif" alt="Unitree Z1 Robotic Arm Pouring Wine">
+                <div class="figure-caption">Figure 1: Unitree Z1 robotic arm pouring wine into a glass using impedance control</div>
+                <p class="figure-description">The robot demonstrates compliant pouring, adapting to contact forces and glass position.</p>
+                <div class="video-button-container">
+                    <a href="https://drive.google.com/file/d/1EbkpfkKAUPNsAKmcUUpvfPsCIO4zTt1F/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button video-button">
+                        <i class="fas fa-play"></i> Watch Real Robot Implementation
+                    </a>
+                </div>
             </div>
         </div>
         <div class="products-created">
-            <h2>Key Outcomes</h2>
+            <h2>Key Innovations</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-robot"></i> Functional Prototype</h3>
-                    <p>Successfully built and tested a working 3 DOF robotic arm with soft manipulator.</p>
+                    <h3><i class="fas fa-wine-glass"></i> Full Pose Impedance Control</h3>
+                    <p>Enables compliant, safe, and precise manipulation of the bottle for pouring tasks.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-hand-paper"></i> Adaptive Grasping</h3>
-                    <p>Soft fingers demonstrated safe and adaptive grasping of delicate and irregular objects.</p>
+                    <h3><i class="fas fa-robot"></i> 6 DOF Robotic Arm</h3>
+                    <p>Utilizes the Unitree Z1's full range of motion for complex manipulation.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-cogs"></i> Integrated System</h3>
-                    <p>Seamless integration of mechanical, electronic, and software components for reliable operation.</p>
+                    <h3><i class="fas fa-bullseye"></i> Adaptive Task Execution</h3>
+                    <p>Real-time feedback and control for robust pouring, even with environmental uncertainties.</p>
                 </div>
             </div>
         </div>
         <div class="impact">
-            <h2>Impact & Future Work</h2>
+            <h2>Impact and Future Directions</h2>
+            <p>This project demonstrates advanced compliant control and manipulation capabilities with the Unitree Z1 robotic arm, paving the way for safe human-robot interaction and automation in service robotics:</p>
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Research Platform</h3>
-                    <p>Provides a flexible platform for future research in soft robotics and AI-enabled manipulation.</p>
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Educational Value</h3>
+                    <p>Illustrates modern impedance control and its application in real-world tasks.</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-grip-horizontal"></i>
-                    <h3>Safe Human-Robot Interaction</h3>
-                    <p>Soft manipulator design enables safe interaction with humans and fragile objects.</p>
+                    <i class="fas fa-cogs"></i>
+                    <h3>Technical Innovation</h3>
+                    <p>Demonstrates full pose impedance control for safe, adaptive manipulation.</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-tools"></i>
-                    <h3>Expandability</h3>
-                    <p>Modular design allows for easy upgrades and experimentation with new control algorithms.</p>
+                    <i class="fas fa-industry"></i>
+                    <h3>Service Robotics Applications</h3>
+                    <p>Potential for automation in hospitality, healthcare, and domestic environments.</p>
                 </div>
             </div>
-            <h3 style="margin-top: 2rem;">Next Steps</h3>
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
             <ul>
-                <li>Implement advanced AI-based control for autonomous grasping and manipulation.</li>
-                <li>Integrate vision sensors for object detection and pose estimation.</li>
-                <li>Test and validate in real-world scenarios and collaborative tasks.</li>
+                <li>Integration of visual feedback for glass localization</li>
+                <li>Extension to multi-object manipulation and serving tasks</li>
+                <li>Deployment on real Unitree Z1 hardware for field testing</li>
+                <li>Exploration of learning-based approaches for improved adaptability</li>
+                <li>Collaborative tasks with multiple robots</li>
             </ul>
         </div>
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>
-                The 3 DOF robotic arm with soft robotics manipulator developed in the FAMS Lab at NYU Tandon demonstrates the power of interdisciplinary collaboration in robotics. By combining mechanical design, electronics, and embedded programming, our team created a functional and adaptable robotic platform. The project lays the groundwork for future research in safe, flexible, and intelligent robotic manipulation.
-            </p>
+            <p>The Unitree Z1 robotic arm wine pouring project demonstrates the effectiveness of full pose impedance control for compliant, precise, and safe manipulation. The robot successfully adapts to contact forces and environmental uncertainties, making it suitable for service robotics and automation tasks requiring delicate handling.</p>
         </div>
         <div class="home-button" style="text-align: center; margin-top: 3rem;">
             <a href="../index.html#projects" class="button">

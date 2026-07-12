@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const iconData = [];
     icons.forEach(function (iconName) {
         const icon = document.createElement('img');
-        icon.src = '../icons/' + iconName;
+        icon.src = '../assets/icons/' + iconName;
         icon.className = 'floating-icon';
         icon.alt = iconName.replace('-svgrepo-com.svg', '').replace(/-/g, ' ');
 

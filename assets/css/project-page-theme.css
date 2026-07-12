@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
 body {
     margin: 0;
     overflow-x: hidden;
+    font-family: 'Source Sans 3', sans-serif;
     background:
         radial-gradient(circle at top left, rgba(184, 193, 236, 0.18), transparent 28%),
         radial-gradient(circle at bottom right, rgba(94, 129, 244, 0.16), transparent 24%),
@@ -40,6 +43,14 @@ body {
 .project-content::before {
     border-color: rgba(184, 193, 236, 0.2);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.project-content,
+.project-content p,
+.project-content li,
+.project-content a,
+.project-content button {
+    font-family: 'Source Sans 3', sans-serif;
 }
 
 .project-content h1,
@@ -86,11 +97,20 @@ body {
     transform: translateY(-5px);
 }
 
-.project-content p,
-.project-content li,
-.project-content a,
-.project-content button {
-    font-family: 'Source Sans 3', sans-serif;
+.project-content img {
+    object-fit: contain !important;
+    object-position: center !important;
+}
+
+/* Keep the project-navigation action centered on every project page. */
+.project-content .home-button {
+    text-align: center;
+}
+
+.project-content > a.button[href$="#projects"] {
+    display: flex;
+    width: fit-content;
+    margin: 3rem auto 0 !important;
 }
 
 @media (max-width: 768px) {

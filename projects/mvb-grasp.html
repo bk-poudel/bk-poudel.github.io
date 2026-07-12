@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Embedded Sentry System - Bibek Poudel</title>
+    <title>MVB-Grasp - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
     <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
     <style>
-        /* Consistent color scheme with dark background and light content */
         :root {
             --primary: #4b6cc1;
             --secondary: #666666;
@@ -77,9 +76,6 @@
             color: white;
             text-decoration: none;
         }
-        .close-button:active {
-            transform: scale(0.95);
-        }
         h1 {
             text-align: center;
             color: var(--primary);
@@ -106,12 +102,17 @@
             border-left: 4px solid var(--accent);
             padding-left: 1rem;
         }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
         p {
             text-align: justify;
             margin-bottom: 1.5rem;
             color: var(--text);
         }
-        ul {
+        ul, ol {
             padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -138,10 +139,13 @@
             transition: all 0.3s ease;
             font-weight: 500;
             border: none;
+            margin: 0.4rem;
         }
         .button:hover {
             background: var(--accent);
             transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
         }
         .button i {
             margin-right: 0.5rem;
@@ -160,6 +164,15 @@
             gap: 1.5rem;
             margin: 2rem 0;
         }
+        .dynamic-figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: clamp(1.5rem, 4vw, 3rem) 0;
+            padding: 0 1rem;
+        }
         .figure {
             flex: 1;
             min-width: 250px;
@@ -171,48 +184,60 @@
             transition: transform 0.3s ease;
             border: 1px solid #e0e0e0;
         }
+        .dynamic-figure .figure {
+            flex: 0 1 auto;
+            max-width: min(90vw, 700px);
+            min-width: min(280px, 90vw);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: clamp(1rem, 2.5vw, 2rem);
+        }
         .figure:hover {
             transform: translateY(-5px);
         }
         .figure img {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 0.8rem;
+        }
+        .dynamic-figure .figure img {
+            width: 100%;
+            height: auto;
+            max-height: min(540px, 68vh);
+            object-fit: contain;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .figure-caption {
             font-style: italic;
             color: var(--secondary);
             font-size: 0.9rem;
         }
-        .product-item {
-            margin-bottom: 2.5rem;
+        .figure-description {
+            margin-top: 0.5rem;
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+            line-height: 1.5;
+            color: var(--text);
+            text-align: center;
+            max-width: 100%;
+        }
+        .methodology-item {
             background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
-        }
-        .product-header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            font-weight: 600;
-        }
-        .product-content {
             padding: 1.5rem;
-        }
-        .product-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
         }
         .impact-points {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
@@ -229,33 +254,12 @@
             color: var(--primary);
             margin-bottom: 1rem;
         }
-        .methodology-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--accent);
-        }
-        .github-button {
-            background: #333;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            margin-left: 1rem;
-        }
-        .github-button:hover {
-            background: #555;
-            transform: translateY(-2px);
+        .impact-point h3 {
+            margin-top: 0;
         }
         .feature-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
         .feature-item {
@@ -264,6 +268,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--primary);
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 3rem;
         }
         @media (max-width: 768px) {
             .project-content {
@@ -276,125 +284,135 @@
             .figure-container {
                 flex-direction: column;
             }
+            .dynamic-figure {
+                gap: 1rem;
+                margin: 1.5rem 0;
+                padding: 0 0.5rem;
+            }
+            .dynamic-figure .figure {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            .dynamic-figure .figure img {
+                max-height: 360px;
+            }
         }
     </style>
     <link rel="stylesheet" href="../assets/css/project-page-theme.css" />
 </head>
 <body class="is-preload">
     <div class="project-content">
-                <a href="../index.html#projects" class="close-button" title="Back to Projects">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
-        <h1>Embedded Sentry System</h1>
+        <h1>MVB-Grasp</h1>
         <div class="abstract">
             <h2>Abstract</h2>
-            <p>This project implements an innovative "Embedded Sentry" system using gesture recognition for secure access control. The system utilizes a single accelerometer/gyroscope to record and authenticate unique hand movement sequences, providing a novel biometric approach to protecting assets and sensitive data.</p>
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://github.com/bk-poudel/Real_Time_Embedded_Systems_Project" class="github-button">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
-                </a>
-            </div>
+            <p><strong>Accepted at IJCNN 2026:</strong> MVB-Grasp is a minimum-volume-box filtering framework for diffusion-based 6-DoF grasp generation in frontal manipulation. The project adapts NVIDIA's GraspGen to the Unitree Z1 arm by adding an embodiment-aware geometric prior that filters and re-scores grasp candidates before execution.</p>
+            <p>The pipeline uses RGB-D perception, YOLOv8 object detection, point-cloud segmentation, GraspGen candidate generation, PCA-based oriented bounding box fitting, MVBB-style face-normal filtering, inverse kinematics, and MuJoCo-based execution evaluation. This training-free adapter improves grasp selection for low-cost, workspace-constrained robot arms without retraining the generator.</p>
         </div>
+
         <div class="technologies-used">
-            <h2>Technical Implementation</h2>
+            <h2>Methodology</h2>
+            <p>The system focuses on making diffusion-generated grasps executable for a frontal camera and constrained robot workspace:</p>
             <div class="methodology-item">
-                <h3><i class="fas fa-microchip"></i> Hardware Components</h3>
+                <h3><i class="fas fa-camera"></i> Perception and Candidate Generation</h3>
                 <ul>
-                    <li>STM32F49I Discovery Board with integrated motion sensors</li>
-                    <li>Custom PCB for signal processing and power management</li>
-                    <li>LED indicators for system feedback</li>
-                    <li>Tactile push buttons for user interaction</li>
+                    <li>Captured RGB-D observations using an Intel RealSense D405 camera.</li>
+                    <li>Detected target objects with YOLOv8 and segmented object point clouds from aligned depth data.</li>
+                    <li>Generated diverse 6-DoF grasp candidates using GraspGen's diffusion-based grasp synthesis pipeline.</li>
                 </ul>
             </div>
             <div class="methodology-item">
-                <h3><i class="fas fa-code"></i> Software Architecture</h3>
+                <h3><i class="fas fa-cube"></i> Minimum-Volume-Box Filtering</h3>
                 <ul>
-                    <li>PlatformIO development environment</li>
-                    <li>C++ firmware with real-time processing capabilities</li>
-                    <li>Custom gesture recognition algorithms</li>
-                    <li>Secure storage of gesture templates</li>
+                    <li>Estimated a PCA-based oriented bounding box as a practical MVBB approximation over the object point cloud.</li>
+                    <li>Used face normals and object extents to reject grasps approaching through inaccessible faces or the support surface.</li>
+                    <li>Combined learned GraspGen discriminator scores with geometric face-alignment scores to select execution-aware grasps.</li>
+                </ul>
+            </div>
+            <div class="methodology-item">
+                <h3><i class="fas fa-robot"></i> Z1 Execution Pipeline</h3>
+                <ul>
+                    <li>Transformed selected grasps into the Unitree Z1 base frame through calibrated camera-to-robot transforms.</li>
+                    <li>Solved inverse kinematics and planned feasible trajectories for frontal grasp execution.</li>
+                    <li>Evaluated the method in MuJoCo across object type, distance, lateral position, and pitch orientation.</li>
                 </ul>
             </div>
         </div>
+
+        <div class="figure-container dynamic-figure">
+            <div class="figure">
+                <img src="../assets/images/projects/mvb-grasp/overview.png" alt="MVB-Grasp display figure">
+                <div class="figure-caption">Figure 1: MVB-Grasp motivation and selected grasp comparison</div>
+                <p class="figure-description">The method selects frontal, execution-friendly grasps while vanilla GraspGen may rank candidates that are infeasible for the Unitree Z1 workspace.</p>
+            </div>
+        </div>
+
         <div class="products-created">
-            <h2>Key Features</h2>
+            <h2>Key Innovations</h2>
             <div class="feature-list">
                 <div class="feature-item">
-                    <h3><i class="fas fa-fingerprint"></i> Gesture Authentication</h3>
-                    <p>Unique motion-based authentication system that records and verifies complex hand gestures with high accuracy</p>
+                    <h3><i class="fas fa-filter"></i> Geometry-Aware Filtering</h3>
+                    <p>Introduced an O(N) MVBB/OBB filter that removes grasps misaligned with accessible object faces before execution.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-lock"></i> Secure Storage</h3>
-                    <p>Encrypted storage of gesture templates to prevent unauthorized access or duplication</p>
+                    <h3><i class="fas fa-sliders"></i> Training-Free Re-Scoring</h3>
+                    <p>Adapted an off-the-shelf diffusion grasp generator by blending learned grasp quality with geometric alignment instead of retraining the model.</p>
                 </div>
                 <div class="feature-item">
-                    <h3><i class="fas fa-lightbulb"></i> Visual Feedback</h3>
-                    <p>Comprehensive LED status indicators for system state and authentication results</p>
+                    <h3><i class="fas fa-chart-line"></i> Structured Evaluation</h3>
+                    <p>Benchmarked grasp success across 81 MuJoCo scenarios covering cylinders, asymmetric boxes, water bottles, distances, and pitch orientations.</p>
                 </div>
             </div>
         </div>
-        <div class="figure-container">
+
+        <div class="figure-container dynamic-figure">
             <div class="figure">
-                <img src="../assets/images/projects/real-time-embedded-systems.png" alt="Embedded sentry hardware setup">
-                <div class="figure-caption">Figure 1: System Hardware Configuration</div>
-                <p>Compact embedded system with integrated motion sensing and user interface components</p>
-            </div>
-            <div class="figure">
-                <img src="../assets/images/projects/real-time-embedded-systems.png" alt="Embedded sentry gesture recognition system">
-                <div class="figure-caption">Figure 2: Gesture Recognition Workflow</div>
-                <p>From motion capture to authentication decision - the complete processing pipeline</p>
-            </div>
-            <div class="figure">
-                <img src="../assets/images/projects/real-time-embedded-systems.png" alt="Embedded sentry system overview">
-                <div class="figure-caption">Figure 3: System State Management</div>
-                <p>Comprehensive state machine handling all operational modes and transitions</p>
+                <img src="../assets/images/projects/mvb-grasp/paper-results.png" alt="MVB-Grasp experimental results">
+                <div class="figure-caption">Figure 2: Results and real-world execution examples from the paper</div>
+                <p class="figure-description">The evaluation compares vanilla GraspGen against MVB-Grasp and reports cross-scenario gains in simulation with real-world qualitative validation.</p>
             </div>
         </div>
+
         <div class="impact">
-            <h2>Performance and Impact</h2>
+            <h2>Results and Impact</h2>
             <div class="impact-points">
                 <div class="impact-point">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Security</h3>
-                    <p>Biometric gesture recognition provides strong authentication resistant to common attacks</p>
+                    <i class="fas fa-percent"></i>
+                    <h3>59.3% Success</h3>
+                    <p>MVB-Grasp achieved 59.3% success across 81 MuJoCo episodes, compared with 24.7% for vanilla GraspGen.</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Performance</h3>
-                    <p>Real-time processing with response times under 500ms for typical gestures</p>
+                    <i class="fas fa-arrow-trend-up"></i>
+                    <h3>2.4x Improvement</h3>
+                    <p>The geometry-aware filtering and re-scoring strategy more than doubled grasp success on the Unitree Z1 setup.</p>
                 </div>
                 <div class="impact-point">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Flexibility</h3>
-                    <p>Adaptable to various security scenarios through customizable gesture complexity</p>
+                    <i class="fas fa-clock"></i>
+                    <h3>6.78 ms Overhead</h3>
+                    <p>The MVBB selection stage added only 6.78 ms, keeping the adapter practical for real-time deployment.</p>
                 </div>
             </div>
-            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
-            <ul>
-                <li>Integration with wireless communication modules for remote access control</li>
-                <li>Machine learning-based gesture recognition for improved accuracy</li>
-                <li>Multi-factor authentication combining gestures with other biometrics</li>
-                <li>Low-power modes for battery-operated deployments</li>
-            </ul>
         </div>
+
         <div class="conclusion">
             <h2>Conclusion</h2>
-            <p>The Embedded Sentry System demonstrates the viability of motion-based authentication in embedded environments. By combining robust hardware with sophisticated gesture recognition algorithms, this project provides a foundation for innovative security solutions that are both secure and intuitive to use. The system's performance and flexibility make it suitable for applications ranging from personal device security to industrial access control, with significant potential for future expansion and refinement.</p>
+            <p>MVB-Grasp shows that thin, embodiment-aware geometric adapters can substantially improve the reliability of powerful but generic 6-DoF grasp generators. By filtering diffusion-generated grasps through a minimum-volume-box prior, the project bridges perception, geometry, and execution for constrained frontal manipulation on the Unitree Z1 arm.</p>
         </div>
-        <div class="home-button" style="text-align: center; margin-top: 3rem;">
+
+        <div class="home-button">
+            <a href="https://arxiv.org/abs/2605.09672" class="button" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-file-lines"></i>
+                Read on arXiv
+            </a>
             <a href="../index.html#projects" class="button">
                 <i class="fas fa-arrow-left"></i>
                 Back to Projects
             </a>
         </div>
     </div>
-    <!-- Scripts -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/browser.min.js"></script>
-    <script src="../assets/js/breakpoints.min.js"></script>
-    <script src="../assets/js/util.js"></script>
-    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/project-page-theme.js"></script>
 </body>
 </html>
