@@ -4,12 +4,17 @@
     <title>GraspBench - Bibek Poudel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
     <style>
         :root {
             --primary: #4b6cc1;
             --accent: #5e81f4;
+            --secondary: #666666;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
             --text: #333333;
             --bg-color: #222222;
             --content-bg: #f5f5f5;
@@ -33,6 +38,18 @@
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
             color: var(--text);
         }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
         .close-button {
             position: absolute;
             top: 1rem;
@@ -46,6 +63,21 @@
             background: var(--primary);
             color: #ffffff;
             text-decoration: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close-button:hover {
+            background: var(--accent);
+            color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .close-button:active {
+            transform: scale(0.95);
         }
         h1 {
             margin: 0 0 1.5rem;
@@ -53,33 +85,108 @@
             color: var(--primary);
             font-size: 2.2rem;
             text-align: center;
-            border-bottom: 3px solid var(--accent);
+            position: relative;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            transform: translateX(-50%);
         }
         h2 {
             margin-top: 2rem;
+            margin-bottom: 1rem;
             padding-left: 1rem;
             color: var(--primary);
+            font-size: 1.6rem;
             border-left: 4px solid var(--accent);
+        }
+        h3 {
+            margin-top: 1.5rem;
+            color: var(--primary);
+            font-size: 1.3rem;
         }
         p {
             color: var(--text);
             text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        ul, ol {
+            padding-left: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        ul {
+            list-style: disc outside;
         }
         li {
             margin-bottom: 0.5rem;
             color: var(--text);
+        }
+        .methodology-item ul {
+            display: grid;
+            gap: 0.75rem;
+            margin-left: 0;
+            padding-left: 0;
+            list-style: none;
+            text-align: left;
+        }
+        .methodology-item ul > li {
+            position: relative;
+            margin-bottom: 0;
+            padding: 0.85rem 1rem 0.85rem 2.75rem;
+            background: rgba(75, 108, 193, 0.07);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            text-align: left;
+        }
+        .methodology-item ul > li::before {
+            content: "\f00c";
+            position: absolute;
+            top: 0.95rem;
+            left: 0.9rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            font-family: "Font Awesome 6 Free";
+            font-size: 0.6rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .methodology-item ul > li::marker {
+            content: "";
+        }
+        .methodology-item ul > li strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        li::marker {
+            color: var(--accent);
         }
         .abstract, .methodology-item, .figure {
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             background: #ffffff;
             border-radius: 8px;
-            border-left: 4px solid var(--accent);
+            border: 1px solid #e0e0e0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .abstract {
             background: rgba(75, 108, 193, 0.1);
             border-left-color: var(--primary);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .methodology-item {
+            border-left: 4px solid var(--accent);
         }
         .figure-container {
             display: flex;
@@ -93,9 +200,50 @@
         }
         .figure img {
             width: 100%;
-            max-height: 320px;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
             border-radius: 4px;
+        }
+        .video-feature {
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .video-feature video {
+            display: block;
+            width: 100%;
+            border-radius: 6px;
+            background: #111111;
+        }
+        .collage-gallery {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .collage-gallery .figure {
+            margin: 0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+        }
+        .result-card {
+            padding: 1.25rem;
+            background: rgba(75, 108, 193, 0.08);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .result-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1.8rem;
+            line-height: 1.2;
         }
         .figure-caption {
             margin-top: 0.75rem;
@@ -112,47 +260,102 @@
             background: var(--primary);
             color: #ffffff;
             text-decoration: none;
+            font-weight: 500;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: var(--accent);
+            color: #ffffff;
+            transform: translateY(-2px);
         }
         .button i {
             margin-right: 0.5rem;
         }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
     <link rel="stylesheet" href="../assets/css/project-page-theme.css" />
 </head>
-<body>
+<body class="is-preload">
     <div class="project-content">
         <a href="../index.html#projects" class="close-button" title="Back to Projects">
             <i class="fas fa-times"></i>
         </a>
         <h1>GraspBench</h1>
         <div class="abstract">
-            <h2>Overview</h2>
-            <p>GraspBench is an analysis project comparing different grasping algorithms across different robotic arms. The benchmark studies how grasp generation methods behave when moved from algorithmic prediction to execution-aware evaluation on robot platforms.</p>
+            <h2>An all-in-one robot testing environment</h2>
+            <p>GraspBench is a simple, controlled MuJoCo environment for testing Vision-Language-Action (VLA), grasping, and motion-planning algorithms. It brings robots, objects, workspace layouts, feasibility checks, and task execution into one place, making it easier to compare different approaches under the same conditions.</p>
+            <p>In this project, we used GraspBench to test six grasp-generation algorithms. Each method suggests how a robot should pick up an object, and GraspBench checks whether the selected grasp can actually be reached and executed. The simulated robot approaches the object, closes its gripper, and attempts to lift it. A trial succeeds only when the recorded lift succeeds.</p>
         </div>
+
+        <div class="video-feature">
+            <h2>GraspBench in action</h2>
+            <video controls autoplay loop muted playsinline preload="metadata" aria-label="GraspBench evaluation video showing robots attempting different grasps">
+                <source src="../assets/images/projects/Graspbench/GraspBench_Video_Collage.webm" type="video/webm">
+                Your browser does not support WebM video.
+            </video>
+            <div class="figure-caption">A side-by-side look at simulated robot arms attempting the same approach–close–lift test.</div>
+        </div>
+
         <div class="methodology-item">
-            <h2>Benchmark Scope</h2>
+            <h2>What we test</h2>
             <ul>
-                <li>Compares grasp generation algorithms including GGCNN, GR-ConvNet, ContactGraspNet, AnyGrasp, and GraspGen.</li>
-                <li>Evaluates cross-robot performance across platforms such as Unitree Z1 Pro, FR3, KUKA iiwa, Aubo-i5, and AgileX Piper.</li>
-                <li>Focuses on execution-aware metrics rather than prediction-only evaluation.</li>
-                <li>Analyzes robustness, transferability, and practical deployment behavior for real-world manipulation.</li>
+                <li><strong>Six grasp generators:</strong> AnyGrasp, Contact-GraspNet, GPG, EconomicGrasp, GraspGen, and HGGD. They use different strategies to choose where and how a gripper should hold an object.</li>
+                <li><strong>Four robot arms:</strong> AUBO i5, Franka, KUKA iiwa, and Piper have different reach, joint limits, wrist shapes, and gripper positions.</li>
+                <li><strong>Five object shapes:</strong> an airplane, glass, cube, cylinder, and bottle provide different flat, round, thin, and hollow surfaces.</li>
+                <li><strong>A structured test grid:</strong> each object is moved across table positions and tested at −45°, 0°, and 45° pitch angles.</li>
             </ul>
+            <p>Each method is evaluated on the same 540 situations, producing 3,240 method-scenario evaluations in total. If a method returns no result or finds no usable grasp, that trial counts as a failure rather than being quietly removed.</p>
         </div>
-        <div class="figure-container">
+
+        <div class="methodology-item">
+            <h2>What we found</h2>
+            <div class="results-grid">
+                <div class="result-card"><strong>73.1%</strong>GraspGen success</div>
+                <div class="result-card"><strong>63.5%</strong>EconomicGrasp success</div>
+                <div class="result-card"><strong>3,240</strong>total evaluations</div>
+            </div>
+            <p>GraspGen had the highest overall success rate, followed by EconomicGrasp. GPG produced thousands of possible grasps per situation but succeeded only 44.3% of the time. In other words, generating more choices does not automatically help a robot complete the task.</p>
+            <p>The results also changed with the robot and object. For example, a method could perform well with one arm or a box-like object and struggle with another arm or a thin, hollow shape. Grasping success therefore depends on the whole system—not only the grasp generator.</p>
+        </div>
+
+        <div class="collage-gallery">
             <div class="figure">
-                <img src="../assets/images/projects/z1-arm-wine-in-a-bottle/real-robot-compressed.gif" alt="Real robot grasping platform">
-                <div class="figure-caption">Physical robot execution used for grasping evaluation.</div>
+                <img src="../assets/images/projects/Graspbench/robot_collage.png" alt="The four simulated robot arms used in GraspBench: AUBO i5, Franka, KUKA iiwa, and Piper">
+                <div class="figure-caption"><strong>Robot arms:</strong> AUBO i5, Franka, KUKA iiwa, and Piper test whether a method works beyond a single robot design.</div>
             </div>
             <div class="figure">
-                <img src="../assets/images/projects/pick-and-place/manipulation-scene.jpg" alt="Robot manipulation scene">
-                <div class="figure-caption">Manipulation scene for execution-aware grasp analysis.</div>
+                <img src="../assets/images/projects/Graspbench/object_collage.png" alt="The five object shapes used in GraspBench: airplane, cube, cylinder, bottle, and glass">
+                <div class="figure-caption"><strong>Test objects:</strong> airplane, cube, cylinder, bottle, and glass geometries challenge the methods with very different surfaces.</div>
             </div>
+            <div class="figure">
+                <img src="../assets/images/projects/Graspbench/tilt_collage.png" alt="An airplane object shown level and at negative and positive 45 degree pitch angles">
+                <div class="figure-caption"><strong>Object orientation:</strong> every object is tested at −45°, 0°, and 45° pitch because its angle can make a grasp easier or harder.</div>
+            </div>
+        </div>
+
+        <div class="methodology-item">
+            <h2>What this study does not claim</h2>
+            <p>GraspBench deliberately uses one object at a time on a table in simulation. It is designed to diagnose grasping pipelines under repeatable conditions, not to replace tests in cluttered scenes or on physical robots. Repeated randomized trials and real-robot validation are natural next steps.</p>
         </div>
         <a href="../index.html#projects" class="button">
             <i class="fas fa-arrow-left"></i>
             Back to Projects
         </a>
     </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/project-page-theme.js"></script>
 </body>
 </html>
