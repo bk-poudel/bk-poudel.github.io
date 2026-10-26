@@ -642,7 +642,7 @@
             <nav>
                  <ul>
                      <li><a href="#resume">Resume</a></li>
-                     <li class="has-new-content" data-added-on="2026-07-12"><a href="#projects">Projects<span class="nav-unread-badge" aria-label="1 new project">1</span></a></li>
+                     <li class="has-new-content" data-added-on="2026-10-26"><a href="#projects">Projects<span class="nav-unread-badge" aria-label="1 new project">1</span></a></li>
                      <li class="has-new-content" data-added-on="2026-07-12"><a href="#publications">Publications<span class="nav-unread-badge" aria-label="1 new publication">1</span></a></li>
                      <li><a href="#writing">Writing</a></li>
                      <li><a href="#contact">Contact</a></li>
@@ -781,10 +781,21 @@
                     <button type="button" class="project-filter-button" data-filter="robotics" aria-pressed="false">Robotics</button>
                     <button type="button" class="project-filter-button" data-filter="embedded" aria-pressed="false">Embedded System</button>
                     <button type="button" class="project-filter-button" data-filter="mechanical" aria-pressed="false">Design</button>
-                    <span class="project-filter-count" aria-live="polite">22 projects</span>
+                    <span class="project-filter-count" aria-live="polite">23 projects</span>
                 </aside>
                 <div class="project-grid">
                     <!-- Project Items -->
+                    <div class="project-item">
+                        <h3>Task-Parameterized Gaussian Process Transport</h3>
+                        <a href="projects/tpgpt.html" class="project-image-link">
+                            <img src="assets/images/projects/Task_parameterization/demo.gif" alt="Task-Parameterized Gaussian Process Transport" class="project-image">
+                        </a>
+                        <p><em>Generalization of robotic dynamical systems across spatial configurations using Gaussian Process Transport.</em></p>
+                        <div class="button-container">
+                            <a href="projects/tpgpt.html" class="button small">Learn More</a>
+                            <a href="https://github.com/bk-poudel/TPTM" class="button small icon brands fa-github" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
                     <div class="project-item">
                         <h3>RL-Based Ball Throwing Robot</h3>
                         <a href="projects/throwing-a-ball.html" class="project-image-link">
@@ -1157,7 +1168,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const categoryMap = {
+                'Task-Parameterized Gaussian Process Transport': ['robotics'],
                 'GraspBench': ['robotics'],
+                'Music-Controlled Soft Robotic Tentacle': ['robotics'],
                 'MVB-Grasp': ['robotics'],
                 'Implementation of GraspGen': ['robotics'],
                 'RL-Based Ball Throwing Robot': ['robotics'],

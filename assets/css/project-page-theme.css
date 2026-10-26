@@ -68,6 +68,12 @@ body {
     color: #4b6cc1;
 }
 
+.project-content strong,
+.project-content b {
+    color: #4b6cc1;
+    font-weight: 700;
+}
+
 .project-content .abstract,
 .project-content .section-card,
 .project-content .figure,

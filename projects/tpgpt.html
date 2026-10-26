@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Task-Parameterized Gaussian Process Transport - Bibek Poudel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+    <style>
+        /* Consistent color scheme with dark background and light content */
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Source Sans 3', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .close-button:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        .close-button:active {
+            transform: scale(0.95);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        strong, b {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .github-button:hover {
+            background: #555;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .github-button i {
+            margin-right: 0.5rem;
+        }
+        .abstract {
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .figure {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        .figure img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        .figure-description {
+            margin-top: 0.5rem;
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+            line-height: 1.5;
+            color: var(--text);
+            text-align: center;
+            max-width: 100%;
+        }
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/project-page-theme.css" />
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+            <i class="fas fa-times"></i>
+        </a>
+        <h1>Task-Parameterized Gaussian Process Transport</h1>
+        
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>In robot Learning from Demonstration (LfD), acquiring dynamic manipulation policies that generalize to novel task environments—characterized by shifted target objects, moving containers, or changing reference frames—is a fundamental challenge. Traditional approaches such as Task-Parameterized Gaussian Mixture Models (TP-GMM) rely on rigid or affine coordinate frame transformations and lack principled probabilistic uncertainty estimates in unvisited regions.</p>
+            <p>This project introduces <strong>Task-Parameterized Gaussian Process Transport (TP-GPT)</strong>. By formulating the spatial transformation between demonstration and query environments as continuous transportation maps governed by <strong>Gaussian Process Regression (GPR)</strong>, the framework smoothly warps learned dynamical system vector fields, attractor equilibria, and velocities across arbitrary workspace configurations. The system also quantifies spatial uncertainty, enabling the robot to modulate its mechanical compliance or initiate cautious execution in out-of-distribution regions. The framework is validated across both <strong>physical Franka Emika / FR3 hardware</strong> and <strong>high-fidelity MuJoCo physics simulation</strong>.</p>
+            <div style="text-align: center; margin-top: 1.25rem;">
+                <a href="https://github.com/bk-poudel/TPTM" class="github-button" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="technologies-used">
+            <h2>Methodology</h2>
+            <p>The system integrates keypoint-based task parameterization, non-parametric spatial transport maps, and stability-preserving dynamical systems:</p>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-crosshairs"></i> Task Parameterization & Keypoint Formulation</h3>
+                <ul>
+                    <li>Extracted 3D workspace keypoints representing landmark objects, target containers, and the robot base.</li>
+                    <li>Captured nominal kinesthetic demonstrations anchored to tracked visual fiducials (ArUco / AprilTags).</li>
+                    <li>Formulated task parameter variations as continuous spatial displacements across keypoint coordinates.</li>
+                    <li>Integrated real-time Cartesian pose estimation at 30 Hz for dynamic tracking.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-item">
+                <h3><i class="fas fa-wave-square"></i> Gaussian Process Transportation Maps</h3>
+                <ul>
+                    <li>Modeled spatial transformation fields via multi-output Gaussian Process Regression (GPR).</li>
+                    <li>Employed stationary covariance kernels (Matérn 5/2) to capture smooth non-linear deformations.</li>
+                    <li>Conditioned the GP displacement field on observed keypoint displacements between demonstration and query states.</li>
+                    <li>Derived analytical closed-form posterior mean and predictive covariance in real time.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-item">
+                <h3><i class="fas fa-compass"></i> Preserving Dynamical System Stability</h3>
+                <ul>
+                    <li>Encoded nominal manipulation trajectories as autonomous dynamical systems with guaranteed goal convergence.</li>
+                    <li>Transported velocity vector fields via forward kinematic Jacobian mappings to preserve phase-portrait topology.</li>
+                    <li>Ensured smooth attractor convergence without generating discontinuities or artificial limit cycles.</li>
+                    <li>Retained boundary condition compliance and obstacle clearance across novel spatial layouts.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-item">
+                <h3><i class="fas fa-shield-halved"></i> Uncertainty-Aware Compliant Control</h3>
+                <ul>
+                    <li>Computed Bayesian predictive variance across the manipulation workspace.</li>
+                    <li>Modulated Cartesian stiffness parameters in joint-torque impedance controllers based on local variance.</li>
+                    <li>Enabled high-stiffness precision manipulation near known targets and compliant interaction in unfamiliar regions.</li>
+                    <li>Integrated safety thresholding to trigger adaptive replanning or velocity throttling when uncertainty is high.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Real-World Robotic Deployment: Franka Emika Manipulator</h2>
+        <p>The proposed framework was deployed and validated on a 7-DoF physical Franka robotic arm. Below, the kinesthetic demonstration phase is compared directly with the autonomous generalization execution when the target object is relocated across the table:</p>
+        
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../assets/images/projects/Task_parameterization/demo.gif" alt="Real robot kinesthetic demonstration on Franka arm">
+                <div class="figure-caption">Figure 1: Interactive Kinesthetic Demonstration</div>
+                <p class="figure-description">The operator guides the Franka arm end-effector through the nominal manipulation task, capturing 7-DoF joint kinematics and landmark keypoints anchored to the marked target object.</p>
+            </div>
+            <div class="figure">
+                <img src="../assets/images/projects/Task_parameterization/generalization.gif" alt="Real robot autonomous generalization via Gaussian Process Transport">
+                <div class="figure-caption">Figure 2: Autonomous Policy Transportation</div>
+                <p class="figure-description">The object is moved to an unvisited location across the workspace table. Gaussian Process Transport computes the continuous spatial mapping, accurately transporting the dynamical policy to execute the manipulation without manual retuning.</p>
+            </div>
+        </div>
+
+        <h2>Physics Simulation Benchmarking: MuJoCo Environment</h2>
+        <p>To evaluate generalization performance under multi-body dynamics, contact interactions, and varying boundary conditions, the architecture was benchmarked in a custom MuJoCo simulation environment (<code>fr3_on_table</code>). The simulated Franka Research 3 (FR3) robot executes a precision pick-and-place task:</p>
+
+        <div class="figure-container">
+            <div class="figure">
+                <img src="../assets/images/projects/Task_parameterization/simulation_demo.gif" alt="MuJoCo simulation baseline demonstration of FR3 robot">
+                <div class="figure-caption">Figure 3: Nominal Simulation Baseline</div>
+                <p class="figure-description">The baseline pick-and-place task executed in MuJoCo, where the Franka Research 3 arm approaches the blue cylinder, grasps it cleanly, and transfers it into the red container at default coordinates.</p>
+            </div>
+            <div class="figure">
+                <img src="../assets/images/projects/Task_parameterization/simulation_generalization.gif" alt="MuJoCo simulation generalization when container and object are moved">
+                <div class="figure-caption">Figure 4: Multi-Frame Spatial Generalization</div>
+                <p class="figure-description">Simultaneous shift of target cylinder and container positions. The Gaussian Process Transport model computes the multi-frame transportation field, enabling the FR3 to execute a collision-free pick-and-place sequence with zero retraining.</p>
+            </div>
+        </div>
+
+        <div class="products-created">
+            <h2>Key Innovations</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-route"></i> Non-Linear Spatial Warping</h3>
+                    <p>Replaces rigid affine coordinate frame approximations with continuous diffeomorphic deformation fields governed by Gaussian Processes.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-chart-area"></i> Calibrated Uncertainty Estimates</h3>
+                    <p>Leverages Bayesian posterior covariance to evaluate model confidence across the workspace, enabling adaptive impedance modulation.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-bolt"></i> One-Shot Skill Adaptation</h3>
+                    <p>Generalizes dynamic trajectories to new task configurations instantly from single demonstrations without retraining neural networks.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-bullseye"></i> Attractor Flow Preservation</h3>
+                    <p>Diffeomorphic velocity mapping via kinematic Jacobians ensures preservation of dynamical stability and asymptotic goal convergence.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact">
+            <h2>Impact and Future Directions</h2>
+            <p>This framework demonstrates how non-parametric probabilistic transportation bridges the gap between demonstration efficiency and generalization in robotics:</p>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-robot"></i>
+                    <h3>Unified Sim-to-Real</h3>
+                    <p>Seamless policy portability between MuJoCo dynamic simulation and physical Franka 7-DoF hardware.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Generalizable Manipulation</h3>
+                    <p>Enables robots to operate in unstructured environments with dynamic multi-object displacements.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe Human-Robot Collaboration</h3>
+                    <p>Uncertainty-modulated Cartesian stiffness ensures compliant interaction in unmodeled workspace zones.</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
+            <ul>
+                <li>Integration of active collision avoidance fields into the transported dynamical system</li>
+                <li>Scaling to multi-arm bimanual coordination tasks with coupled reference frames</li>
+                <li>Online incremental Gaussian Process updating for adaptive real-time trajectory correction</li>
+                <li>Vision-language integration to automatically assign semantic keypoint associations</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>Task-Parameterized Gaussian Process Transport (TP-GPT) establishes an effective and mathematically principled foundation for robot skill generalization. By moving beyond conventional rigid-frame assumptions, the framework achieves smooth, non-linear deformation of dynamical vector fields while maintaining stability guarantees and quantifying spatial uncertainty. Validated across physical Franka manipulators and MuJoCo simulation environments, this methodology demonstrates strong sample efficiency and reliability for dynamic manipulation in real-world scenarios.</p>
+        </div>
+
+        <div class="home-button">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/project-page-theme.js"></script>
+</body>
+</html>
