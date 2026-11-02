@@ -642,7 +642,7 @@
             <nav>
                  <ul>
                      <li><a href="#resume">Resume</a></li>
-                     <li class="has-new-content" data-added-on="2026-10-26"><a href="#projects">Projects<span class="nav-unread-badge" aria-label="1 new project">1</span></a></li>
+                     <li class="has-new-content" data-added-on="2026-11-02"><a href="#projects">Projects<span class="nav-unread-badge" aria-label="1 new project">1</span></a></li>
                      <li class="has-new-content" data-added-on="2026-07-12"><a href="#publications">Publications<span class="nav-unread-badge" aria-label="1 new publication">1</span></a></li>
                      <li><a href="#writing">Writing</a></li>
                      <li><a href="#contact">Contact</a></li>
@@ -781,10 +781,22 @@
                     <button type="button" class="project-filter-button" data-filter="robotics" aria-pressed="false">Robotics</button>
                     <button type="button" class="project-filter-button" data-filter="embedded" aria-pressed="false">Embedded System</button>
                     <button type="button" class="project-filter-button" data-filter="mechanical" aria-pressed="false">Design</button>
-                    <span class="project-filter-count" aria-live="polite">23 projects</span>
+                    <span class="project-filter-count" aria-live="polite">24 projects</span>
                 </aside>
                 <div class="project-grid">
                     <!-- Project Items -->
+                    <div class="project-item">
+                        <h3>Fine-Tuning Pi0.5 VLA model on AgileX Nero</h3>
+                        <a href="projects/pi05-agilex-nero.html" class="project-image-link">
+                            <video class="project-image" autoplay loop muted playsinline preload="metadata" poster="assets/images/projects/Pi05/poster.png" aria-label="Fine-Tuning Pi0.5 on AgileX Nero preview">
+                                <source src="assets/images/projects/Pi05/test3.webm" type="video/webm">
+                            </video>
+                        </a>
+                        <p><em>Fine-tuning Physical Intelligence's &pi;<sub>0.5</sub> VLA foundation model for autonomous pick-and-place manipulation on AgileX Nero.</em></p>
+                        <div class="button-container">
+                            <a href="projects/pi05-agilex-nero.html" class="button small">Learn More</a>
+                        </div>
+                    </div>
                     <div class="project-item">
                         <h3>Task-Parameterized Gaussian Process Transport</h3>
                         <a href="projects/tpgpt.html" class="project-image-link">
@@ -1168,6 +1180,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const categoryMap = {
+                'Fine-Tuning Pi0.5 on AgileX Nero': ['robotics'],
                 'Task-Parameterized Gaussian Process Transport': ['robotics'],
                 'GraspBench': ['robotics'],
                 'Music-Controlled Soft Robotic Tentacle': ['robotics'],

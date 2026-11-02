@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Fine-Tuning Pi0.5 on AgileX Nero - Bibek Poudel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+    <style>
+        /* Consistent color scheme with dark background and light content */
+        :root {
+            --primary: #4b6cc1;
+            --secondary: #666666;
+            --accent: #5e81f4;
+            --light: #f8f8f8;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --frame-color: #dddddd;
+            --bg-color: #222222;
+            --content-bg: #f5f5f5;
+        }
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Source Sans 3', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .project-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            border: 2px solid var(--frame-color);
+            position: relative;
+            color: var(--text);
+        }
+        .project-content::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid var(--frame-color);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .close-button:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        .close-button:active {
+            transform: scale(0.95);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        strong, b {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        .button:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .button i {
+            margin-right: 0.5rem;
+        }
+        .abstract {
+            background-color: rgba(75, 108, 193, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        .figure-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .figure {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .figure:hover {
+            transform: translateY(-5px);
+        }
+        .figure video, .figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            display: block;
+            background: #111111;
+        }
+        .figure-caption {
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        .figure-description {
+            margin-top: 0.5rem;
+            font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+            line-height: 1.5;
+            color: var(--text);
+            text-align: center;
+            max-width: 100%;
+        }
+        .video-feature {
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .video-feature video {
+            display: block;
+            width: 100%;
+            border-radius: 6px;
+            background: #111111;
+        }
+        .methodology-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .impact-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .impact-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .impact-point i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .project-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .figure-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/project-page-theme.css" />
+</head>
+<body class="is-preload">
+    <div class="project-content">
+        <a href="../index.html#projects" class="close-button" title="Back to Projects">
+            <i class="fas fa-times"></i>
+        </a>
+        <h1>Fine-Tuning Pi0.5 on AgileX Nero</h1>
+        
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>Vision-Language-Action (VLA) foundation models represent a transformative shift in robotic learning, enabling robots to interpret visual scenes and natural language instructions to generate continuous motor actions. However, deploying pre-trained foundation models onto specialized physical hardware often requires efficient domain adaptation to address specific kinematic configurations, gripper geometries, and environmental dynamics.</p>
+            <p>This project implements the fine-tuning of Physical Intelligence's <strong>&pi;<sub>0.5</sub> (Pi0.5)</strong> foundation model for autonomous robotic pick-and-place manipulation on the <strong>AgileX Nero</strong> manipulator arm. Utilizing demonstration episodes collected across varied tabletop positions, the pre-trained flow-based VLA policy was adapted using the <strong>OpenPI</strong> framework to map visual observations and task instructions into continuous joint and gripper control. Hardware evaluations demonstrate robust visual grounding, precise grasp approach, and reliable placement onto the target plate in real-world tabletop experiments.</p>
+        </div>
+
+        <div class="video-feature">
+            <h2>Autonomous Pick and Place in Action</h2>
+            <video autoplay loop muted playsinline preload="metadata" poster="../assets/images/projects/Pi05/poster.png" aria-label="Fine-tuned Pi0.5 model driving AgileX Nero in pick-and-place task">
+                <source src="../assets/images/projects/Pi05/test3.webm" type="video/webm">
+                Your browser does not support WebM video.
+            </video>
+            <div class="figure-caption">Autonomous pick-and-place execution: AgileX Nero driven by the fine-tuned &pi;<sub>0.5</sub> policy grasping the red cube and transferring it to the plate.</div>
+        </div>
+
+        <div class="technologies-used">
+            <h2>Methodology</h2>
+            <p>The adaptation pipeline spans data collection, policy fine-tuning with OpenPI, and real-time physical robot deployment:</p>
+            
+            <div class="methodology-item">
+                <h3><i class="fas fa-robot"></i> Robotic Hardware & Sensory Setup</h3>
+                <ul>
+                    <li><strong>Manipulator:</strong> AgileX Nero 6-DoF lightweight robotic arm with parallel two-finger gripper.</li>
+                    <li><strong>Perception:</strong> Multi-view RGB camera setup including an overhead third-person camera and wrist-mounted camera for close-range manipulation.</li>
+                    <li><strong>Environment:</strong> Tabletop workstation located at the Robert Bosch Centre for Cyber-Physical Systems (RBCCPS).</li>
+                    <li><strong>Control Interface:</strong> High-frequency joint position and gripper action streaming over CAN/Ethernet bus.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-item">
+                <h3><i class="fas fa-brain"></i> &pi;<sub>0.5</sub> VLA Architecture & Fine-Tuning</h3>
+                <ul>
+                    <li><strong>Base Model:</strong> Physical Intelligence's &pi;<sub>0.5</sub> foundation model trained on diverse cross-embodiment robotic datasets.</li>
+                    <li><strong>Action Representation:</strong> Flow-based continuous action chunking predicting multi-step joint trajectories conditioned on vision and language tokens.</li>
+                    <li><strong>Training Framework:</strong> Fine-tuned via the OpenPI codebase using domain-specific teleoperated demonstrations.</li>
+                    <li><strong>Domain Adaptation:</strong> Fine-tuned model weights to specialize the general visuomotor representations to AgileX Nero's joint limits and gripper actions.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-item">
+                <h3><i class="fas fa-tasks"></i> Pick-and-Place Task Execution</h3>
+                <ul>
+                    <li><strong>Task Prompt:</strong> Visual and language conditioning guiding the robot to pick the target red cube and place it on the white plate.</li>
+                    <li><strong>Visual Grounding:</strong> Policy reliably attends to the red block irrespective of minor background clutter and lighting shifts.</li>
+                    <li><strong>Smooth Trajectories:</strong> Generates continuous velocity profiles avoiding sudden acceleration peaks or gripper slippage.</li>
+                    <li><strong>Closed-Loop Reactive Control:</strong> Evaluated in real time at 30 Hz for closed-loop visual servoing and grasp correction.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Multi-Perspective Evaluation</h2>
+        <p>The fine-tuned policy was evaluated across varied object positions, camera angles, and perspectives to verify robust physical execution:</p>
+        
+        <div class="figure-container">
+            <div class="figure">
+                <video autoplay loop muted playsinline preload="metadata" poster="../assets/images/projects/Pi05/poster1.png" aria-label="Wide angle view of AgileX Nero executing task">
+                    <source src="../assets/images/projects/Pi05/test1.webm" type="video/webm">
+                </video>
+                <div class="figure-caption">Trial 1: Complete Workstation & Lab Setup</div>
+                <p class="figure-description">Wide perspective showing the full workspace at RBCCPS, including overhead camera mount, workstation arrangement, and autonomous execution from the rest pose.</p>
+            </div>
+            <div class="figure">
+                <video autoplay loop muted playsinline preload="metadata" poster="../assets/images/projects/Pi05/poster2.png" aria-label="Medium angle view showing full table trajectory">
+                    <source src="../assets/images/projects/Pi05/test2.webm" type="video/webm">
+                </video>
+                <div class="figure-caption">Trial 2: Tabletop Visuomotor Tracking</div>
+                <p class="figure-description">Medium-range viewpoint capturing the complete arm trajectory as the &pi;<sub>0.5</sub> policy navigates to the target cube, engages the gripper, and transfers it cleanly onto the plate.</p>
+            </div>
+        </div>
+
+        <div class="products-created">
+            <h2>Key Innovations</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3><i class="fas fa-layer-group"></i> Foundation Model Adaptation</h3>
+                    <p>Demonstrated successful parameter fine-tuning of the state-of-the-art &pi;<sub>0.5</sub> VLA model on custom AgileX robotic hardware.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-eye"></i> End-to-End Visuomotor Policy</h3>
+                    <p>Direct mapping from raw RGB camera frames and language commands to continuous joint commands without hand-engineered primitives.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-compress-arrows-alt"></i> Sample Efficiency</h3>
+                    <p>Leveraged pre-trained physical priors from Physical Intelligence to achieve task mastery with a compact demonstration dataset.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-bullseye"></i> High Success Rate</h3>
+                    <p>Achieved robust pick-and-place performance with reliable grasping, stable object transport, and accurate plate placement.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact">
+            <h2>Impact and Future Directions</h2>
+            <p>This deployment demonstrates the feasibility of bringing general-purpose Vision-Language-Action foundation models to compact, accessible robotic platforms:</p>
+            <div class="impact-points">
+                <div class="impact-point">
+                    <i class="fas fa-robot"></i>
+                    <h3>Accessible Embodied AI</h3>
+                    <p>Validates high-capability VLA deployment on cost-effective, compact arm platforms like AgileX Nero.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Open-Source Robotics</h3>
+                    <p>Utilizes the OpenPI stack for standardized data logging, model fine-tuning, and real-time inference.</p>
+                </div>
+                <div class="impact-point">
+                    <i class="fas fa-cubes"></i>
+                    <h3>Generalizable Manipulation</h3>
+                    <p>Establishes the foundation for multi-task multi-object manipulation with diverse language instructions.</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 2rem;">Future Enhancements</h3>
+            <ul>
+                <li>Multi-task expansion to diverse everyday objects, tools, and kitchenware</li>
+                <li>Bimanual coordination using dual AgileX arms for cooperative manipulation</li>
+                <li>Integration of tactile sensing feedback into the policy observation space</li>
+                <li>Long-horizon task chaining with high-level visual language planning</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>Fine-tuning the &pi;<sub>0.5</sub> Vision-Language-Action model on the AgileX Nero manipulator demonstrates the power of modern foundation models for robotic manipulation. By leveraging pre-trained physical world representations and specializing them via OpenPI, the system achieves fluid, accurate, and reactive pick-and-place performance from raw camera streams. This work reinforces the paradigm of adapting large-scale embodied foundation models to real-world robotic systems with high sample efficiency and dependable physical execution.</p>
+        </div>
+
+        <div class="home-button">
+            <a href="../index.html#projects" class="button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/project-page-theme.js"></script>
+</body>
+</html>
+
