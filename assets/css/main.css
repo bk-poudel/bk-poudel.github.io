@@ -1517,15 +1517,14 @@ input, select, textarea {
 }
 /* Project image styles */
 .project-image {
-	width: 55rem;
-	height: 25rem; /* Maintain aspect ratio */
-	/* Optional: Set a max-width to control the size */
-	max-width: 70%;
+	width: 100%;
+	max-width: 100%;
 	display: block;
-	margin: 10px auto;
-	border: 1px solid #ddd; /* Optional: adds a light border */
-	border-radius: 4px; /* Optional: adds rounded corners */
-	transition: transform 0.3s ease-in-out; /* Added for smooth animation */
+	margin: 0;
+	border: none;
+	border-radius: 4px;
+	object-fit: contain;
+	transition: transform 0.3s ease-in-out;
 }
 .project-image:hover {
     transform: scale(1.05); /* Scales the image to 105% on hover */

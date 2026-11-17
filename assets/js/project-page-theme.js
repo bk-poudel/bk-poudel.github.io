@@ -7,40 +7,40 @@ document.addEventListener('DOMContentLoaded', function () {
     layer.className = 'floating-icons-container';
 
     const icons = [
-        'android-icon-svgrepo-com.svg',
-        'arduino-svgrepo-com.svg',
-        'arduinodroid-svgrepo-com.svg',
-        'artificial-intelligence-svgrepo-com.svg',
-        'c-sharp-16-svgrepo-com.svg',
-        'car-svgrepo-com.svg',
-        'circuit-board-microchip-svgrepo-com.svg',
-        'code-svgrepo-com.svg',
-        'drone-svgrepo-com.svg',
-        'drone-tech-svgrepo-com.svg',
-        'hardware-chip-outline-svgrepo-com.svg',
-        'hardware-svgrepo-com.svg',
-        'humanoid-robot-svgrepo-com.svg',
-        'humanoid-svgrepo-com.svg',
-        'industrial-robot-factory-svgrepo-com.svg',
-        'industrial-robot-svgrepo-com.svg',
-        'kaggle-svgrepo-com.svg',
-        'machine-learning-02-svgrepo-com.svg',
-        'machine-learning-model-svgrepo-com.svg',
-        'mechanical-arm-robotics-svgrepo-com.svg',
-        'nvidia-logo-svgrepo-com.svg',
-        'opencv-svgrepo-com.svg',
-        'python-svgrepo-com.svg',
-        'pytorch-svgrepo-com.svg',
-        'raspberrypi-svgrepo-com.svg',
-        'robot-arm-1-svgrepo-com.svg',
-        'robot-artificial-intelligence-svgrepo-com.svg',
-        'robot-svgrepo-com (1).svg',
-        'robot-svgrepo-com.svg',
-        'solidworks-svgrepo-com.svg',
-        'sparkfun-svgrepo-com.svg',
-        'tensorflow-svgrepo-com.svg',
-        'vision-svgrepo-com.svg',
-        'vscode-16-svgrepo-com.svg'
+        'android.svg',
+        'arduino.svg',
+        'arduinodroid.svg',
+        'artificial-intelligence.svg',
+        'c-sharp.svg',
+        'car.svg',
+        'circuit-board.svg',
+        'code.svg',
+        'drone-tech.svg',
+        'drone.svg',
+        'hardware-chip.svg',
+        'hardware.svg',
+        'humanoid-robot.svg',
+        'humanoid.svg',
+        'industrial-robot-factory.svg',
+        'industrial-robot.svg',
+        'kaggle.svg',
+        'machine-learning-model.svg',
+        'machine-learning.svg',
+        'mechanical-arm.svg',
+        'nvidia.svg',
+        'opencv.svg',
+        'python.svg',
+        'pytorch.svg',
+        'raspberrypi.svg',
+        'robot-ai.svg',
+        'robot-alt.svg',
+        'robot-arm.svg',
+        'robot.svg',
+        'solidworks.svg',
+        'sparkfun.svg',
+        'tensorflow.svg',
+        'vision.svg',
+        'vscode.svg'
     ];
 
     const iconData = [];
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const icon = document.createElement('img');
         icon.src = '../assets/icons/' + iconName;
         icon.className = 'floating-icon';
-        icon.alt = iconName.replace('-svgrepo-com.svg', '').replace(/-/g, ' ');
+        icon.alt = iconName.replace('.svg', '').replace(/-/g, ' ');
 
         const size = 60 + Math.random() * 30;
         icon.style.width = size + 'px';

@@ -292,10 +292,16 @@
 				var $this = $(this);
 
 				// Close.
-					$('<div class="close">Close</div>')
+					$('<div class="close" role="button" tabindex="0" aria-label="Close panel">Close</div>')
 						.appendTo($this)
 						.on('click', function() {
 							location.hash = '';
+						})
+						.on('keydown', function(event) {
+							if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13 || event.keyCode === 32) {
+								event.preventDefault();
+								location.hash = '';
+							}
 						});
 
 				// Prevent clicks from inside article from bubbling.
