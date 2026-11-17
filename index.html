@@ -292,22 +292,22 @@
         }
         .project-grid.view-grid .project-image-link,
         .project-grid:not(.view-list) .project-image-link {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            display: block !important;
             width: 100% !important;
-            height: 200px !important;
-            min-height: 200px !important;
-            max-height: 200px !important;
+            height: 190px !important;
+            min-height: 190px !important;
+            max-height: 190px !important;
             overflow: hidden !important;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.35);
+            border-radius: 6px !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
             margin: 0 0 1rem 0 !important;
-            padding: 0.25rem !important;
+            padding: 0 !important;
             border-bottom: none !important;
-            text-decoration: none;
-            box-sizing: border-box;
+            text-decoration: none !important;
+            box-sizing: border-box !important;
         }
         .project-grid.view-grid .project-image,
         .project-grid:not(.view-list) .project-image {
@@ -316,11 +316,13 @@
             height: 100% !important;
             min-height: 100% !important;
             max-height: 100% !important;
-            object-fit: contain !important;
+            object-fit: fill !important;
             display: block !important;
             border: none !important;
-            border-radius: 4px;
-            margin: auto !important;
+            outline: none !important;
+            box-shadow: none !important;
+            border-radius: 6px !important;
+            margin: 0 !important;
             padding: 0 !important;
             transition: transform 0.35s ease;
         }
@@ -404,30 +406,36 @@
         .project-grid.view-list .project-image-link {
             grid-area: media;
             display: block !important;
-            width: 100% !important;
-            height: 100% !important;
-            min-height: 140px !important;
+            width: 220px !important;
+            height: 155px !important;
+            min-height: 155px !important;
             max-height: 155px !important;
+            align-self: center !important;
             overflow: hidden !important;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
             margin: 0 !important;
             padding: 0 !important;
             border-bottom: none !important;
-            text-decoration: none;
-            box-sizing: border-box;
+            text-decoration: none !important;
+            box-sizing: border-box !important;
         }
         .project-grid.view-list .project-image {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: 100% !important;
-            min-height: 100% !important;
-            max-height: 100% !important;
-            object-fit: cover !important;
             display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            object-fit: fill !important;
             border: none !important;
-            border-radius: 5px;
+            outline: none !important;
+            box-shadow: none !important;
+            border-radius: 6px !important;
             margin: 0 !important;
             padding: 0 !important;
             transition: transform 0.35s ease;
@@ -524,23 +532,21 @@
                 row-gap: 0.75rem;
                 padding: 1.15rem 1.1rem;
             }
-            .project-grid.view-list .project-image-link,
-            .project-grid:not(.view-grid) .project-image-link {
-                min-height: 180px;
-                max-height: 220px;
+            .project-grid.view-list .project-image-link {
+                width: 100% !important;
+                height: 190px !important;
+                min-height: 190px !important;
+                max-height: 220px !important;
             }
         }
         @media (max-width: 480px) {
-            .project-grid.view-list .project-item,
-            .project-grid:not(.view-grid) .project-item {
+            .project-grid.view-list .project-item {
                 padding: 1rem;
             }
-            .project-grid.view-list .project-item .button-container,
-            .project-grid:not(.view-grid) .project-item .button-container {
+            .project-grid.view-list .project-item .button-container {
                 width: 100%;
             }
-            .project-grid.view-list .project-item .button-container .button,
-            .project-grid:not(.view-grid) .project-item .button-container .button {
+            .project-grid.view-list .project-item .button-container .button {
                 flex: 1 1 auto;
                 text-align: center;
             }
