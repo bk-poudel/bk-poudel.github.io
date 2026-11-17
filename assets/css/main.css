@@ -1115,6 +1115,7 @@ input, select, textarea {
 		background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
 		max-width: 100%;
 		text-align: center;
+		overflow: visible;
 	}
 		#header > * {
 			-moz-transition: opacity 0.325s ease-in-out;
@@ -1133,6 +1134,8 @@ input, select, textarea {
 				width: 1px;
 				height: calc(3.5rem + 1px);
 				background: #ffffff;
+				box-shadow: 0 0 4px #ffffff, 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.5), 0 0 24px rgba(255, 255, 255, 0.25);
+				animation: line-glow-pulse 4s ease-in-out infinite;
 			}
 		#header > :first-child {
 			margin-top: 0;
@@ -1140,14 +1143,60 @@ input, select, textarea {
 			#header > :first-child:before {
 				display: none;
 			}
-			#header .logo {
-				width: 5.5rem;
-    height: 5.5rem;
-    line-height: 5.5rem;
-    border: solid 1px #ffffff;
-    border-radius: 100%;
-    overflow: hidden; /* This ensures the image doesn't spill outside the circular border */
+		@keyframes profile-online-pulse {
+			0%, 100% {
+				box-shadow:
+					0 0 4px rgba(74, 222, 128, 0.3),
+					0 0 10px rgba(34, 197, 94, 0.16),
+					0 0 18px rgba(34, 197, 94, 0.06);
 			}
+			50% {
+				box-shadow:
+					0 0 8px rgba(74, 222, 128, 0.48),
+					0 0 16px rgba(34, 197, 94, 0.26),
+					0 0 26px rgba(34, 197, 94, 0.12);
+			}
+		}
+
+		@keyframes line-glow-pulse {
+			0%, 100% {
+				box-shadow:
+					0 0 2px rgba(255, 255, 255, 0.55),
+					0 0 5px rgba(255, 255, 255, 0.35),
+					0 0 10px rgba(255, 255, 255, 0.18),
+					0 0 16px rgba(255, 255, 255, 0.08);
+			}
+			50% {
+				box-shadow:
+					0 0 4px #ffffff,
+					0 0 8px rgba(255, 255, 255, 0.85),
+					0 0 16px rgba(255, 255, 255, 0.55),
+					0 0 24px rgba(255, 255, 255, 0.25);
+			}
+		}
+
+		#header .logo {
+			width: 5.5rem;
+			height: 5.5rem;
+			line-height: 5.5rem;
+			border: solid 1px #ffffff;
+			border-radius: 100%;
+			overflow: hidden; /* This ensures the image doesn't spill outside the circular border */
+			box-shadow:
+				0 0 6px rgba(74, 222, 128, 0.38),
+				0 0 14px rgba(34, 197, 94, 0.2),
+				0 0 22px rgba(34, 197, 94, 0.08);
+			animation: profile-online-pulse 4s ease-in-out infinite;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			#header .logo,
+			#header > *:before,
+			#header nav.use-middle:after,
+			#header .content .line-horizontal {
+				animation: none;
+			}
+		}
 		#header .logo img {
 			width: 100%; /* Make the image fill the container */
 			height: auto; /* Maintain aspect ratio */
@@ -1163,7 +1212,26 @@ input, select, textarea {
 			border-top-width: 1px;
 			border-bottom-width: 1px;
 			max-width: 100%;
+			position: relative;
 		}
+			#header .content .line-horizontal {
+				display: block;
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background: #ffffff;
+				box-shadow: 0 0 4px #ffffff, 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.5), 0 0 24px rgba(255, 255, 255, 0.25);
+				animation: line-glow-pulse 4s ease-in-out infinite;
+				pointer-events: none;
+				z-index: 1;
+			}
+			#header .content .line-horizontal.line-top {
+				top: -1px;
+			}
+			#header .content .line-horizontal.line-bottom {
+				bottom: -1px;
+			}
 			#header .content .inner {
 				-moz-transition: max-height 0.75s ease, padding 0.75s ease, opacity 0.325s ease-in-out;
 				-webkit-transition: max-height 0.75s ease, padding 0.75s ease, opacity 0.325s ease-in-out;
@@ -1204,6 +1272,14 @@ input, select, textarea {
 				#header nav ul li:first-child {
 					border-left: 0;
 				}
+				#header nav ul li:first-child a {
+					border-top-left-radius: 3px;
+					border-bottom-left-radius: 3px;
+				}
+				#header nav ul li:last-child a {
+					border-top-right-radius: 3px;
+					border-bottom-right-radius: 3px;
+				}
 				#header nav ul li a {
 					display: block;
 					min-width: 7.5rem;
@@ -1214,12 +1290,21 @@ input, select, textarea {
 					letter-spacing: 0.2rem;
 					font-size: 0.8rem;
 					border-bottom: 0;
+					-moz-transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+					-webkit-transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+					-ms-transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+					transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
 				}
 					#header nav ul li a:hover {
-						background-color: rgba(255, 255, 255, 0.075);
+						position: relative;
+						z-index: 1;
+						background-color: rgba(205, 155, 125, 0.08);
+						box-shadow: inset 0 0 8px rgba(205, 155, 120, 0.18), 0 0 10px rgba(205, 155, 120, 0.22), 0 0 20px rgba(195, 150, 120, 0.12);
+						text-shadow: 0 0 8px rgba(210, 165, 135, 0.28);
 					}
 					#header nav ul li a:active {
-						background-color: rgba(255, 255, 255, 0.175);
+						background-color: rgba(205, 155, 125, 0.14);
+						box-shadow: inset 0 0 12px rgba(205, 155, 120, 0.25), 0 0 8px rgba(205, 155, 120, 0.2);
 					}
 		#header nav.use-middle:after {
 			content: '';
@@ -1230,6 +1315,8 @@ input, select, textarea {
 			width: 1px;
 			height: 100%;
 			background: #ffffff;
+			box-shadow: 0 0 4px #ffffff, 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.5), 0 0 24px rgba(255, 255, 255, 0.25);
+			animation: line-glow-pulse 4s ease-in-out infinite;
 		}
 		#header nav.use-middle ul li.is-middle {
 			border-left: 0;
@@ -1309,6 +1396,16 @@ input, select, textarea {
 					}
 						#header nav ul li:first-child {
 							border-top: 0;
+						}
+						#header nav ul li:first-child a {
+							border-top-left-radius: 3px;
+							border-top-right-radius: 3px;
+							border-bottom-left-radius: 0;
+						}
+						#header nav ul li:last-child a {
+							border-top-right-radius: 0;
+							border-bottom-left-radius: 3px;
+							border-bottom-right-radius: 3px;
 						}
 						#header nav ul li a {
 							height: 3rem;

@@ -34,7 +34,6 @@
             outline: 2px solid #ffffff !important;
             outline-offset: 2px !important;
         }
-
         /* Enhanced Keyboard Focus Accessibility */
         a:focus-visible,
         button:focus-visible,
@@ -58,7 +57,6 @@
             box-shadow: 0 0 0 2px #5e81f4, 0 0 12px rgba(94, 129, 244, 0.5);
             border-radius: 6px;
         }
-
         /* Floating Icons Animation */
         body {
             margin: 0;
@@ -121,7 +119,6 @@
                 display: none;
             }
         }
-
         /* Glassmorphic Panel Container */
         #main article,
         article#projects {
@@ -132,7 +129,6 @@
             border-radius: 14px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
-
         /* Projects Section & List Layout (Similar in Publications) */
         #projects {
             position: relative;
@@ -219,7 +215,6 @@
         .project-view-button.is-active i {
             color: #ffffff;
         }
-
         /* Shared Project Grid & Item Filter Rules */
         .project-grid {
             padding: 0;
@@ -244,7 +239,6 @@
                 transform: translateY(0);
             }
         }
-
         /* --- TAB VIEW (Default View) --- */
         .project-grid.view-grid,
         .project-grid:not(.view-list) {
@@ -354,7 +348,6 @@
             flex-wrap: wrap;
             width: 100%;
         }
-
         /* --- LIST VIEW --- */
         .project-grid.view-list {
             display: flex;
@@ -465,7 +458,6 @@
             flex-wrap: wrap;
             justify-content: flex-start;
         }
-
         /* Project Items Shared Typography & Buttons */
         .project-item p em {
             color: rgba(255, 255, 255, 0.88);
@@ -517,7 +509,6 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }
-
         /* Responsive Breakpoints */
         @media (max-width: 768px) {
             .project-grid.view-list .project-item,
@@ -551,7 +542,6 @@
                 text-align: center;
             }
         }
-
         /* Project Filter Controls */
         .project-filters {
             display: flex;
@@ -697,7 +687,6 @@
                 padding-top: 0.25rem;
             }
         }
-
         /* Resume Styles */
         .education-item, .experience-item {
             margin-bottom: 1.5rem;
@@ -794,7 +783,6 @@
             font-size: 0.88rem;
             line-height: 1.6;
         }
-
         /* Intro Styles */
         .intro-profile-image {
             width: 150px;
@@ -804,7 +792,6 @@
             margin-right: 2rem;
             border: 3px solid #b8c1ec;
         }
-
         /* Section Major Headings */
         #main article h2.major {
             margin-left: auto;
@@ -827,7 +814,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         /* Header Navigation */
         #header nav {
             transform: translateX(1rem);
@@ -835,7 +821,6 @@
         #header nav ul li a {
             font-family: 'Source Sans 3', sans-serif;
         }
-
         /* Resume Typography */
         #resume h2,
         #resume h3,
@@ -848,7 +833,6 @@
         #resume li {
             font-family: 'Inter', sans-serif;
         }
-
         /* Publications & Writing */
         #publications h3,
         #publications h4,
@@ -959,7 +943,6 @@
                 padding: 1rem;
             }
         }
-
         /* Contact Styles */
         #contact .major,
         #contact .contact-social-label {
@@ -1074,7 +1057,6 @@
                 flex-direction: column;
             }
         }
-
         /* Prefers-reduced-motion Accessibility */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -1115,11 +1097,12 @@
             <!-- Icons will be dynamically added by JavaScript -->
         </div>
         <!-- Header -->
-        <header id="header" style="overflow: hidden;">
-            <div class="logo">
+        <header id="header">
+            <div class="logo" title="Status: Online" aria-label="Profile picture - Online">
                 <img src="assets/images/site/profile.jpg" alt="Bibek Poudel">
             </div>
             <div class="content">
+                <span class="line-horizontal line-top" aria-hidden="true"></span>
                 <div class="inner">
                     <h1>Bibek Poudel</h1>
                     <p>Aspiring Computer and Robotics Engineer</p>
@@ -1164,6 +1147,7 @@
                         </script>
                     </div>
                 </div>
+                <span class="line-horizontal line-bottom" aria-hidden="true"></span>
             </div>
             <nav>
                  <ul>
@@ -1310,7 +1294,7 @@
                     <div class="project-filter-title"><i class="fas fa-filter" aria-hidden="true"></i> Filter</div>
                     <button type="button" class="project-filter-button is-active" data-filter="all" aria-pressed="true">All Projects</button>
                     <button type="button" class="project-filter-button" data-filter="robotics" aria-pressed="false">Robotics</button>
-                    <button type="button" class="project-filter-button" data-filter="embedded" aria-pressed="false">Embedded System</button>
+                    <button type="button" class="project-filter-button" data-filter="embedded" aria-pressed="false">Electronics</button>
                     <button type="button" class="project-filter-button" data-filter="mechanical" aria-pressed="false">Design</button>
                     <span class="project-filter-count" aria-live="polite">24 projects</span>
                 </aside>
@@ -1786,30 +1770,25 @@
             });
             window.addEventListener('hashchange', resetProjectFilter);
             resetProjectFilter();
-
             // Project View Switcher (List View vs Tab View)
             const viewButtons = document.querySelectorAll('.project-view-button');
             const projectContainer = document.querySelector('.project-grid');
-
             function setProjectView(view) {
                 if (!projectContainer) return;
                 const isGrid = view === 'grid';
                 projectContainer.classList.toggle('view-grid', isGrid);
                 projectContainer.classList.toggle('view-list', !isGrid);
-
                 viewButtons.forEach(btn => {
                     const active = btn.dataset.view === view;
                     btn.classList.toggle('is-active', active);
                     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
                 });
             }
-
             viewButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     setProjectView(this.dataset.view);
                 });
             });
-
             // Make tab view default
             setProjectView('grid');
         });
@@ -1897,7 +1876,6 @@
                 });
                 return;
             }
-
             // Animation loop with bouncing physics
             function animate() {
                 const width = window.innerWidth;
